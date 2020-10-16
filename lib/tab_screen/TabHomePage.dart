@@ -1,9 +1,9 @@
-import 'package:ExpShop/listScroll.dart';
-import 'package:ExpShop/list_item.dart';
-import 'package:ExpShop/list_product.dart';
+import 'package:ExpShop/widget/ListScrollHori.dart';
+import 'package:ExpShop/widget/ItemSlider.dart';
+import 'package:ExpShop/widget/ListProduct.dart';
 
-import 'package:ExpShop/suggest1.dart';
-import 'package:ExpShop/suggest2.dart';
+import 'package:ExpShop/widget/CardMostPopularV1.dart';
+import 'package:ExpShop/widget/CardMostPopularV2.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +24,10 @@ class TabHomePage extends StatelessWidget {
       child: ListView(
         children: [
           sliderFood(cardList, _currentIndexSlider),
-          listScrollHori(),
-          containerItems(context),
-          suggestCardFull(context),
-          listHomeProducts(context),
+          ListHoriScroll(),
+          CardMostPopular(),
+          CardMostPopularV2(),
+          ListProductHomePage2Column(),
         ],
       ),
     );

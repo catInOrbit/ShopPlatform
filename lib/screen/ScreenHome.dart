@@ -1,15 +1,10 @@
-import 'package:ExpShop/list_card_notification.dart';
-import 'package:ExpShop/list_item.dart';
-import 'package:ExpShop/list_product.dart';
-import 'package:ExpShop/menuItem.dart';
-import 'package:ExpShop/screen/screen_detailProduct.dart';
-import 'package:ExpShop/suggest1.dart';
-import 'package:ExpShop/suggest2.dart';
-import 'package:ExpShop/tab_screen/tab_home_page.dart';
-import 'package:ExpShop/tab_screen/tab_like_products.dart';
-import 'package:ExpShop/tab_screen/tab_menu.dart';
-import 'package:ExpShop/tab_screen/tab_notification.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ExpShop/screen/ProductDetail.dart';
+
+import 'package:ExpShop/tab_screen/TabHomePage.dart';
+import 'package:ExpShop/tab_screen/TabLikeProduct.dart';
+import 'package:ExpShop/tab_screen/TabMenu.dart';
+import 'package:ExpShop/tab_screen/TabNotification.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Hello'),
       ),
-      body: ProductDetail(),
+      body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {

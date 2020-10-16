@@ -1,4 +1,4 @@
-import 'package:ExpShop/list_card_notification.dart';
+import 'package:ExpShop/widget/CardNotification.dart';
 import 'package:flutter/material.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -7,7 +7,11 @@ class NotificationPage extends StatelessWidget {
     return Container(
       child: ListView(
         children: <Widget>[
-          cardProduct,
+          CardNotification(),
+          CardNotification(),
+          CardNotification(),
+          CardNotification(),
+          CardNotification(),
         ],
       ),
     );
