@@ -1,4 +1,6 @@
+
 import 'package:ecommerce_int2/screens/main/main_page.dart';
+import 'package:ecommerce_int2/screens/screens/splash_page.dart';
 import 'package:flutter/material.dart';
 
 

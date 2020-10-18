@@ -2,6 +2,8 @@ import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/custom_background.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/category/category_list_page.dart';
+import 'package:ecommerce_int2/screens/screens/profile_page.dart';
+import 'package:ecommerce_int2/screens/screens/shop/check_out_page.dart';
 import 'package:ecommerce_int2/screens/tracking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -223,9 +225,8 @@ class _MainPageState extends State<MainPage>
               ),
             ),
             CategoryListPage(),
-            CategoryListPage(),
-            CategoryListPage(),
-
+            CheckOutPage(),
+            ProfilePage()
           ],
         ),
       ),
