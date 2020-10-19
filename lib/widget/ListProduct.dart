@@ -66,67 +66,75 @@ class CardProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      width: MediaQuery.of(context).size.width * 0.48,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width * 0.5,
-                color: Colors.green[50],
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.width * 0.5 -
-                    MediaQuery.of(context).size.height * 0.06,
-                left: MediaQuery.of(context).size.height * 0.19,
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  child: Text('3km'),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.blue,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/ProductDetail');
+      },
+      child: Container(
+        color: Colors.white,
+        width: MediaQuery.of(context).size.width * 0.48,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.width * 0.5,
+                  child: Image.network(
+                    'https://cdn.tgdd.vn/Products/Images/2565/77623/bhx/mi-xao-hao-hao-tom-xao-chua-ngot-goi-75g-201912050922257256.jpg',
+                    fit: BoxFit.cover,
                   ),
-                  width: MediaQuery.of(context).size.width * 0.13,
-                  height: MediaQuery.of(context).size.height * 0.04,
                 ),
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.07,
-              child: Text(
-                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Row(
-              children: <Widget>[
-                Icon(
-                  CupertinoIcons.heart,
-                  size: 20,
-                  color: Colors.red[200],
-                ),
-                Text('(230 lượt)'),
+                Positioned(
+                  top: MediaQuery.of(context).size.width * 0.5 -
+                      MediaQuery.of(context).size.height * 0.06,
+                  left: MediaQuery.of(context).size.height * 0.19,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Text('3km'),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.blue,
+                    ),
+                    width: MediaQuery.of(context).size.width * 0.13,
+                    height: MediaQuery.of(context).size.height * 0.04,
+                  ),
+                )
               ],
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(
-              '25.000 đ',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 23),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.07,
+                child: Text(
+                  'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+                ),
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    CupertinoIcons.heart,
+                    size: 20,
+                    color: Colors.red[200],
+                  ),
+                  Text('(230 lượt)'),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                '25.000 đ',
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 23),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:flutter/material.dart';
 
 // class Suggest1 extends StatefulWidget {
@@ -28,7 +29,7 @@ class CardMostPopular extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(bottom: 10),
-      color: Colors.red,
+      color: WHITE,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -50,13 +51,25 @@ class CardMostPopular extends StatelessWidget {
               Expanded(
                   child: Column(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.black,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/PageRecommendV1");
+                    },
+                    child: Container(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRnY8632GkkduThr4OCgMH15bdWKU15ux2x-w&usqp=CAU',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.black,
+                      ),
+                      height: MediaQuery.of(context).size.width * 0.3 * 2,
+                      width: MediaQuery.of(context).size.width * 0.3,
                     ),
-                    height: MediaQuery.of(context).size.width * 0.3 * 2,
-                    width: MediaQuery.of(context).size.width * 0.3,
                   ),
                 ],
               )),
@@ -102,9 +115,14 @@ class ItemMostPopular extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.network(
+            'https://s3.us-east-2.amazonaws.com/ordersapp/business/5660348/items/hamberger.jpg',
+            fit: BoxFit.cover,
+          )),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.black,
       ),
       height: MediaQuery.of(context).size.width * 0.3 -
           MediaQuery.of(context).size.height * 0.007,

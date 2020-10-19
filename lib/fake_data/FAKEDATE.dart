@@ -37,7 +37,7 @@ var listProduct = [
       like: 100,
       describe: 'ca phe chat luong cao ',
       promotionalPrice: 8000,
-      image: 'ádfb'),
+      image: 'https://cf.shopee.vn/file/fe17c960e9f8c48134dd077befcb66e4'),
   ProductItem(
       productID: 2,
       productName: 'Cafe1',
@@ -47,7 +47,7 @@ var listProduct = [
       like: 100,
       describe: 'ca phe chat luong cao ',
       promotionalPrice: 8000,
-      image: 'ádfb'),
+      image: 'https://cf.shopee.vn/file/fe17c960e9f8c48134dd077befcb66e4'),
   ProductItem(
       productID: 3,
       productName: 'Cafe2',
@@ -57,7 +57,7 @@ var listProduct = [
       like: 100,
       describe: 'ca phe chat luong cao ',
       promotionalPrice: 8000,
-      image: 'ádfb'),
+      image: 'https://cf.shopee.vn/file/fe17c960e9f8c48134dd077befcb66e4'),
   ProductItem(
       productID: 4,
       productName: 'Cafe3',
@@ -67,7 +67,7 @@ var listProduct = [
       like: 100,
       describe: 'ca phe chat luong cao ',
       promotionalPrice: 8000,
-      image: 'ádfb'),
+      image: 'https://cf.shopee.vn/file/fe17c960e9f8c48134dd077befcb66e4'),
   ProductItem(
       productID: 5,
       productName: 'Cafe4',
@@ -77,7 +77,7 @@ var listProduct = [
       like: 100,
       describe: 'ca phe chat luong cao ',
       promotionalPrice: 8000,
-      image: 'ádfb'),
+      image: 'https://cf.shopee.vn/file/fe17c960e9f8c48134dd077befcb66e4'),
   ProductItem(
       productID: 6,
       productName: 'Cafe5',
@@ -87,7 +87,7 @@ var listProduct = [
       like: 100,
       describe: 'ca phe chat luong cao ',
       promotionalPrice: 8000,
-      image: 'ádfb'),
+      image: 'https://cf.shopee.vn/file/fe17c960e9f8c48134dd077befcb66e4'),
   ProductItem(
       productID: 7,
       productName: 'Cafe6',
@@ -97,5 +97,5 @@ var listProduct = [
       like: 100,
       describe: 'ca phe chat luong cao ',
       promotionalPrice: 8000,
-      image: 'ádfb'),
+      image: 'https://cf.shopee.vn/file/fe17c960e9f8c48134dd077befcb66e4'),
 ];

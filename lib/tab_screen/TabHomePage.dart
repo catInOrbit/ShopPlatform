@@ -1,3 +1,5 @@
+import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/widget/CategoryFood.dart';
 import 'package:ExpShop/widget/ListScrollHori.dart';
 import 'package:ExpShop/widget/ItemSlider.dart';
 import 'package:ExpShop/widget/ListProduct.dart';
@@ -20,13 +22,44 @@ class TabHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey,
+      color: GREENWHITE,
       child: ListView(
         children: [
-          sliderFood(cardList, _currentIndexSlider),
-          ListHoriScroll(),
-          CardMostPopular(),
-          CardMostPopularV2(),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 750,
+            color: Colors.black,
+            child: Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image:
+                            AssetImage('assets/images/BackgroundHomePage.png'),
+                        fit: BoxFit.fitHeight),
+                  ),
+                ),
+                Column(
+                  children: [
+                    sliderFood(cardList, _currentIndexSlider),
+                    CategoryFood(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: ListHoriScroll(),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: CardMostPopular(),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: CardMostPopularV2(),
+          ),
           ListProductHomePage2Column(),
         ],
       ),

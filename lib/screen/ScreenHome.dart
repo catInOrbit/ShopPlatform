@@ -1,12 +1,15 @@
-import 'package:ExpShop/screen/ProductDetail.dart';
-
+import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/screen/PageRecommendV1.dart';
+import 'package:ExpShop/screen/PageRecommendV2.dart';
 import 'package:ExpShop/tab_screen/TabHomePage.dart';
 import 'package:ExpShop/tab_screen/TabLikeProduct.dart';
 import 'package:ExpShop/tab_screen/TabMenu.dart';
 import 'package:ExpShop/tab_screen/TabNotification.dart';
+import 'package:ExpShop/widget/CategoryFood.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,7 +29,101 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hello'),
+        title: FlatButton(
+            onPressed: () {
+              showModalBottomSheet(
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10))),
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (ctx) {
+                    return Container(
+                      decoration: BoxDecoration(),
+                      height: MediaQuery.of(context).size.height * 0.90,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 10),
+                            child: Text(
+                              'Chọn khu vực của bạn',
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            child: Container(
+                              color: GREENWHITE,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Tìm vị trí',
+                                  prefixIcon:
+                                      Icon(FontAwesomeIcons.mapMarkerAlt),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            child: Container(
+                              padding: EdgeInsets.only(top: 15, bottom: 25),
+                              decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(width: 1))),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    FontAwesomeIcons.mapMarkedAlt,
+                                    size: 20,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      'CHỌN TRÊN BẢN ĐỒ',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Card(
+                            child: ListTile(
+                              leading: Icon(FontAwesomeIcons.mapMarkerAlt),
+                              title: Text('Vị trí hiện tại của bản'),
+                              subtitle: Text('quốc lộ ABC'),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  });
+            },
+            child: Row(
+              children: [
+                Text('50 Đường số 6'),
+                Icon(Icons.arrow_drop_down),
+              ],
+            )),
+        bottom: PreferredSize(
+          preferredSize: Size.square(50),
+          child: Container(
+            padding: EdgeInsets.only(bottom: 5),
+            width: MediaQuery.of(context).size.width * 0.90,
+            child: TextField(
+              decoration: InputDecoration(
+                fillColor: GREENWHITE,
+                filled: true,
+                prefixIcon: Icon(Icons.search),
+                hintText: 'Search',
+              ),
+            ),
+          ),
+        ),
       ),
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

@@ -1,3 +1,4 @@
+import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:flutter/material.dart';
 
 // class Suggest2 extends StatefulWidget {
@@ -26,7 +27,7 @@ class CardMostPopularV2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(bottom: 10),
-      color: Colors.red,
+      color: WHITE,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -80,6 +81,13 @@ class MiniCardMostPopularV2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.network(
+          'https://recipes.heart.org/-/media/aha/recipe/recipe-images/mediterranean-salad.jpg?h=636&la=en&mw=890&w=890&hash=8A95325FBD7890C243CFD1124CFBA7FA090E181B',
+          fit: BoxFit.cover,
+        ),
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.black,
@@ -100,14 +108,22 @@ class BigCardMostPopularV2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.black,
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, "/PageRecommendV2");
+          },
+          child: Container(
+            child: Image.network(
+              'https://salt.tikicdn.com/ts/categoryblock/43/8a/1a/bafbb8eb2df2ca34ecebad66c49099c3.png',
+              fit: BoxFit.cover,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            height: MediaQuery.of(context).size.width * 0.457 -
+                MediaQuery.of(context).size.height * 0.007,
+            width: MediaQuery.of(context).size.width * 0.457,
           ),
-          height: MediaQuery.of(context).size.width * 0.457 -
-              MediaQuery.of(context).size.height * 0.007,
-          width: MediaQuery.of(context).size.width * 0.457,
         ),
         Positioned(
           left: MediaQuery.of(context).size.width * (0.457 - 0.3) / 2,
