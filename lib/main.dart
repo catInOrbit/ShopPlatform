@@ -1,14 +1,22 @@
 
 import 'package:ecommerce_int2/screens/main/main_page.dart';
-import 'package:ecommerce_int2/screens/screens/splash_page.dart';
+import 'package:ecommerce_int2/screens/splash_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-
-void main() => runApp(MyApp());
+void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
+   runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+
+  final firestoreInstance = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,4 +31,5 @@ class MyApp extends StatelessWidget {
       home: MainPage(),
     );
   }
+
 }

@@ -1,5 +1,6 @@
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/screens/shop/check_out_page.dart';
 import 'package:flutter/material.dart';
 
 import 'shop_product.dart';
@@ -34,7 +35,7 @@ class _ShopBottomSheetState extends State<ShopBottomSheet> {
       onTap: () async {
         Navigator.of(context).pop();
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) {}));
+            .push(MaterialPageRoute(builder: (_) => CheckOutPage()));
       },
       child: Container(
         width: MediaQuery.of(context).size.width / 1.5,

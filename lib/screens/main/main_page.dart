@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/custom_background.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/category/category_list_page.dart';
-import 'package:ecommerce_int2/screens/screens/profile_page.dart';
-import 'package:ecommerce_int2/screens/screens/shop/check_out_page.dart';
+import 'package:ecommerce_int2/screens/notifications_page.dart';
+import 'package:ecommerce_int2/screens/profile_page.dart';
+import 'package:ecommerce_int2/screens/search_page.dart';
+import 'package:ecommerce_int2/screens/shop/check_out_page.dart';
 import 'package:ecommerce_int2/screens/tracking_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -52,6 +56,19 @@ class _MainPageState extends State<MainPage>
     bottomTabController = TabController(length: 4, vsync: this);
   }
 
+
+  final firestoreInstance = FirebaseFirestore.instance;
+
+  void tempFirebaseAdd()
+  {
+    firestoreInstance.collection("products").add({
+        "name" : "Test Product 1",
+        "price" : "30",
+        "quantity" : "200",
+        "imageString" : "test",
+      }).then((value) => print(value.id));
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget appBar = Container(
@@ -60,11 +77,13 @@ class _MainPageState extends State<MainPage>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton( onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) {})),
+                  .push(MaterialPageRoute(builder: (_) => NotificationsPage())),
               icon: Icon(Icons.notifications)),
           IconButton(
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) {})),
+              onPressed: () {
+                tempFirebaseAdd;
+                Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => SearchPage()));},
               icon: SvgPicture.asset('assets/icons/search_icon.svg'))
         ],
       ),
@@ -78,6 +97,8 @@ class _MainPageState extends State<MainPage>
             Flexible(
               child: InkWell(
                 onTap: () {
+                  tempFirebaseAdd;
+
                   setState(() {
                     selectedTimeline = timelines[0];
                     products = [
@@ -110,6 +131,7 @@ class _MainPageState extends State<MainPage>
             Flexible(
               child: InkWell(
                 onTap: () {
+                  tempFirebaseAdd;
                   setState(() {
                     selectedTimeline = timelines[1];
                     products = [
@@ -202,6 +224,7 @@ class _MainPageState extends State<MainPage>
               child: NestedScrollView(
                 headerSliverBuilder:
                     (BuildContext context, bool innerBoxIsScrolled) {
+                  // These are the slivers that show up in the "outer" scroll view.
                   return <Widget>[
                     SliverToBoxAdapter(
                       child: appBar,

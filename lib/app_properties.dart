@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 const Color green = Color.fromRGBO(82, 207, 90, 1);
 const Color mediumGreen = Color.fromRGBO(82, 207, 90, 1);
-const Color darkGreen = Color.fromRGBO(0, 157, 43, 1);
-const Color transparentGreen = Color.fromRGBO(82, 207, 90, 0.72);
+const Color darkGreen = Color.fromRGBO(124, 173, 127, 1);
+const Color transparentGreen = Color.fromRGBO(82, 207, 90, 0.7);
 const Color darkGrey = Color(0xff202020);
 
 const LinearGradient mainButton = LinearGradient(colors: [

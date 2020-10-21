@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'components/product_display.dart';
+import 'view_product_page.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -27,7 +28,7 @@ class _ProductPageState extends State<ProductPage> {
 
     Widget viewProductButton  = InkWell(
       onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) {})),
+          .push(MaterialPageRoute(builder: (_) => ViewProductPage(product: product,))),
       child: Container(
         height: 80,
         width: width / 1.5,
@@ -107,16 +108,16 @@ class _ProductPageState extends State<ProductPage> {
                         width: 90,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: Color.fromRGBO(253, 192, 84, 1),
+                          color: mediumGreen,
                           borderRadius: BorderRadius.circular(4.0),
                           border:
-                              Border.all(color: Color(0xFFFFFFFF), width: 0.5),
+                              Border.all(color: Color(0xFFFFFFFF), width: 1),
                         ),
                         child: Center(
                           child: new Text("Details",
                               style: const TextStyle(
                                   color: const Color(0xeefefefe),
-                                  fontWeight: FontWeight.w300,
+                                  fontWeight: FontWeight.bold,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 12.0)),
                         ),
@@ -147,14 +148,7 @@ class _ProductPageState extends State<ProductPage> {
               padding: EdgeInsets.only(
                   top: 8.0, bottom: bottomPadding != 20 ? 20 : bottomPadding),
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                    Color.fromRGBO(255, 255, 255, 0),
-                    Color.fromRGBO(253, 192, 84, 0.5),
-                    Color.fromRGBO(253, 192, 84, 1),
-                  ],
-                      begin: FractionalOffset.topCenter,
-                      end: FractionalOffset.bottomCenter)),
+              ),
               width: width,
               height: 120,
               child: Center(
