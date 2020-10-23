@@ -1,4 +1,5 @@
 import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/bloc/cart_bloc.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/product/product_page.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,12 @@ import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class ProductList extends StatelessWidget {
+  final CartBloc cartBloc;
   List<Product> products;
 
   final SwiperController swiperController = SwiperController();
 
-  ProductList({Key key, this.products}) : super(key: key);
+  ProductList({Key key, this.products, this.cartBloc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class ProductList extends StatelessWidget {
         itemCount: products.length,
         itemBuilder: (_, index) {
           return ProductCard(
+            cartBloc: cartBloc,
             height: cardHeight,
             width: cardWidth,
             product: products[index]
@@ -103,10 +106,10 @@ class ProductCard extends StatelessWidget {
   final Product product;
   final double height;
   final double width;
+  final CartBloc cartBloc;
 
 
-
-  const ProductCard({Key key, this.product,this.height,this.width})
+  const ProductCard({Key key, this.product,this.height,this.width, this.cartBloc})
       : super(key: key);
 
   @override
@@ -115,8 +118,8 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context)
           .push(MaterialPageRoute(builder: (_) => ProductPage(
-        product: product
-
+        product: product,
+        cartBloc: cartBloc,
       ))),
       child: Stack(
         children: <Widget>[

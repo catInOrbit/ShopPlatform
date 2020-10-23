@@ -1,4 +1,5 @@
 
+import 'package:ecommerce_int2/bloc/cart_bloc.dart';
 import 'package:ecommerce_int2/screens/main/main_page.dart';
 import 'package:ecommerce_int2/screens/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,7 +15,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
 
   final firestoreInstance = FirebaseFirestore.instance;
   @override

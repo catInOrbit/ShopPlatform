@@ -1,4 +1,6 @@
 import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/bloc/cart_bloc.dart';
+import 'package:ecommerce_int2/bloc/cart_state.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/address/add_address_page.dart';
 import 'package:ecommerce_int2/screens/payment/unpaid_page.dart';
@@ -10,6 +12,9 @@ import 'components/shop_item_list.dart';
 
 //TODO: NOT DONE. WHEEL SCROLL QUANTITY
 class CheckOutPage extends StatefulWidget {
+  final CartBloc cartBloc;
+
+  const CheckOutPage({Key key, this.cartBloc}) : super(key: key);
   @override
   _CheckOutPageState createState() => _CheckOutPageState();
 }
@@ -19,20 +24,23 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
   List<Product> products = [
     Product(
+      "test",
         'assets/headphones.png',
         'Boat roackerz 400 On-Ear Bluetooth Headphones',
         'description',
-        45.3),
+        45.3, 300),
     Product(
+        "test",
         'assets/headphones_2.png',
         'Boat roackerz 100 On-Ear Bluetooth Headphones',
         'description',
-        22.3),
+        22.3, 300),
     Product(
+        "test",
         'assets/headphones_3.png',
         'Boat roackerz 300 On-Ear Bluetooth Headphones',
         'description',
-        58.3)
+        58.3, 300)
   ];
 
   @override
@@ -83,59 +91,67 @@ class _CheckOutPageState extends State<CheckOutPage> {
               color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
         ),
       ),
-      body: LayoutBuilder(
-        builder: (_, constraints) => SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 32.0),
-                  height: 48.0,
-                  color: green,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        'Subtotal',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
+      body: StreamBuilder(
+        initialData: cartBloc.cartState,
+        stream: cartBloc.outputState,
+        builder: (context, snapshot){
+          CartState state = snapshot.data;
+          return  LayoutBuilder(
+            builder: (_, constraints) => SingleChildScrollView(
+              physics: ClampingScrollPhysics(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 32.0),
+                      height: 48.0,
+                      color: green,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Subtotal',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
+                          Text(
+                            state.products.length.toString() + ' items',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )
+                        ],
                       ),
-                      Text(
-                        products.length.toString() + ' items',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 300,
-                  child: Scrollbar(
-                    child: ListView.builder(
-                      itemBuilder: (_, index) => ShopItemList(products[index],onRemove: (){
-                        setState(() {
-                          products.remove(products[index]);
-                        });
-                      },),
-                      itemCount: products.length,
                     ),
-                  ),
-                ),
+                    SizedBox(
+                      height: 300,
+                      child: Scrollbar(
+                        child: ListView.builder(
+                          itemBuilder: (_, index) => ShopItemList(state.products[index],onRemove: (){
+                            setState(() {
+                              state.products.remove(products[index]);
+                            });
+                          },),
+                          itemCount: state.products.length,
+                        ),
+                      ),
+                    ),
 
-                SizedBox(height: 24),
-                Center(
-                    child: checkOutButton)
-              ],
+                    SizedBox(height: 24),
+                    Center(
+                        child: checkOutButton)
+                  ],
+                ),
+              ),
             ),
-          ),
-        ),
+          );
+        },
+
       ),
     );
   }

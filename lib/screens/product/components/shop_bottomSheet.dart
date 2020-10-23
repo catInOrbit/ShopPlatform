@@ -1,4 +1,6 @@
 import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/bloc/cart_bloc.dart';
+import 'package:ecommerce_int2/bloc/cart_state.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/shop/check_out_page.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'shop_product.dart';
 
 class ShopBottomSheet extends StatefulWidget {
+  final CartBloc cartBlocInternal;
+
+  const ShopBottomSheet({Key key, this.cartBlocInternal}) : super(key: key);
   @override
   _ShopBottomSheetState createState() => _ShopBottomSheetState();
 }
@@ -13,20 +18,23 @@ class ShopBottomSheet extends StatefulWidget {
 class _ShopBottomSheetState extends State<ShopBottomSheet> {
   List<Product> products = [
     Product(
+      "test",
         'assets/headphones.png',
         'Boat roackerz 400 On-Ear Bluetooth Headphones',
         'description',
-        45.3),
+        45.3, 300),
     Product(
+        "test",
         'assets/headphones_2.png',
         'Boat roackerz 100 On-Ear Bluetooth Headphones',
         'description',
-        22.3),
+        22.3, 300),
     Product(
+        "test",
         'assets/headphones_3.png',
         'Boat roackerz 300 On-Ear Bluetooth Headphones',
         'description',
-        58.3)
+        58.3, 300)
   ];
 
   @override
@@ -64,53 +72,63 @@ class _ShopBottomSheetState extends State<ShopBottomSheet> {
       ),
     );
 
-    return Container(
-        decoration: BoxDecoration(
-            color: Color.fromRGBO(255, 255, 255, 0.9),
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(24), topLeft: Radius.circular(24))),
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                icon: Image.asset(
-                  'assets/box.png',
-                  height: 24,
-                  width: 24.0,
-                  fit: BoxFit.cover,
-                ),
-                onPressed: () {},
-                iconSize: 48,
-              ),
-            ),
-            SizedBox(
-              height: 300,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: products.length,
-                  itemBuilder: (_, index) {
-                    return Row(
-                      children: <Widget>[
-                        ShopProduct(products[index],onRemove: (){
-                          setState(() {
-                            products.remove(products[index]);
-                          });
-                        },),
-                        index == 4
-                            ? SizedBox()
-                            : Container(
-                                width: 2,
-                                height: 200,
-                                color: Color.fromRGBO(100, 100, 100, 0.1))
-                      ],
-                    );
-                  }),
-            ),
-            confirmButton
-          ],
-        ));
+    return StreamBuilder(
+      stream: cartBloc.outputState,
+      builder: (context, snapshot){
+            CartState state = snapshot.data;
+            return Container(
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(255, 255, 255, 0.9),
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(24), topLeft: Radius.circular(24))),
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        icon: Image.asset(
+                          'assets/box.png',
+                          height: 24,
+                          width: 24.0,
+                          fit: BoxFit.cover,
+                        ),
+                        onPressed: () {},
+                        iconSize: 48,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 300,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: state.products.length,
+                          itemBuilder: (_, index) {
+                            return Row(
+                              children: <Widget>[
+                                ShopProduct(state.products[index],onRemove: (){
+                                  setState(() {
+                                    state.products.remove(products[index]);
+                                  });
+                                },),
+                                index == 4
+                                    ? SizedBox()
+                                    : Container(
+                                    width: 2,
+                                    height: 200,
+                                    color: Color.fromRGBO(100, 100, 100, 0.1))
+                              ],
+                            );
+                          }),
+                    ),
+                    confirmButton
+                  ],
+                ));
+
+      }
+    );
+
+
+
   }
 }

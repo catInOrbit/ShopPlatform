@@ -1,8 +1,11 @@
+import 'package:ecommerce_int2/bloc/cart_bloc.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/product/components/rating_bottomSheet.dart';
 import 'package:ecommerce_int2/screens/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ecommerce_int2/bloc/cart_bloc.dart';
+
 
 import '../../app_properties.dart';
 import 'components/color_list.dart';
@@ -11,8 +14,9 @@ import 'components/product_options.dart';
 
 class ViewProductPage extends StatefulWidget {
   final Product product;
+  final CartBloc cartBloc;
 
-  ViewProductPage({Key key, this.product}) : super(key: key);
+  ViewProductPage({Key key, this.product, this.cartBloc}) : super(key: key);
 
   @override
   _ViewProductPageState createState() => _ViewProductPageState(product);
@@ -100,8 +104,9 @@ class _ViewProductPageState extends State<ViewProductPage> {
             child: Column(
               children: <Widget>[
                 ProductOption(
-                  _scaffoldKey,
+                  scaffoldKey: _scaffoldKey,
                   product: product,
+                  cartBlocInternal: widget.cartBloc,
                 ),
                 description,
                 Padding(

@@ -6,6 +6,6 @@ class CartState
 
    void addToCart(Product product)
    {
-
+         products.add(product);
    }
 }

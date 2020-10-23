@@ -1,4 +1,5 @@
 import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/bloc/cart_bloc.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/search_page.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,9 @@ import 'view_product_page.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
+  final CartBloc cartBloc;
 
-  ProductPage({Key key, this.product}) : super(key: key);
+  ProductPage({Key key, this.product, this.cartBloc}) : super(key: key);
 
   @override
   _ProductPageState createState() => _ProductPageState(product);
@@ -28,7 +30,7 @@ class _ProductPageState extends State<ProductPage> {
 
     Widget viewProductButton  = InkWell(
       onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => ViewProductPage(product: product,))),
+          .push(MaterialPageRoute(builder: (_) => ViewProductPage(product: product, cartBloc: widget.cartBloc,))),
       child: Container(
         height: 80,
         width: width / 1.5,

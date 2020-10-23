@@ -11,9 +11,11 @@ class User {
   Id id;
   Picture picture;
   String nat;
-
+  String cartID;
   User(
-      {this.gender,
+      {
+        this.cartID,
+        this.gender,
         this.name,
         this.location,
         this.email,
@@ -27,6 +29,7 @@ class User {
         this.nat});
 
   User.fromJson(Map<String, dynamic> json) {
+    cartID = json['cartID'];
     gender = json['gender'];
     name = json['name'] != null ? new Name.fromJson(json['name']) : null;
     location = json['location'] != null
@@ -49,6 +52,7 @@ class User {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['gender'] = this.gender;
+    data['cartID'] = this.cartID;
     if (this.name != null) {
       data['name'] = this.name.toJson();
     }
@@ -263,20 +267,17 @@ class Registered {
 }
 
 class Id {
-  String name;
-  String value;
+  String documentReference;
 
-  Id({this.name, this.value});
+  Id({this.documentReference});
 
   Id.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    value = json['value'];
+    documentReference = json['name'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['value'] = this.value;
+    data['name'] = this.documentReference;
     return data;
   }
 }

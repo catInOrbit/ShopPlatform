@@ -1,14 +1,18 @@
 import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/bloc/cart_bloc.dart';
+import 'package:ecommerce_int2/bloc/cart_event.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/shop/check_out_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:ecommerce_int2/bloc/cart_bloc.dart';
 import 'shop_bottomSheet.dart';
 
 class ProductOption extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
   final Product product;
-  const ProductOption(this.scaffoldKey, {Key key, this.product}) : super(key: key);
+  final CartBloc cartBlocInternal;
+
+  const ProductOption({Key key, this.scaffoldKey, this.product, this.cartBlocInternal}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +48,11 @@ class ProductOption extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () async {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CheckOutPage()));
 
+                      var event = CartEvent(true, false, product.id, product);
+                      cartBloc.querySink.add(event);
+
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CheckOutPage(cartBloc: cartBlocInternal,)));
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2.5,
@@ -69,8 +76,10 @@ class ProductOption extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
+
+
                       scaffoldKey.currentState.showBottomSheet((context) {
-                        return ShopBottomSheet();
+                        return ShopBottomSheet(cartBlocInternal: cartBlocInternal,);
                       });
                     },
                     child: Container(
