@@ -1,36 +1,45 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/bloc/cart_bloc.dart';
 import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/screens/main/main_page.dart';
 import 'package:ecommerce_int2/screens/product/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-class ProductList extends StatelessWidget {
+class ProductList extends StatefulWidget {
   final CartBloc cartBloc;
-  List<Product> products;
+  final List<Product> products;
+
+  ProductList({Key key, this.cartBloc, this.products}) : super(key: key);
+
+  @override
+  _ProductListState createState() => _ProductListState();
+}
+
+class _ProductListState extends State<ProductList>
+{
+
 
   final SwiperController swiperController = SwiperController();
-
-  ProductList({Key key, this.products, this.cartBloc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double cardHeight = MediaQuery.of(context).size.height/2.7;
     double cardWidth = MediaQuery.of(context).size.width/1.8;
-    if(products==null)
-      products = [];
-
+    print("Product length " + widget.products.length.toString());
+    widget.products.forEach((element) {print(element.toString());});
     return SizedBox(
       height: cardHeight,
       child: Swiper(
-        itemCount: products.length,
+        itemCount: widget.products.length,
         itemBuilder: (_, index) {
           return ProductCard(
-            cartBloc: cartBloc,
+            cartBloc: widget.cartBloc,
             height: cardHeight,
             width: cardWidth,
-            product: products[index]
+            product: widget.products[index]
           );
         },
         scale: 0.8,

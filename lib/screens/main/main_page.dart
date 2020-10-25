@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/bloc/cart_bloc.dart';
-import 'package:ecommerce_int2/custom_background.dart';
+import 'package:ecommerce_int2/bloc/data_repository.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/category/category_list_page.dart';
 import 'package:ecommerce_int2/screens/notifications_page.dart';
@@ -53,6 +53,7 @@ class _MainPageState extends State<MainPage>
   SwiperController swiperController;
   TabController tabController;
   TabController bottomTabController;
+  final DataRepository dataRepository = DataRepository();
 
   @override
   void initState() {
@@ -67,35 +68,28 @@ class _MainPageState extends State<MainPage>
   final listOfPRds = [
     Product(
         "test",
-        'gs://prm-shopping.appspot.com/jeans_1.png',
+        'assets/headphones_2.png',
         'Skullcandy headset L325',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
         102.99, 300),
 
     Product(
         "test",
-        'gs://prm-shopping.appspot.com/jeans_1.png',
+        'assets/headphones_3.png',
         'Skullcandy headset L325',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
         102.99, 300),
 
     Product(
         "test",
-        'gs://prm-shopping.appspot.com/jeans_1.png',
+        'assets/headphones.png',
         'Skullcandy headset L325',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
         102.99, 300),
   ];
-  
+
   void tempFirebaseAdd()
   {
-    // firestoreInstance.collection("products").add({
-    //     "name" : "Test Product 1",
-    //     "price" : "30",
-    //     "quantity" : "200",
-    //     "imageString" : "test",
-    //   }).then((value) => print(value.id));
-
     var batch = firestoreInstance.batch();
     listOfPRds.forEach((element) {
       var docRef = firestoreInstance.collection("products").doc();
@@ -113,7 +107,7 @@ class _MainPageState extends State<MainPage>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton( onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => NotificationsPage())),
+              .push(MaterialPageRoute(builder: (_) => NotificationsPage())),
               icon: Icon(Icons.notifications)),
           IconButton(
               onPressed: () {
@@ -126,130 +120,14 @@ class _MainPageState extends State<MainPage>
 
                 tempFirebaseAdd();
                 Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => SearchPage()));},
+                    .push(MaterialPageRoute(builder: (_) => SearchPage()));},
               icon: SvgPicture.asset('assets/icons/search_icon.svg'))
         ],
       ),
     );
 
-  
 
-    Widget topHeader = Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 4.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Flexible(
-              child: InkWell(
-                onTap: () {
-                    tempFirebaseAdd();
 
-                  setState(() {
-                    selectedTimeline = timelines[0];
-                    products = [
-                      Product(
-                          "test",
-                          'assets/headphones_2.png',
-                          'Skullcandy headset L325',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-                          102.99,
-                          200 ),
-                      Product(
-                          "test",
-                          'assets/headphones_3.png',
-                          'Skullcandy headset X25',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-                          55.99,
-                          400
-                      ),
-                      Product(
-                          "test",
-                          'assets/headphones.png',
-                          'Blackzy PRO hedphones M003',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-                          152.99, 300),
-                    ];
-                  });
-                },
-                child: Text(
-                  timelines[0],
-                  style: TextStyle(
-                      fontSize: timelines[0] == selectedTimeline ? 20 : 14,
-                      color: darkGrey),
-                ),
-              ),
-            ),
-            Flexible(
-              child: InkWell(
-                onTap: () {
-                  tempFirebaseAdd;
-                  setState(() {
-                    selectedTimeline = timelines[1];
-                    products = [
-                      Product(
-                          "test",
-                          'assets/bag_5.png',
-                          'Skullcandy headset L325',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-                          102.99, 300),
-                      Product(
-                          "test",
-                          'assets/bag_6.png',
-                          'Skullcandy headset X25',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-                          55.99, 300),
-                      Product(
-                          "test",
-                          'assets/bag_3.png',
-                          'Blackzy PRO hedphones M003',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-                          152.99, 300),
-                    ];
-                  });
-                },
-                child: Text(timelines[1],
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: timelines[1] == selectedTimeline ? 20 : 14,
-                        color: darkGrey)),
-              ),
-            ),
-            Flexible(
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    selectedTimeline = timelines[2];
-                    products = [
-                      Product(
-                          "test",
-                          'assets/headphone_13.png',
-                          'Skullcandy headset L325',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-                          102.99, 300),
-                      Product(
-                          "test",
-                          'assets/jeans_4.png',
-                          'Skullcandy headset X25',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-                          55.99, 300),
-                      Product(
-                          "test",
-                          'assets/ring_7.png',
-                          'Blackzy PRO hedphones M003',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-                          152.99, 300),
-                    ];
-                  });
-                },
-                child: Text(timelines[2],
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                        fontSize: timelines[2] == selectedTimeline ? 20 : 14,
-                        color: darkGrey)),
-              ),
-            ),
-          ],
-        ));
 
     Widget tabBar = TabBar(
       tabs: [
@@ -269,48 +147,125 @@ class _MainPageState extends State<MainPage>
       controller: tabController,
     );
 
-    return Scaffold(
-      bottomNavigationBar: CustomBottomBar(controller: bottomTabController),
-      body: CustomPaint(
-        painter: MainBackground(),
-        child: TabBarView(
-          controller: bottomTabController,
-          physics: NeverScrollableScrollPhysics(),
+    return StreamBuilder<QuerySnapshot>(
+      stream: dataRepository.getStream(),
+      builder: (context, snapshot) {
+        if(snapshot.hasData)
+        {
+          List<Product> productList = List<Product>();
+          snapshot.data.docs.forEach((e) => productList.add(Product.fromSnapshot(e)));
+          return Scaffold(
+            backgroundColor: Colors.greenAccent,
+            bottomNavigationBar: CustomBottomBar(controller: bottomTabController),
+            body: TabBarView(
+              controller: bottomTabController,
+              physics: NeverScrollableScrollPhysics(),
+              children: <Widget>[
+                SafeArea(
+                  child: NestedScrollView(
+                    headerSliverBuilder:
+                        (BuildContext context, bool innerBoxIsScrolled) {
+                      // These are the slivers that show up in the "outer" scroll view.
+                      return <Widget>[
+                        SliverToBoxAdapter(
+                          child: appBar,
+                        ),
+                        SliverToBoxAdapter(
+                          child:
+                          topHeader(context, snapshot.data.docs),
+                        ),
+                        SliverToBoxAdapter(
+
+                          child: ProductList(
+                            cartBloc: cartBloc,
+                            products: productList,
+                          ),
+                        ),
+
+                        SliverToBoxAdapter(
+                          child: tabBar,
+                        )
+                      ];
+                    },
+                    body: TabView(
+                      tabController: tabController,
+                    ),
+                  ),
+                ),
+                CategoryListPage(),
+                CheckOutPage(),
+                ProfilePage()
+              ],
+            ),
+          );
+        }
+
+        else
+          return LinearProgressIndicator();
+      },
+
+    );
+  }
+
+  Widget topHeader(BuildContext context, List<DocumentSnapshot> snapshot)
+  {
+    return Padding(
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 4.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            SafeArea(
-              child: NestedScrollView(
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  // These are the slivers that show up in the "outer" scroll view.
-                  return <Widget>[
-                    SliverToBoxAdapter(
-                      child: appBar,
-                    ),
-                    SliverToBoxAdapter(
-                      child: topHeader,
-                    ),
-                    SliverToBoxAdapter(
-                      child: ProductList(
-                        cartBloc: cartBloc,
-                        products: products,
-                      ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: tabBar,
-                    )
-                  ];
+            Flexible(
+              child: InkWell(
+                onTap: () {
+                  // tempFirebaseAdd();
+
+                  setState(() {
+                    selectedTimeline = timelines[0];
+                    snapshot.forEach((e) => products.add(Product.fromSnapshot(e)));
+
+                  });
                 },
-                body: TabView(
-                  tabController: tabController,
+                child: Text(
+                  timelines[0],
+                  style: TextStyle(
+                      fontSize: timelines[0] == selectedTimeline ? 20 : 14,
+                      color: darkGrey),
                 ),
               ),
             ),
-            CategoryListPage(),
-            CheckOutPage(),
-            ProfilePage()
+            Flexible(
+              child: InkWell(
+                onTap: () {
+                  // tempFirebaseAdd;
+                  setState(() {
+                    selectedTimeline = timelines[1];
+                    snapshot.forEach((e) => products.add(Product.fromSnapshot(e)));
+
+                  });
+                },
+                child: Text(timelines[1],
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: timelines[1] == selectedTimeline ? 20 : 14,
+                        color: darkGrey)),
+              ),
+            ),
+            Flexible(
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    selectedTimeline = timelines[2];
+                    snapshot.map((data) => products.add(Product.fromSnapshot(data)));
+                  });
+                },
+                child: Text(timelines[2],
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontSize: timelines[2] == selectedTimeline ? 20 : 14,
+                        color: darkGrey)),
+              ),
+            ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

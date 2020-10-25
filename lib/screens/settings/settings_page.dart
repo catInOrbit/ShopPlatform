@@ -1,5 +1,4 @@
 import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/custom_background.dart';
 import 'package:ecommerce_int2/screens/auth/welcome_back_page.dart';
 import 'package:ecommerce_int2/screens/settings/change_country.dart';
 import 'package:ecommerce_int2/screens/settings/change_password_page.dart';
@@ -13,7 +12,6 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: MainBackground(),
       child: Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(
