@@ -63,13 +63,13 @@ class ProductDisplay extends StatelessWidget {
                     child: Container(
                       child: Hero(
                         tag: product.image,
-                        child: Image.asset(
+                        child:
 
-                          product.image,
-                          fit: BoxFit.contain,
-                          height:230,
-                          width: 230,
-                        ),
+                        Image(image: NetworkImage(product.image ?? ''),
+                            height: 230,
+                            width: 230,
+                            fit: BoxFit.contain
+                        )
                       ),
                     ),
                   )
