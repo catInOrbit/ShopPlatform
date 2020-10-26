@@ -1,3 +1,4 @@
+import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/widget/WidgetMenu.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,9 @@ class TabMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        color: GREENWHITE,
         child: Column(
           children: [
             Padding(
@@ -13,10 +17,13 @@ class TabMenuPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'ABCSs SOTE',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    'ExpShop',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: GREEN),
                   ),
-                  Text('V1.0'),
+                  Text('v1.0'),
                 ],
               ),
             ),
@@ -32,21 +39,26 @@ class TabMenuPage extends StatelessWidget {
               topRight: 0,
               bottomLeft: 0,
               bottomRight: 0,
-              nameItemMenu: '',
+              nameItemMenu: 'Danh sách của hàng',
             ),
             ItemMenu(
               topLeft: 0,
               topRight: 0,
               bottomLeft: 0,
               bottomRight: 0,
-              nameItemMenu: '',
+              nameItemMenu: 'Đánh giá ứng dụng',
             ),
-            ItemMenu(
-              topLeft: 0,
-              topRight: 0,
-              bottomLeft: 20,
-              bottomRight: 20,
-              nameItemMenu: 'Đăng xuất',
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/LoginPage');
+              },
+              child: ItemMenu(
+                topLeft: 0,
+                topRight: 0,
+                bottomLeft: 20,
+                bottomRight: 20,
+                nameItemMenu: 'Đăng xuất',
+              ),
             ),
           ],
         ),

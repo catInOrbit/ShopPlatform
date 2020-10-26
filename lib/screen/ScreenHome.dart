@@ -1,6 +1,9 @@
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/screen/PageRecommendV1.dart';
 import 'package:ExpShop/screen/PageRecommendV2.dart';
+import 'package:ExpShop/screen/ProductDetail.dart';
+import 'package:ExpShop/screen/ProfilePage.dart';
+import 'package:ExpShop/screen/ShopPage.dart';
 import 'package:ExpShop/tab_screen/TabHomePage.dart';
 import 'package:ExpShop/tab_screen/TabLikeProduct.dart';
 import 'package:ExpShop/tab_screen/TabMenu.dart';
@@ -29,102 +32,71 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: FlatButton(
-            onPressed: () {
-              showModalBottomSheet(
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10))),
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (ctx) {
-                    return Container(
-                      decoration: BoxDecoration(),
-                      height: MediaQuery.of(context).size.height * 0.90,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            child: Text(
-                              'Chọn khu vực của bạn',
-                              style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
-                            child: Container(
-                              color: GREENWHITE,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: 'Tìm vị trí',
-                                  prefixIcon:
-                                      Icon(FontAwesomeIcons.mapMarkerAlt),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
-                            child: Container(
-                              padding: EdgeInsets.only(top: 15, bottom: 25),
-                              decoration: BoxDecoration(
-                                  border: Border(bottom: BorderSide(width: 1))),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    FontAwesomeIcons.mapMarkedAlt,
-                                    size: 20,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Text(
-                                      'CHỌN TRÊN BẢN ĐỒ',
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Card(
-                            child: ListTile(
-                              leading: Icon(FontAwesomeIcons.mapMarkerAlt),
-                              title: Text('Vị trí hiện tại của bản'),
-                              subtitle: Text('quốc lộ ABC'),
-                            ),
-                          )
-                        ],
+          automaticallyImplyLeading: false,
+          title: () {
+            if (_currentIndex == 0) {
+              return FlatButton(
+                onPressed: () {
+                  buildShowModalBottomSheet(context);
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      '50 Đường số 6',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Icon(Icons.arrow_drop_down),
+                  ],
+                ),
+              );
+            } else if (_currentIndex == 1) {
+              return Text('Giỏ của bạn');
+            } else if (_currentIndex == 2) {
+              return Text('Thông Báo');
+            } else {
+              return FlatButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/ProfilePage');
+                },
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('assets/images/banner2.jpg'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        'Nguyễn Văn A',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
-                    );
-                  });
-            },
-            child: Row(
-              children: [
-                Text('50 Đường số 6'),
-                Icon(Icons.arrow_drop_down),
-              ],
-            )),
-        bottom: PreferredSize(
-          preferredSize: Size.square(50),
-          child: Container(
-            padding: EdgeInsets.only(bottom: 5),
-            width: MediaQuery.of(context).size.width * 0.90,
-            child: TextField(
-              decoration: InputDecoration(
-                fillColor: GREENWHITE,
-                filled: true,
-                prefixIcon: Icon(Icons.search),
-                hintText: 'Search',
-              ),
-            ),
-          ),
-        ),
-      ),
+                    )
+                  ],
+                ),
+              );
+            }
+          }(),
+          bottom: () {
+            if (_currentIndex == 0) {
+              return PreferredSize(
+                preferredSize: Size.square(50),
+                child: Container(
+                  padding: EdgeInsets.only(bottom: 5),
+                  width: MediaQuery.of(context).size.width * 0.90,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        fillColor: GREENWHITE,
+                        filled: true,
+                        prefixIcon: Icon(Icons.search),
+                        hintText: 'Bạn tìm gì hôm nay?',
+                        contentPadding: EdgeInsets.all(15)),
+                  ),
+                ),
+              );
+            } else {
+              return null;
+            }
+          }()),
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
@@ -136,24 +108,94 @@ class _HomePageState extends State<HomePage> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text(""),
+            icon: Icon(Icons.home, size: 28.0),
+            title: Text("Trang chủ"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.heart),
-            title: Text(""),
+            icon: Icon(CupertinoIcons.shopping_cart, size: 28.0),
+            title: Text("Cart"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.bell),
-            title: Text(""),
+            icon: Icon(CupertinoIcons.bell_solid, size: 28.0),
+            title: Text("Thông báo"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            title: Text(""),
+            icon: Icon(Icons.menu, size: 28.0),
+            title: Text("Khác"),
           ),
         ],
       ),
     );
+  }
+
+  Future buildShowModalBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+        shape: new RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+        isScrollControlled: true,
+        context: context,
+        builder: (ctx) {
+          return Container(
+            decoration: BoxDecoration(),
+            height: MediaQuery.of(context).size.height * 0.90,
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                  child: Text(
+                    'Chọn khu vực của bạn',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  child: Container(
+                    color: GREENWHITE,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Tìm vị trí',
+                        prefixIcon: Icon(FontAwesomeIcons.mapMarkerAlt),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  child: Container(
+                    padding: EdgeInsets.only(top: 15, bottom: 25),
+                    decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide(width: 1))),
+                    child: Row(
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.mapMarkedAlt,
+                          size: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            'CHỌN TRÊN BẢN ĐỒ',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    leading: Icon(FontAwesomeIcons.mapMarkerAlt),
+                    title: Text('Vị trí hiện tại của bản'),
+                    subtitle: Text('quốc lộ ABC'),
+                  ),
+                )
+              ],
+            ),
+          );
+        });
   }
 }
 

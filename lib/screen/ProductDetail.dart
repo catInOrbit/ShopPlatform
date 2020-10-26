@@ -1,10 +1,19 @@
+import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/models/product.dart';
+import 'package:ExpShop/screen/FindTheWayPage.dart';
 import 'package:ExpShop/widget/ListProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 class ProductDetail extends StatelessWidget {
+  final String urlProductDetail = "/ProductDetail";
+  ProductItem _productItem;
   @override
   Widget build(BuildContext context) {
+    final oCcy = new NumberFormat("#,##0", "en_US");
+    Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
+    this._productItem = arguments["productItem"];
     return Scaffold(
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
@@ -13,52 +22,79 @@ class ProductDetail extends StatelessWidget {
             expandedHeight: 200,
             stretch: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(
-                'https://i.imgur.com/2pQ5qum.jpg',
-                fit: BoxFit.cover,
+              background: Image.asset(
+                _productItem.image,
+                fit: BoxFit.fill,
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: Column(
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  width: MediaQuery.of(context).size.width * 0.95,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(width: 1),
+                Stack(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      width: MediaQuery.of(context).size.width * 0.95,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(width: 1),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text('Cửa hàng gần bạn  ',
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 17)),
+                              ImageIcon(
+                                AssetImage('assets/icons/checked.png'),
+                                color: GREEN,
+                              )
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, bottom: 5),
+                            child: Text('${_productItem.productName}',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 26)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 5),
+                            child: Text('Đồ ăn - Thực phẩm',
+                                style: TextStyle(color: Colors.grey)),
+                          ),
+                          Text('82 Nguyễn Thị Minh Khai, Phường 6, Quận 3'),
+                        ],
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Quan ua thich',
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 17)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 5),
-                        child: Text('Hong ky my gia- quan trong linh',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 26)),
+                    Positioned(
+                      top: 15,
+                      right: 10,
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigator.pushNamed(context, '/FindWay"');
+                          Navigator.of(context).pushNamed('/FindWay');
+                        },
+                        child: Container(
+                          width: 60,
+                          height: 60,
+                          child: Image.asset('assets/icons/map.png'),
+                        ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 5),
-                        child: Text('Bun-Pho-Chao',
-                            style: TextStyle(color: Colors.grey)),
-                      ),
-                      Text('Dia chi 20/30 ton duc thuc ho chi minh'),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 15),
                   width: MediaQuery.of(context).size.width * 0.95,
                   decoration: BoxDecoration(
                     border: Border(
-                      bottom: BorderSide(width: 1),
+                      bottom: BorderSide(width: 1, color: Colors.grey),
                     ),
                   ),
                   child: Row(
@@ -68,9 +104,11 @@ class ProductDetail extends StatelessWidget {
                         children: [
                           Text('\$\$\$\$',
                               style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.bold)),
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  color: GOLD)),
                           Text(
-                            '20000',
+                            '${oCcy.format(_productItem.price)} đ',
                             style: TextStyle(fontSize: 17),
                           )
                         ],
@@ -79,14 +117,13 @@ class ProductDetail extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(FontAwesomeIcons.mapMarkerAlt),
-                              Text('3.04 KM',
+                              Text('3 KM',
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold)),
                             ],
                           ),
-                          Text('Khoang cach'),
+                          Text('Khoảng cách'),
                         ],
                       ),
                       Column(
@@ -94,11 +131,22 @@ class ProductDetail extends StatelessWidget {
                           Text(
                             'HSD',
                             style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold),
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange),
                           ),
                           Text('20/10/2020'),
                         ],
-                      )
+                      ),
+                      Column(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.cartPlus,
+                            color: YELLOWGREEN,
+                          ),
+                          Text('Thêm vào giỏ'),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -115,10 +163,10 @@ class ProductDetail extends StatelessWidget {
                         child: Container(
                           width: 50,
                           height: 50,
-                          color: Colors.black,
+                          child: Image.asset('assets/images/vinhphuc.jpg'),
                         ),
                       ),
-                      Text('Tên shop',
+                      Text('Vĩnh Phúc',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
                       Expanded(

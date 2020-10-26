@@ -24,7 +24,7 @@ class ItemMenu extends StatelessWidget {
             horizontal: MediaQuery.of(context).size.height * 0.014,
             vertical: MediaQuery.of(context).size.height * 0.021),
         decoration: BoxDecoration(
-          color: Colors.green,
+          color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(topLeft),
             topRight: Radius.circular(topRight),
@@ -34,10 +34,12 @@ class ItemMenu extends StatelessWidget {
         ),
         height: MediaQuery.of(context).size.height * 0.08,
         width: MediaQuery.of(context).size.width * 0.9,
-        child: Text(
-          nameItemMenu,
-          style:
-              TextStyle(fontSize: MediaQuery.of(context).size.height * 0.032),
+        child: Center(
+          child: Text(
+            nameItemMenu,
+            style:
+                TextStyle(fontSize: MediaQuery.of(context).size.height * 0.032),
+          ),
         ),
       ),
     );

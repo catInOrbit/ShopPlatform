@@ -38,9 +38,9 @@ class CardNotification extends StatelessWidget {
             Container(
               width: 100,
               height: 100,
-              decoration: BoxDecoration(
-                color: Colors.red,
-              ),
+              decoration: BoxDecoration(),
+              child: Image.asset('assets/images/notification.jpg',
+                  fit: BoxFit.fill),
             ),
             Expanded(
               child: Container(

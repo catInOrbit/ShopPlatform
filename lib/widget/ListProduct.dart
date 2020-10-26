@@ -1,5 +1,8 @@
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
+import 'package:ExpShop/models/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 // Widget listLikeProducts(BuildContext context) {
 //   return
@@ -12,32 +15,58 @@ class ListProductHomePage2Column extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Column(
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
-          ],
-        ),
-        Column(
+        Container(
+            height: 50,
+            color: Colors.white,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: Text(
+                'Có thể bạn sẽ thích',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            )),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
-            CardProductHomePage(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: listProduct
+                  .map((e) => CardProductHomePage(
+                        productItem: e,
+                      ))
+                  .toList(),
+              // children: [
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              // ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: listProduct
+                  .map((e) => CardProductHomePage(
+                        productItem: e,
+                      ))
+                  .toList()
+                  .reversed
+                  .toList(),
+              // children: [
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              //   CardProductHomePage(),
+              // ],
+            ),
           ],
         ),
       ],
@@ -46,29 +75,36 @@ class ListProductHomePage2Column extends StatelessWidget {
 }
 
 class CardProductHomePage extends StatelessWidget {
+  final ProductItem productItem;
   const CardProductHomePage({
     Key key,
+    this.productItem,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 5),
-      child: CardProduct(),
+      child: CardProduct(
+        productItem: productItem,
+      ),
     );
   }
 }
 
 class CardProduct extends StatelessWidget {
+  final ProductItem productItem;
   const CardProduct({
     Key key,
+    this.productItem,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/ProductDetail');
+        Navigator.pushNamed(context, '/ProductDetail',
+            arguments: {'productItem': productItem});
       },
       child: Container(
         color: Colors.white,
@@ -81,9 +117,9 @@ class CardProduct extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.width * 0.5,
-                  child: Image.network(
-                    'https://cdn.tgdd.vn/Products/Images/2565/77623/bhx/mi-xao-hao-hao-tom-xao-chua-ngot-goi-75g-201912050922257256.jpg',
-                    fit: BoxFit.cover,
+                  child: Image.asset(
+                    productItem.image,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Positioned(
@@ -92,10 +128,13 @@ class CardProduct extends StatelessWidget {
                   left: MediaQuery.of(context).size.height * 0.19,
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    child: Text('3km'),
+                    child: Text(
+                      '3km',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Colors.blue,
+                      color: Colors.black.withOpacity(0.4),
                     ),
                     width: MediaQuery.of(context).size.width * 0.13,
                     height: MediaQuery.of(context).size.height * 0.04,
@@ -106,30 +145,37 @@ class CardProduct extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.07,
+                height: MediaQuery.of(context).size.height * 0.04,
                 child: Text(
-                  'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ',
+                  productItem.productName,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    CupertinoIcons.heart,
-                    size: 20,
-                    color: Colors.red[200],
-                  ),
-                  Text('(230 lượt)'),
-                ],
+              child: Text(
+                'Nguyễn đình chiều, Q1...',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.grey,
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                '25.000 đ',
+                '${oCcy.format(productItem.price)} đ',
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey,
+                    decoration: TextDecoration.lineThrough),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                '${oCcy.format(productItem.promotionalPrice)} đ',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 23),
               ),
             ),
@@ -141,76 +187,86 @@ class CardProduct extends StatelessWidget {
 }
 
 class CardProductHori extends StatelessWidget {
+  final ProductItem productItem;
   const CardProductHori({
     Key key,
+    this.productItem,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(color: Colors.black26),
-          ),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                color: Colors.red,
-              ),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, '/ProductDetail',
+              arguments: {'productItem': productItem});
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: Colors.black26),
             ),
-            Expanded(
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 5, left: 5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Mung ngay black friday',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'Am thuc',
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(CupertinoIcons.heart_solid),
-                        Text('(15 like) - 3.3 km'),
-                      ],
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: 5),
-                      child: Text('Q1, Nguyen dinh chieu , Hhcm'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5, left: 5),
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Text('Ngay : 20/20/20'),
-                      ),
-                    )
-                  ],
-                ),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(),
+                child: Image.asset(productItem.image, fit: BoxFit.fill),
               ),
-            )
-          ],
+              Expanded(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5, left: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${productItem.productName}',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Đồ ăn',
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 5),
+                        child: Text('3.3KM-Q1, Nguyen dinh chieu , Hhcm'),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 5),
+                        child: Text(
+                          'Giá gốc: ${oCcy.format(productItem.price)}đ',
+                          style:
+                              TextStyle(decoration: TextDecoration.lineThrough),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 5),
+                        child: Text(
+                          'Giá sốc: ${oCcy.format(productItem.promotionalPrice)}đ',
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

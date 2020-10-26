@@ -7,6 +7,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String username;
+  String password;
+  TextEditingController usernameController;
+  TextEditingController passwordController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'Xin Chao',
+                      'Xin chào',
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -45,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        'dang nhap voi tai khoan cua ban',
+                        'Đăng nhập với tài khoản của bạn',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -59,15 +64,25 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: const InputDecoration(
                           labelText: 'Email',
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                            username = text;
+                          });
+                        },
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: TextFormField(
+                        onChanged: (text) {
+                          setState(() {
+                            password = text;
+                          });
+                        },
                         obscureText: true,
                         style: TextStyle(fontSize: 20),
                         decoration: const InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'Mật khẩu',
                         ),
                       ),
                     ),
@@ -77,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            'Quen mat khau',
+                            'Quên mật khẩu',
                             style: TextStyle(fontSize: 14),
                           ),
                         ],
@@ -93,8 +108,17 @@ class _LoginPageState extends State<LoginPage> {
                         height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: FlatButton(
+                          onPressed: () {
+                            if (username == 'user' && password == '123') {
+                              return Navigator.pushNamed(context, '/HomePage');
+                            }
+                            if (username == 'shop' && password == '123') {
+                              return Navigator.pushNamed(
+                                  context, '/HomePageShop');
+                            }
+                          },
                           child: Text(
-                            'Dang Ky',
+                            'Đăng nhập',
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                         ),
@@ -108,7 +132,23 @@ class _LoginPageState extends State<LoginPage> {
               height: 85,
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Text('Ban khong co tai khoan? Dang ky'),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Bạn chưa có tài khoản? ',
+                        style: TextStyle(fontSize: 15)),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/RegisterPage");
+                      },
+                      child: Text('Đăng ký',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ],
+                ),
               ),
             )
           ],

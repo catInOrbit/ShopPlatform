@@ -1,4 +1,5 @@
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/widget/ListProduct.dart';
 import 'package:ExpShop/widget/ListScrollHori.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +24,11 @@ class PageRecommendV1 extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  CardProductHori(),
-                  CardProductHori(),
-                  CardProductHori(),
-                  CardProductHori(),
-                  CardProductHori(),
+                  CardProductHori(productItem: listProduct[2]),
+                  CardProductHori(productItem: listProduct[8]),
+                  CardProductHori(productItem: listProduct[4]),
+                  CardProductHori(productItem: listProduct[0]),
+                  CardProductHori(productItem: listProduct[6]),
                 ],
               ),
             )

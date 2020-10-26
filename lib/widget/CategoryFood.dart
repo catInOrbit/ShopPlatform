@@ -1,4 +1,6 @@
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
+import 'package:ExpShop/models/categoryProduct.dart';
 import 'package:flutter/material.dart';
 
 class CategoryFood extends StatelessWidget {
@@ -17,19 +19,19 @@ class CategoryFood extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CardCategory(),
-              CardCategory(),
-              CardCategory(),
-              CardCategory(),
+              CardCategory(categoryProduct: listCagory[0]),
+              CardCategory(categoryProduct: listCagory[1]),
+              CardCategory(categoryProduct: listCagory[2]),
+              CardCategory(categoryProduct: listCagory[3]),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CardCategory(),
-              CardCategory(),
-              CardCategory(),
-              CardCategory(),
+              CardCategory(categoryProduct: listCagory[4]),
+              CardCategory(categoryProduct: listCagory[5]),
+              CardCategory(categoryProduct: listCagory[6]),
+              CardCategory(categoryProduct: listCagory[7]),
             ],
           ),
         ],
@@ -39,9 +41,8 @@ class CategoryFood extends StatelessWidget {
 }
 
 class CardCategory extends StatelessWidget {
-  const CardCategory({
-    Key key,
-  }) : super(key: key);
+  final CategoryProduct categoryProduct;
+  CardCategory({Key key, this.categoryProduct}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +54,9 @@ class CardCategory extends StatelessWidget {
             Container(
               width: 50,
               height: 50,
-              child: Image.asset('assets/icons/milk.png'),
+              child: Image.asset(categoryProduct.urlImage),
             ),
-            Text('bơ sữa'),
+            Text(categoryProduct.categoryName),
           ],
         ),
       ),

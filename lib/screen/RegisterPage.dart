@@ -36,48 +36,27 @@ class _RegisterPageState extends State<RegisterPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'Xin Chao',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+                      'Đăng ký',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                    TextFormField(
+                      style: TextStyle(fontSize: 20),
+                      decoration: const InputDecoration(
+                        labelText: 'Ho va ten',
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        'dang nhap voi tai khoan cua ban',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    TextFormField(
+                      style: TextStyle(fontSize: 20),
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: TextFormField(
-                        style: TextStyle(fontSize: 20),
-                        decoration: const InputDecoration(
-                          labelText: 'Ho va ten',
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: TextFormField(
-                        style: TextStyle(fontSize: 20),
-                        decoration: const InputDecoration(
-                          labelText: 'Email',
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: TextFormField(
-                        obscureText: true,
-                        style: TextStyle(fontSize: 20),
-                        decoration: const InputDecoration(
-                          labelText: 'Password',
-                        ),
+                    TextFormField(
+                      obscureText: true,
+                      style: TextStyle(fontSize: 20),
+                      decoration: const InputDecoration(
+                        labelText: 'Password',
                       ),
                     ),
                     Padding(
@@ -86,7 +65,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            'Quen mat khau',
+                            'Quên mật khẩu',
                             style: TextStyle(fontSize: 14),
                           ),
                         ],
@@ -103,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: FlatButton(
                           child: Text(
-                            'Dang Ky',
+                            'Đăng ký',
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                         ),
@@ -114,10 +93,26 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             Container(
-              height: 85,
+              height: 90,
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Text('Ban khong co tai khoan? Dang ky'),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Bạn đã có tài khoản? ',
+                        style: TextStyle(fontSize: 15)),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/LoginPage");
+                      },
+                      child: Text('Đăng nhập',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ],
+                ),
               ),
             )
           ],

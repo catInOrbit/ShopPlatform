@@ -9,6 +9,8 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="ExpShop"
         android:icon="@mipmap/ic_launcher">
+         <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBcYkcVEGw9Zc0dwFm5kZRk22dG7ewXJ3k"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -1,11 +1,17 @@
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
+import 'package:ExpShop/models/product.dart';
 import 'package:ExpShop/widget/ListProduct.dart';
 import 'package:ExpShop/widget/ListScrollHori.dart';
 import 'package:flutter/material.dart';
 
 class PageRecommendV2 extends StatelessWidget {
+  final String urlPageRecommendV2 = '/PageRecommendV2';
+  ProductItem productItem;
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
+    this.productItem = arguments["productItem"];
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -61,7 +67,9 @@ class PageRecommendV2 extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      child: CardProductHori(),
+                      child: CardProductHori(
+                        productItem: productItem,
+                      ),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10)),
@@ -80,11 +88,11 @@ class PageRecommendV2 extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  CardProductHori(),
-                  CardProductHori(),
-                  CardProductHori(),
-                  CardProductHori(),
-                  CardProductHori(),
+                  CardProductHori(productItem: listProduct[2]),
+                  CardProductHori(productItem: listProduct[3]),
+                  CardProductHori(productItem: listProduct[5]),
+                  CardProductHori(productItem: listProduct[7]),
+                  CardProductHori(productItem: listProduct[9]),
                 ],
               ),
             )

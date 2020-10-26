@@ -31,6 +31,10 @@ dependencies:
   carousel_slider: ^2.3.1
   font_awesome_flutter:
   hexcolor:
+  intl: 
+  google_maps_flutter: ^0.4.0
+  http: ^0.12.2
+  image_picker: ^0.6.7+7  
 dev_dependencies: 
   flutter_test:
     sdk: flutter

@@ -1,4 +1,5 @@
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/widget/CardMostPopularV3.dart';
 import 'package:ExpShop/widget/CategoryFood.dart';
 import 'package:ExpShop/widget/ListScrollHori.dart';
 import 'package:ExpShop/widget/ItemSlider.dart';
@@ -12,9 +13,9 @@ import 'package:flutter/material.dart';
 
 class TabHomePage extends StatelessWidget {
   List cardList = [
-    Item1(),
-    Item1(),
-    Item1(),
+    Item1(urlBanner: "assets/images/Banner1.jpg"),
+    Item1(urlBanner: "assets/images/Banner3.jpg"),
+    Item1(urlBanner: "assets/images/Banner4.jpg"),
   ];
   Color greenColor = Colors.green;
   int _currentIndexSlider = 0;
@@ -25,41 +26,12 @@ class TabHomePage extends StatelessWidget {
       color: GREENWHITE,
       child: ListView(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 750,
-            color: Colors.black,
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image:
-                            AssetImage('assets/images/BackgroundHomePage.png'),
-                        fit: BoxFit.fitHeight),
-                  ),
-                ),
-                Column(
-                  children: [
-                    sliderFood(cardList, _currentIndexSlider),
-                    CategoryFood(),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: ListHoriScroll(),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: CardMostPopular(),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: CardMostPopularV2(),
-          ),
+          sliderFood(cardList, _currentIndexSlider),
+          ListHoriScroll(),
+          CardMostPopularV3(),
+          ListNearesProdct(),
+          CardMostPopular(),
+          CardMostPopularV2(),
           ListProductHomePage2Column(),
         ],
       ),
@@ -68,34 +40,39 @@ class TabHomePage extends StatelessWidget {
 }
 
 Widget sliderFood(List cardList, int _currentIndexSlider) {
-  return CarouselSlider(
-    options: CarouselOptions(
-      height: 200.0,
-      autoPlay: true,
-      autoPlayInterval: Duration(seconds: 3),
-      autoPlayAnimationDuration: Duration(milliseconds: 800),
-      autoPlayCurve: Curves.fastOutSlowIn,
-      pauseAutoPlayOnTouch: true,
-      aspectRatio: 2.0,
-      onPageChanged: (index, caroChangeReson) {
-        _currentIndexSlider = index;
-      },
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 15),
+    decoration: BoxDecoration(
+      color: Colors.white,
     ),
-    items: cardList.map(
-      (card) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-              height: MediaQuery.of(context).size.height * 0.30,
-              width: MediaQuery.of(context).size.width,
-              child: Card(
-                color: Colors.blueAccent,
-                child: card,
-              ),
-            );
-          },
-        );
-      },
-    ).toList(),
+    child: CarouselSlider(
+      options: CarouselOptions(
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        pauseAutoPlayOnTouch: true,
+        aspectRatio: 2.0,
+        onPageChanged: (index, caroChangeReson) {
+          _currentIndexSlider = index;
+        },
+      ),
+      items: cardList.map(
+        (card) {
+          return Builder(
+            builder: (BuildContext context) {
+              return Container(
+                height: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.width,
+                child: Card(
+                  color: Colors.blueAccent,
+                  child: card,
+                ),
+              );
+            },
+          );
+        },
+      ).toList(),
+    ),
   );
 }
