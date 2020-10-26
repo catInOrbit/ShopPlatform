@@ -1,6 +1,9 @@
+import 'package:ExpShop/bloc/cart_bloc.dart';
+import 'package:ExpShop/bloc/cart_event.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/models/product.dart';
 import 'package:ExpShop/screen/FindTheWayPage.dart';
+import 'package:ExpShop/shop/check_out_page.dart';
 import 'package:ExpShop/widget/ListProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -138,14 +141,30 @@ class ProductDetail extends StatelessWidget {
                           Text('20/10/2020'),
                         ],
                       ),
-                      Column(
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.cartPlus,
-                            color: YELLOWGREEN,
-                          ),
-                          Text('Thêm vào giỏ'),
-                        ],
+                      InkWell(
+                        onTap: (){
+                          CartEvent event = CartEvent();
+                          event.requestAddToCart = true;
+                          event.requestCheckout = false;
+                          event.selectedProduct = _productItem;
+                          cartBloc.querySink.add(event);
+
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => CheckOutPage(cartBloc: cartBloc,),
+                          ));
+                        },
+                        child: Column(
+                          children: [
+                            InkWell(
+
+                              child: Icon(
+                                FontAwesomeIcons.cartPlus,
+                                color: YELLOWGREEN,
+                              ),
+                            ),
+                            Text('Thêm vào giỏ'),
+                          ],
+                        ),
                       ),
                     ],
                   ),
