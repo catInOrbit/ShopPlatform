@@ -128,8 +128,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage> {
                                                                 maxRadius: 24,
                                                                 backgroundImage:
                                                                     NetworkImage(user
-                                                                        .picture
-                                                                        .thumbnail),
+                                                                        .avatarPicURL),
                                                               ),
                                                             ),
                                                             Column(
@@ -144,11 +143,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage> {
                                                                           top:
                                                                               16.0),
                                                                   child: Text(
-                                                                      user.name
-                                                                              .first +
-                                                                          ' ' +
-                                                                          user.name
-                                                                              .last,
+                                                                      user.name,
                                                                       style: TextStyle(
                                                                           fontSize:
                                                                               16.0,
@@ -164,7 +159,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage> {
                                                                           bottom:
                                                                               16.0),
                                                                   child: Text(
-                                                                    user.phone,
+                                                                    user.phoneNumber,
                                                                   ),
                                                                 ),
                                                                 Text(

@@ -22,7 +22,7 @@ class FirebaseAPI
    {
      var batch = firestoreInstance.batch();
      _cartState.products.forEach((element) {
-        var docRef = firestoreInstance.collection("users").document(user.id.documentReference).
+        var docRef = firestoreInstance.collection("users").document(user.documentReference).
         collection("orders").doc();
         batch.set(docRef, {"productID": element.id});
      });
