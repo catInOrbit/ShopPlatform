@@ -59,6 +59,8 @@ class ProductItem {
     this.color,
   });
 
+  Map<String, dynamic> toJson() => _ProductToJson(this);
+
 
 }
 
@@ -79,3 +81,18 @@ ProductItem ProductFromJson(Map<String, dynamic> json)
     json['color'] as Color,
   );
 }
+
+Map<String, dynamic> _ProductToJson(ProductItem instance) => <String, dynamic> {
+  'productID': instance.productID,
+  'productName': instance.productName,
+  'price': instance.price,
+  'promotionalPrice': instance.promotionalPrice,
+  'like': instance.like,
+  'storeID': instance.storeID,
+  'categoryID': instance.categoryID,
+  'describe': instance.describe,
+  'image': instance.image,
+  'createDate': instance.createDate,
+  'expirationDate': instance.expirationDate,
+  'color': instance.color,
+};

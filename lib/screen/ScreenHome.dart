@@ -1,9 +1,11 @@
+import 'package:ExpShop/bloc/cart_bloc.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/screen/PageRecommendV1.dart';
 import 'package:ExpShop/screen/PageRecommendV2.dart';
 import 'package:ExpShop/screen/ProductDetail.dart';
 import 'package:ExpShop/screen/ProfilePage.dart';
 import 'package:ExpShop/screen/ShopPage.dart';
+import 'package:ExpShop/shop/check_out_page.dart';
 import 'package:ExpShop/tab_screen/TabHomePage.dart';
 import 'package:ExpShop/tab_screen/TabLikeProduct.dart';
 import 'package:ExpShop/tab_screen/TabMenu.dart';
@@ -23,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final tabs = [
     TabHomePage(),
-    TabLikeProducts(),
+    CheckOutPage(),
     NotificationPage(),
     TabMenuPage(),
   ];
@@ -31,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: _currentIndex != 1 ? AppBar(
           automaticallyImplyLeading: false,
           title: () {
             if (_currentIndex == 0) {
@@ -76,6 +78,7 @@ class _HomePageState extends State<HomePage> {
               );
             }
           }(),
+
           bottom: () {
             if (_currentIndex == 0) {
               return PreferredSize(
@@ -96,7 +99,7 @@ class _HomePageState extends State<HomePage> {
             } else {
               return null;
             }
-          }()),
+          }()) : null,
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {

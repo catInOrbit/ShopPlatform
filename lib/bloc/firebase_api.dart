@@ -21,9 +21,9 @@ class FirebaseAPI
    {
      var batch = firestoreInstance.batch();
      _cartState.products.forEach((element) {
-        var docRef = firestoreInstance.collection("users").document(user.documentReference).
+        var docRef = firestoreInstance.collection("users").document("Jj5G7eeMpQwBhC3AE6D3").
         collection("orders").doc();
-        batch.set(docRef, {"productID": element.productID});
+        batch.set(docRef, {"productID": element.productID, "product" : element.toJson()});
      });
 
      await batch.commit();

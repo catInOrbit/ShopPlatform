@@ -1,6 +1,7 @@
 
 import 'package:ExpShop/app_properties.dart';
 import 'package:ExpShop/bloc/cart_bloc.dart';
+import 'package:ExpShop/bloc/cart_event.dart';
 import 'package:ExpShop/bloc/cart_state.dart';
 import 'package:ExpShop/models/product.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,8 @@ import 'components/shop_item_list.dart';
 
 //TODO: NOT DONE. WHEEL SCROLL QUANTITY
 class CheckOutPage extends StatefulWidget {
-  final CartBloc cartBloc;
 
-  const CheckOutPage({Key key, this.cartBloc}) : super(key: key);
+  const CheckOutPage({Key key}) : super(key: key);
   @override
   _CheckOutPageState createState() => _CheckOutPageState();
 }
@@ -54,10 +54,21 @@ class _CheckOutPageState extends State<CheckOutPage> {
         image: 'assets/images/pepsi.jpg'),
   ];
 
+  void checkout()
+  {
+    CartEvent cartEvent = CartEvent();
+    cartEvent.requestCheckout = true;
+    cartEvent.requestAddToCart = false;
+
+    cartBloc.querySink.add(cartEvent);
+  }
   @override
   Widget build(BuildContext context) {
     Widget checkOutButton = InkWell(
-      onTap: () => {},
+      onTap: () => {
+        print("Checking out"),
+        checkout()
+      },
       child: Container(
         height: 80,
         width: MediaQuery.of(context).size.width / 1.5,

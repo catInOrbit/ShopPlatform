@@ -35,8 +35,9 @@ class CartBloc
            else if(_cartEvent.requestCheckout)
            {
              firebaseAPI.cartState = _cartState;
-             firebaseAPI.user =globals.currentUser;
+             firebaseAPI.user = globals.currentUser;
               firebaseAPI.saveUserOrders();
+             _cartState.products.clear();
            }
 
            _outputStreamController.sink.add(_cartState);

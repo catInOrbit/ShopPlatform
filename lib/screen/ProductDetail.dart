@@ -150,7 +150,7 @@ class ProductDetail extends StatelessWidget {
                           cartBloc.querySink.add(event);
 
                           Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => CheckOutPage(cartBloc: cartBloc,),
+                            builder: (context) => CheckOutPage(),
                           ));
                         },
                         child: Column(
