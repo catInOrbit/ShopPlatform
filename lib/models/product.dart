@@ -13,7 +13,7 @@ class ProductItem {
   String image;
   DateTime createDate;
   DateTime expirationDate;
-  Color color;
+  Color color = Colors.white;
   DocumentReference _reference;
   int _quantityInCart = 0;
 
@@ -60,27 +60,28 @@ class ProductItem {
   });
 
   Map<String, dynamic> toJson() => _ProductToJson(this);
-
+  ProductItem ProductFromJson(Map<String, dynamic> json)
+  {
+    print("Jsoning product from query");
+    return ProductItem.Internal(
+      json['productID'] as int,
+      json['productName'] as String,
+      json['price'] as double,
+      json['promotionalPrice'] as int,
+      json['like'] as int,
+      json['storeID'] as int,
+      json['categoryID'] as int,
+      json['describe'] as String,
+      json['image'] as String,
+      json['createDate'] as DateTime,
+      json['expirationDate'] as DateTime,
+      null
+    );
+  }
 
 }
 
-ProductItem ProductFromJson(Map<String, dynamic> json)
-{
-  return ProductItem.Internal(
-    json['productID'] as int,
-    json['productName'] as String,
-    json['price'] as double,
-    json['promotionalPrice'] as int,
-    json['like'] as int,
-    json['storeID'] as int,
-    json['categoryID'] as int,
-    json['describe'] as String,
-    json['image'] as String,
-    json['createDate'] as DateTime,
-    json['expirationDate'] as DateTime,
-    json['color'] as Color,
-  );
-}
+
 
 Map<String, dynamic> _ProductToJson(ProductItem instance) => <String, dynamic> {
   'productID': instance.productID,
@@ -94,5 +95,5 @@ Map<String, dynamic> _ProductToJson(ProductItem instance) => <String, dynamic> {
   'image': instance.image,
   'createDate': instance.createDate,
   'expirationDate': instance.expirationDate,
-  'color': instance.color,
+  'color':  instance.color != null ? instance.color.value : null,
 };

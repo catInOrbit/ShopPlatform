@@ -1,6 +1,8 @@
+import 'package:ExpShop/bloc/products_retreive_bloc.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/models/product.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -64,63 +66,98 @@ import 'package:intl/intl.dart';
 //   }
 // }
 
-class ListHoriScroll extends StatelessWidget {
-  const ListHoriScroll({
-    Key key,
-  }) : super(key: key);
+class ListHoriScroll extends StatefulWidget {
+  final List<ProductItem> productList;
+
+  const ListHoriScroll({Key key, this.productList}) : super(key: key);
 
   @override
+  _ListHoriScrollState createState() => _ListHoriScrollState();
+}
+
+class _ListHoriScrollState extends State<ListHoriScroll> {
+
+  @override
+  void initState() {
+    productsListBloc.getAllProduct();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      color: WHITE,
-      height: 250,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return StreamBuilder<QuerySnapshot>(
+      stream: productsListBloc.productsOutputStream,
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if(snapshot.hasData)
+          return Container(
+            color: WHITE,
+            height: 250,
+            child: Column(
               children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 20,
-                      height: 20,
-                      child: Image.asset('assets/icons/fire.png'),
-                    ),
-                    Text(
-                      'Giảm giá cực sốc',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 20,
+                            height: 20,
+                            child: Image.asset('assets/icons/fire.png'),
+                          ),
+                          Text(
+                            'Giảm giá cực sốc',
+                            style:
+                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '10:10:10 >',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  '10:10:10 >',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Container(
+                  height: 200,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 5,
+                          // scrollDirection: Axis.horizontal,
+                          // children: productList.map((e) => ProductHoriScroll(productItem: e,)).toList(),
+                          // // children: <Widget>[
+                          // //   ProductHoriScroll(productItem: listProduct[1]),
+                          // //   ProductHoriScroll(productItem: listProduct[3]),
+                          // //   ProductHoriScroll(productItem: listProduct[5]),
+                          // //   ProductHoriScroll(productItem: listProduct[7]),
+                          // //   ProductHoriScroll(productItem: listProduct[8]),
+                          // //   ProductHoriScroll(productItem: listProduct[6]),
+                          // // ],
+                          itemBuilder: (context, index) {
+                            return   ProductHoriScroll(productItem: ProductItem().ProductFromJson(snapshot.data.docs[index].data()));
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-          Container(
-            height: 200,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                ProductHoriScroll(productItem: listProduct[1]),
-                ProductHoriScroll(productItem: listProduct[3]),
-                ProductHoriScroll(productItem: listProduct[5]),
-                ProductHoriScroll(productItem: listProduct[7]),
-                ProductHoriScroll(productItem: listProduct[8]),
-                ProductHoriScroll(productItem: listProduct[6]),
-              ],
-            ),
-          ),
-        ],
-      ),
+          );
+        else
+          return Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
+
+
 
 class ListHoriScrollForShop extends StatelessWidget {
   const ListHoriScrollForShop({

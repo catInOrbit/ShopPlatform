@@ -19,19 +19,19 @@ class CategoryFood extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CardCategory(categoryProduct: listCagory[0]),
-              CardCategory(categoryProduct: listCagory[1]),
-              CardCategory(categoryProduct: listCagory[2]),
-              CardCategory(categoryProduct: listCagory[3]),
+              CardCategory(categoryProduct: listCategory[0]),
+              CardCategory(categoryProduct: listCategory[1]),
+              CardCategory(categoryProduct: listCategory[2]),
+              CardCategory(categoryProduct: listCategory[3]),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CardCategory(categoryProduct: listCagory[4]),
-              CardCategory(categoryProduct: listCagory[5]),
-              CardCategory(categoryProduct: listCagory[6]),
-              CardCategory(categoryProduct: listCagory[7]),
+              CardCategory(categoryProduct: listCategory[4]),
+              CardCategory(categoryProduct: listCategory[5]),
+              CardCategory(categoryProduct: listCategory[6]),
+              CardCategory(categoryProduct: listCategory[7]),
             ],
           ),
         ],

@@ -1,6 +1,8 @@
 import 'package:ExpShop/bloc/cart_state.dart';
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FirebaseAPI
 {
@@ -28,6 +30,50 @@ class FirebaseAPI
 
      await batch.commit();
    }
+
+
+   Future<QuerySnapshot> getProducts() async
+   {
+     CollectionReference ref = firestoreInstance.collection('products');
+     QuerySnapshot eventsQuery = await ref.get();
+     print("Query found: " + eventsQuery.toString());
+      return eventsQuery;
+   }
+
+  // void saveProducts() async
+  // {
+  //   var batch = firestoreInstance.batch();
+  //   listProduct.forEach((element) {
+  //     var docRef = firestoreInstance.collection("products").doc();
+  //     batch.set(docRef, {"productID": element.productID,
+  //       "productName" : element.productName,
+  //       "categoryID" : element.categoryID,
+  //       "storeID" : element.storeID,
+  //       "price" : element.price,
+  //       "like" : element.like,
+  //       "describe" : element.describe,
+  //       "color" : element.color != null ? element.color.value : null,
+  //       "promotionalPrice" : element.promotionalPrice,
+  //       "image" : element.image,
+  //     });
+  //   });
+  //
+  //   await batch.commit();
+  // }
+  //
+  // void saveCategory() async
+  // {
+  //   var batch = firestoreInstance.batch();
+  //   listCategory.forEach((element) {
+  //     var docRef = firestoreInstance.collection("categories").doc();
+  //     batch.set(docRef, {"categoryID": element.categoryID, "categoryName" : element.categoryName,
+  //       "urlImage" : element.urlImage
+  //     });
+  //   });
+  //
+  //   await batch.commit();
+  // }
+
 
   User get user => _user;
 

@@ -1,5 +1,7 @@
+import 'package:ExpShop/bloc/products_retreive_bloc.dart';
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/models/product.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,71 +10,61 @@ import 'package:intl/intl.dart';
 //   return
 // }
 
-class ListProductHomePage2Column extends StatelessWidget {
+class ListProductHomePage2Column extends StatefulWidget {
   const ListProductHomePage2Column({
     Key key,
   }) : super(key: key);
 
   @override
+  _ListProductHomePage2ColumnState createState() => _ListProductHomePage2ColumnState();
+}
+
+class _ListProductHomePage2ColumnState extends State<ListProductHomePage2Column> {
+  @override
+  void initState()
+  {
+    productsListBloc.getAllProduct();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            height: 50,
-            color: Colors.white,
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-              child: Text(
-                'Có thể bạn sẽ thích',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            )),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return  StreamBuilder<QuerySnapshot>(
+      stream: productsListBloc.productsOutputStream,
+      builder: (context,  AsyncSnapshot<QuerySnapshot> snapshot) {
+        if(snapshot.hasData)
+        return Column(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: listProduct
-                  .map((e) => CardProductHomePage(
-                        productItem: e,
-                      ))
-                  .toList(),
-              // children: [
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              // ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: listProduct
-                  .map((e) => CardProductHomePage(
-                        productItem: e,
-                      ))
-                  .toList()
-                  .reversed
-                  .toList(),
-              // children: [
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              //   CardProductHomePage(),
-              // ],
-            ),
+            Container(
+                height: 50,
+                color: Colors.white,
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                  child: Text(
+                    'Có thể bạn sẽ thích',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                )),
+
+            Wrap(
+              children: snapshot.data.docs.map((e) => CardProductHomePage(productItem: ProductItem().ProductFromJson(e.data()),)).toList()
+            )
           ],
-        ),
-      ],
+        );
+        else
+          return Center(child: CircularProgressIndicator());
+      },
+
     );
   }
+
+  List<ProductItem> getProductList(QuerySnapshot querySnapshot)
+  {
+
+  }
+
 }
+
 
 class CardProductHomePage extends StatelessWidget {
   final ProductItem productItem;

@@ -31,7 +31,7 @@ var listStore = [
       urlImage: "assets/images/shop2.jpg"),
 ];
 
-var listCagory = [
+var listCategory = [
   CategoryProduct(
       categoryID: 1,
       categoryName: "Bánh kẹo",

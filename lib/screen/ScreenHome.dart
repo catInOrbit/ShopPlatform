@@ -1,4 +1,5 @@
 import 'package:ExpShop/bloc/cart_bloc.dart';
+import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/screen/PageRecommendV1.dart';
 import 'package:ExpShop/screen/PageRecommendV2.dart';
