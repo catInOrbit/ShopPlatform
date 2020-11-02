@@ -74,6 +74,8 @@ class _ShopPageState extends State<ShopPage> {
                 ListHoriScrollForShop(),
                 CardMostPopular(),
                 ListProductHomePage2Column(),
+
+
               ],
             ),
           ),

@@ -10,54 +10,62 @@ import 'package:intl/intl.dart';
 //   return
 // }
 
-class ListProductHomePage2Column extends StatefulWidget {
+class ListProductInCategory extends StatefulWidget {
 
-  const ListProductHomePage2Column({Key key}) : super(key: key);
+  final int idCategory;
+  const ListProductInCategory({Key key, this.idCategory}) : super(key: key);
 
 
   @override
-  _ListProductHomePage2ColumnState createState() => _ListProductHomePage2ColumnState();
+  _ListProductInCategoryState createState() => _ListProductInCategoryState();
 }
 
-class _ListProductHomePage2ColumnState extends State<ListProductHomePage2Column> {
+class _ListProductInCategoryState extends State<ListProductInCategory> {
   @override
   void initState()
   {
-    productsListBloc.getAllProduct();
-
+    productsListBloc.getProductsWithContraint(widget.idCategory);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return  StreamBuilder<QuerySnapshot>(
-      stream: productsListBloc.productsOutputStream,
-      builder: (context,  AsyncSnapshot<QuerySnapshot> snapshot) {
-        if(snapshot.hasData)
-        return Column(
-          children: [
-            Container(
-                height: 50,
-                color: Colors.white,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Text(
-                    'Có thể bạn sẽ thích',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                )),
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text("Products"),
+        backgroundColor: Colors.white,
+      ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: productsListBloc.productsOutputStream,
+        builder: (context,  AsyncSnapshot<QuerySnapshot> snapshot) {
+          if(snapshot.hasData)
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                      height: 50,
+                      color: Colors.white,
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(
+                        child: Text(
+                          'Có thể bạn sẽ thích',
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      )),
 
-            Wrap(
-              spacing: 5,
-              runSpacing: 5,
-              children: snapshot.data.docs.map((e) => CardProductHomePage(productItem: ProductItem().ProductFromJson(e.data()),)).toList()
-            )
-          ],
-        );
-        else
-          return Center(child: CircularProgressIndicator());
-      },
+                  Wrap(
+                      spacing: 5,
+                      runSpacing: 5,
+                      children: snapshot.data.docs.map((e) => CardProductHomePage(productItem: ProductItem().ProductFromJson(e.data()),)).toList()
+                  )
+                ],
+              ),
+            );
+          else
+            return Center(child: CircularProgressIndicator());
+        },
 
+      ),
     );
   }
 
@@ -245,7 +253,7 @@ class CardProductHori extends StatelessWidget {
                         child: Text(
                           'Giá gốc: ${oCcy.format(productItem.price)}đ',
                           style:
-                              TextStyle(decoration: TextDecoration.lineThrough),
+                          TextStyle(decoration: TextDecoration.lineThrough),
                         ),
                       ),
                       Container(

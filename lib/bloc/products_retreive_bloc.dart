@@ -7,8 +7,10 @@ class ProductRetreiveBloc
 {
    final _repository = DataRepository();
    final _productsOutputStream = ReplaySubject<QuerySnapshot>();
+   final _categoriesOutputStream = ReplaySubject<QuerySnapshot>();
 
    Stream<QuerySnapshot> get productsOutputStream => _productsOutputStream.stream;
+   Stream<QuerySnapshot> get categoriesOutputStream => _categoriesOutputStream.stream;
 
    ProductRetreiveBloc()
    {
@@ -25,8 +27,21 @@ class ProductRetreiveBloc
       _productsOutputStream.sink.add(querySnapshot);
    }
 
+   void getAllCategories() async
+   {
+      QuerySnapshot querySnapshot = await _repository.getAllCategories();
+      _categoriesOutputStream.sink.add(querySnapshot);
+   }
+
+   void getProductsWithContraint(int categoryID) async
+   {
+      QuerySnapshot querySnapshot = await _repository.getProductsWithContraints(categoryID);
+      _productsOutputStream.sink.add(querySnapshot);
+   }
+
    dispose() {
       _productsOutputStream.close();
+      _categoriesOutputStream.close();
    }
 
 }

@@ -40,6 +40,22 @@ class FirebaseAPI
       return eventsQuery;
    }
 
+  Future<QuerySnapshot> getCategories() async
+  {
+    CollectionReference ref = firestoreInstance.collection('categories');
+    QuerySnapshot eventsQuery = await ref.orderBy("categoryID", descending: false).get();
+    print("Query found: " + eventsQuery.toString());
+    return eventsQuery;
+  }
+
+  Future<QuerySnapshot> getProductsWithContraint(int categoryID) async
+  {
+    CollectionReference ref = firestoreInstance.collection('products');
+    QuerySnapshot eventsQuery = await ref.where("categoryID", isEqualTo: categoryID).get();
+    print("Query found: " + eventsQuery.toString());
+    return eventsQuery;
+  }
+
   // void saveProducts() async
   // {
   //   var batch = firestoreInstance.batch();

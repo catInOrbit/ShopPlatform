@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.menu, size: 28.0),
             title: Text("Khác"),
           ),
-        ],
+       ],
       ),
     );
   }

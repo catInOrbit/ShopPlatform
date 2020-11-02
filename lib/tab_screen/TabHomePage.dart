@@ -30,9 +30,11 @@ class TabHomePage extends StatelessWidget {
           ListHoriScroll(),
           CardMostPopularV3(),
           ListNearesProdct(),
+          CategoryFood(),
           CardMostPopular(),
           CardMostPopularV2(),
           ListProductHomePage2Column(),
+
         ],
       ),
     );

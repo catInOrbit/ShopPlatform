@@ -16,16 +16,17 @@ class CategoryProduct {
 
   Map<String, dynamic> toJson() => _CategoryProduct(this);
 
+  CategoryProduct CategoryFromJson(Map<String, dynamic> json)
+  {
+    return CategoryProduct.Internal(
+      json['categoryID'] as int,
+      json['categoryName'] as String,
+      json['urlImage'] as String,
+    );
+  }
 }
 
-CategoryProduct ProductFromJson(Map<String, dynamic> json)
-{
-  return CategoryProduct.Internal(
-    json['categoryID'] as int,
-    json['categoryName'] as String,
-    json['urlImage'] as String,
-  );
-}
+
 
 Map<String, dynamic> _CategoryProduct(CategoryProduct instance) => <String, dynamic> {
   'categoryID': instance.categoryID,

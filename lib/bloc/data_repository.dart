@@ -6,6 +6,8 @@ class DataRepository
 {
   final firebaseAPI  = FirebaseAPI();
   Future<QuerySnapshot> getAllProducts() => firebaseAPI.getProducts();
+  Future<QuerySnapshot> getAllCategories() => firebaseAPI.getCategories();
+  Future<QuerySnapshot> getProductsWithContraints(int categoryID) => firebaseAPI.getProductsWithContraint(categoryID);
 
   List<ProductItem> queriedList = [];
 }
