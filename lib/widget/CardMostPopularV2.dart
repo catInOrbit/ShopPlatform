@@ -1,27 +1,11 @@
+import 'package:flutter/material.dart';
+
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/models/product.dart';
 import 'package:ExpShop/models/store.dart';
 import 'package:ExpShop/screen/PageRecommendV2.dart';
 import 'package:ExpShop/screen/ProductDetail.dart';
-import 'package:flutter/material.dart';
-
-// class Suggest2 extends StatefulWidget {
-//   @override
-//   _Suggest2State createState() => _Suggest2State();
-// }
-
-// class _Suggest2State extends State<Suggest2> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: <Widget>[],
-//       ),
-//     );
-//   }
-// }
 
 class CardMostPopularV2 extends StatelessWidget {
   const CardMostPopularV2({
@@ -49,7 +33,7 @@ class CardMostPopularV2 extends StatelessWidget {
                   child: Image.asset('assets/icons/shop.png'),
                 ),
                 Text(
-                  'Cửa hàng và sản phẩm gần bạn',
+                  ' Cửa hàng',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -74,12 +58,15 @@ class CardMostPopularV2 extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MiniCardMostPopularV2(
-                      productItem: listProduct[10], kilometer: 'Cách 1 km'),
-                  MiniCardMostPopularV2(
-                      productItem: listProduct[9], kilometer: 'Cách 2 km'),
-                  MiniCardMostPopularV2(
-                      productItem: listProduct[7], kilometer: 'Cách 3 km'),
+                  MiniCardMostPopularShopV2(
+                    store: listStore[2],
+                  ),
+                  MiniCardMostPopularShopV2(
+                    store: listStore[3],
+                  ),
+                  MiniCardMostPopularShopV2(
+                    store: listStore[4],
+                  ),
                 ],
               ),
             ],
@@ -227,6 +214,71 @@ class MiniCardMostPopularV2 extends StatelessWidget {
   }
 }
 
+class MiniCardMostPopularShopV2 extends StatelessWidget {
+  final Store store;
+  final String kilometer;
+  const MiniCardMostPopularShopV2({
+    Key key,
+    this.store,
+    this.kilometer,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, "/ShopPage", arguments: {'store': store});
+      },
+      child: Stack(
+        children: [
+          Container(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  store.urlImage,
+                  fit: BoxFit.fill,
+                  scale: 1,
+                ),
+              ),
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.black,
+            ),
+            height: MediaQuery.of(context).size.width * 0.3 -
+                MediaQuery.of(context).size.height * 0.007,
+            width: MediaQuery.of(context).size.width * 0.3,
+          ),
+          Container(
+              height: MediaQuery.of(context).size.width * 0.3 -
+                  MediaQuery.of(context).size.height * 0.007,
+              width: MediaQuery.of(context).size.width * 0.3,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [Colors.red, Colors.green.withOpacity(0)],
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    store.storeName,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ))
+        ],
+      ),
+    );
+  }
+}
+
 class BigCardMostPopularV2 extends StatelessWidget {
   final Store store;
   const BigCardMostPopularV2({
@@ -238,7 +290,7 @@ class BigCardMostPopularV2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/ShopPage");
+        Navigator.pushNamed(context, "/ShopPage", arguments: {'store': store});
       },
       child: Stack(
         children: [
@@ -270,12 +322,19 @@ class BigCardMostPopularV2 extends StatelessWidget {
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
                     ),
-                    Text('${store.address}', style: TextStyle(color: WHITE)),
+                    Container(
+                      height: 18,
+                      width: 120,
+                      child: Text(
+                        '${store.address}',
+                        style: TextStyle(color: WHITE),
+                      ),
+                    )
                   ],
                 ),
               ),
               decoration: BoxDecoration(
-                color: store.shopColors.withOpacity(0.9),
+                color: store.shopColor.withOpacity(0.9),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(25),
                     bottomRight: Radius.circular(25)),

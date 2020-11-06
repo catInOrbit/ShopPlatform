@@ -10,7 +10,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8743a7e-5058-42c5-bcd5-b5a5da86ee8c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/fake_data/FAKEDATE.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fake_data/FAKEDATE.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/categoryProduct.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/categoryProduct.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/product.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/store.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/store.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/product/components/shop_product.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/CreateProductPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/CreateProductPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/EditShopInfoPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/EditShopInfoPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/LoginPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/LoginPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/PageRecommendV2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/PageRecommendV2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/ProductDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/ProductDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/ProfilePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/ProfilePage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/RegisterPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/RegisterPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/ScreenHome.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/ScreenHome.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/ScreenHomeShop.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/ScreenHomeShop.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/ShopPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/ShopPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shop/components/shop_item_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shop/components/shop_item_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tab_screen/ListProductInCategory.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tab_screen/TabHomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_screen/TabHomePage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tab_screen/TabHomePageShop.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_screen/TabHomePageShop.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tab_screen/TabLikeProduct.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_screen/TabLikeProduct.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tab_screen/TabMenu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_screen/TabMenu.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tab_screen/TabMenuShop.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_screen/TabMenuShop.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tab_screen/TabNotification.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_screen/TabNotification.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/user_global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user_global.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/CardMostPopularV1.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/CardMostPopularV1.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/CardMostPopularV2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/CardMostPopularV2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/CardMostPopularV3.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/CardMostPopularV3.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/CardNotification.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/CardNotification.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/CategoryFood.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/CategoryFood.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/ListProduct.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/ListProduct.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/ListScrollHori.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/ListScrollHori.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +81,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="copyright.profiles" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -61,10 +106,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser" timestamp="1604137664657">
+    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser" timestamp="1604674338365">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1604137664657" />
+    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1604674338365" />
     <state x="693" y="302" width="524" height="504" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603693636720">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -73,26 +118,30 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="437" height="506" key="DebuggerActiveHint/0.27.1920.1053@0.27.1920.1053" timestamp="1603720171080" />
-    <state width="1874" height="277" key="GridCell.Tab.0.bottom" timestamp="1604293091590">
+    <state width="1874" height="277" key="GridCell.Tab.0.bottom" timestamp="1604676157362">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1604293091590" />
-    <state width="1874" height="277" key="GridCell.Tab.0.center" timestamp="1604293091589">
+    <state width="1874" height="277" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1604676157362" />
+    <state width="1874" height="277" key="GridCell.Tab.0.center" timestamp="1604676157362">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1604293091589" />
-    <state width="1874" height="277" key="GridCell.Tab.0.left" timestamp="1604293091589">
+    <state width="1874" height="277" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1604676157362" />
+    <state width="1874" height="277" key="GridCell.Tab.0.left" timestamp="1604676157361">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1604293091589" />
-    <state width="1874" height="277" key="GridCell.Tab.0.right" timestamp="1604293091590">
+    <state width="1874" height="277" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1604676157361" />
+    <state width="1874" height="277" key="GridCell.Tab.0.right" timestamp="1604676157362">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1604293091590" />
-    <state x="649" y="292" width="621" height="522" key="find.popup" timestamp="1604290181603">
+    <state width="1874" height="277" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1604676157362" />
+    <state x="449" y="188" width="1022" height="732" key="SettingsEditor" timestamp="1604673724968">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="649" y="292" width="621" height="522" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1604290181603" />
+    <state x="449" y="188" width="1022" height="732" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1604673724968" />
+    <state x="649" y="292" width="621" height="522" key="find.popup" timestamp="1604675919135">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="649" y="292" width="621" height="522" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1604675919135" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -101,6 +150,11 @@
           <url>file://$PROJECT_DIR$/lib/shop/components/shop_item_list.dart</url>
           <line>48</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/models/product.dart</url>
+          <line>102</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

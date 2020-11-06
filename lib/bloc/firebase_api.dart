@@ -32,7 +32,9 @@ class FirebaseAPI
    }
 
 
-   Future<QuerySnapshot> getProducts() async
+
+
+  Future<QuerySnapshot> getProducts() async
    {
      CollectionReference ref = firestoreInstance.collection('products');
      QuerySnapshot eventsQuery = await ref.get();
@@ -56,26 +58,47 @@ class FirebaseAPI
     return eventsQuery;
   }
 
-  // void saveProducts() async
-  // {
-  //   var batch = firestoreInstance.batch();
-  //   listProduct.forEach((element) {
-  //     var docRef = firestoreInstance.collection("products").doc();
-  //     batch.set(docRef, {"productID": element.productID,
-  //       "productName" : element.productName,
-  //       "categoryID" : element.categoryID,
-  //       "storeID" : element.storeID,
-  //       "price" : element.price,
-  //       "like" : element.like,
-  //       "describe" : element.describe,
-  //       "color" : element.color != null ? element.color.value : null,
-  //       "promotionalPrice" : element.promotionalPrice,
-  //       "image" : element.image,
-  //     });
-  //   });
-  //
-  //   await batch.commit();
-  // }
+  void saveProducts() async
+  {
+    var batch = firestoreInstance.batch();
+    listProduct.forEach((element) {
+      var docRef = firestoreInstance.collection("products").doc();
+      batch.set(docRef, {
+          "productID": element.productID,
+        "productName" : element.productName,
+        "categoryID" : element.categoryID,
+        "storeID" : element.storeID,
+        "price" : element.price,
+        "like" : element.like,
+        "describe" : element.describe,
+        "color" : element.color != null ? element.color.toString() : null,
+        "promotionalPrice" : element.promotionalPrice,
+        "image" : element.image,
+        "rating" : element.rating,
+        "isRating" : element.isRating,
+        "quantity" : element.quantity,
+        "km": element.km,
+      });
+    });
+
+    await batch.commit();
+  }
+
+  void saveStores() async
+  {
+    var batch = firestoreInstance.batch();
+    listStore.forEach((element) {
+      var storeRef = firestoreInstance.collection("stores").doc();
+      batch.set(storeRef, element.toJson());
+
+      listProduct.forEach((element) {
+        var productREf = storeRef.collection("products").doc();
+          batch.set(productREf, element.toJson());
+      });
+    });
+
+    await batch.commit();
+  }
   //
   // void saveCategory() async
   // {

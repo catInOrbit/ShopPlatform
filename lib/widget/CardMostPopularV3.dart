@@ -17,54 +17,54 @@ class CardMostPopularV3 extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Sản phẩm ưu tiên cho bạn',
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Giá rẻ nhất ',
-                          style: TextStyle(color: Colors.green, fontSize: 20),
-                        ),
-                        Icon(
-                          FontAwesomeIcons.check,
-                          color: Colors.green,
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Gần bạn nhất ',
-                          style: TextStyle(color: Colors.green, fontSize: 20),
-                        ),
-                        Icon(
-                          FontAwesomeIcons.check,
-                          color: Colors.green,
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Phổ biến nhất ',
-                          style: TextStyle(color: Colors.green, fontSize: 20),
-                        ),
-                        Icon(
-                          FontAwesomeIcons.check,
-                          color: Colors.green,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       'Sản phẩm ưu tiên cho bạn',
+                //       style: TextStyle(
+                //           fontSize: 30,
+                //           fontWeight: FontWeight.bold,
+                //           color: Colors.black),
+                //     ),
+                //     Row(
+                //       children: [
+                //         Text(
+                //           'Giá rẻ nhất ',
+                //           style: TextStyle(color: Colors.green, fontSize: 20),
+                //         ),
+                //         Icon(
+                //           FontAwesomeIcons.check,
+                //           color: Colors.green,
+                //         )
+                //       ],
+                //     ),
+                //     Row(
+                //       children: [
+                //         Text(
+                //           'Gần bạn nhất ',
+                //           style: TextStyle(color: Colors.green, fontSize: 20),
+                //         ),
+                //         Icon(
+                //           FontAwesomeIcons.check,
+                //           color: Colors.green,
+                //         )
+                //       ],
+                //     ),
+                //     Row(
+                //       children: [
+                //         Text(
+                //           'Phổ biến nhất ',
+                //           style: TextStyle(color: Colors.green, fontSize: 20),
+                //         ),
+                //         Icon(
+                //           FontAwesomeIcons.check,
+                //           color: Colors.green,
+                //         )
+                //       ],
+                //     ),
+                //   ],
+                // ),
                 // Container(
                 //   width: 100,
                 //   height: 100,

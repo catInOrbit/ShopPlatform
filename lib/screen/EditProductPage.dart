@@ -1,3 +1,5 @@
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
+import 'package:ExpShop/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
@@ -5,12 +7,14 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
-class CreateProductScreen extends StatefulWidget {
+class EditProductPage extends StatefulWidget {
+  final String urlEditProductPage = "/EditProductPage";
   @override
-  _CreateProductScreenState createState() => _CreateProductScreenState();
+  _EditProductPageState createState() => _EditProductPageState();
 }
 
-class _CreateProductScreenState extends State<CreateProductScreen> {
+class _EditProductPageState extends State<EditProductPage> {
+  ProductItem _productItem;
   DateTime _dateTime = DateTime.now();
   Future<File> file;
   String status = '';
@@ -55,6 +59,8 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
+    this._productItem = arguments["productItem"];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -76,8 +82,9 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 15),
-            buildTextField('Tên Sản Phẩm', 'Nhập tên sản phẩm'),
-            buildTextField('Danh Mục', 'Nhập danh mục'),
+            buildTextField(
+                'Tên Sản Phẩm', 'Nhập tên sản phẩm', _productItem.productName),
+            buildTextField('Danh Mục', 'Nhập danh mục', "Thực phẩm"),
             Text('Hạn sử dụng'),
             Container(
               child: Row(
@@ -147,8 +154,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                             alignment: Alignment.topRight,
                             children: [
                               Container(
-                                child: Image.asset(
-                                    'assets/images/placeholder-image.png'),
+                                child: Image.asset(_productItem.image),
                               ),
                               InkWell(
                                 onTap: () {
@@ -174,13 +180,28 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               ],
             ),
             SizedBox(height: 20),
-            buildTextField('Giá', 'Nhập giá'),
+            buildTextField('Giá', 'Nhập giá',
+                "${oCcy.format(_productItem.promotionalPrice)}"),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 RaisedButton(
                   onPressed: () {
-                    uploadImg();
+                    Navigator.pop(context);
+                  },
+                  color: Colors.red,
+                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Text(
+                    "Hủy bỏ",
+                    style: TextStyle(
+                        fontSize: 18, letterSpacing: 2.2, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                   color: Colors.green,
@@ -189,7 +210,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   child: Text(
-                    "Tạo",
+                    "Cập nhật",
                     style: TextStyle(
                         fontSize: 18, letterSpacing: 2.2, color: Colors.white),
                   ),
@@ -202,10 +223,14 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder) {
+  Widget buildTextField(String labelText, String placeholder, String price) {
+    final TextEditingController _textController = new TextEditingController();
+    _textController.text = price;
+    print(_textController.text);
     return Padding(
       padding: const EdgeInsets.only(bottom: 20.0),
       child: TextField(
+        controller: _textController,
         decoration: InputDecoration(
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,

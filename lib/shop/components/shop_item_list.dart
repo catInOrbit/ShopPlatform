@@ -1,7 +1,7 @@
 import 'package:ExpShop/app_properties.dart';
 import 'package:ExpShop/color_list.dart';
+import 'package:ExpShop/components/shop_product.dart';
 import 'package:ExpShop/models/product.dart';
-import 'package:ExpShop/product/components/shop_product.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 

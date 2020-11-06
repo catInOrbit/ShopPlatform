@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ProductItem {
   int productID;
@@ -15,6 +16,10 @@ class ProductItem {
   DateTime expirationDate;
   Color color = Colors.white;
   DocumentReference _reference;
+  String km;
+  int quantity;
+  double rating;
+  bool isRating;
   int _quantityInCart = 0;
 
 
@@ -36,7 +41,12 @@ class ProductItem {
       this.image,
       this.createDate,
       this.expirationDate,
-      this.color,);
+      this.color,
+      this.km,
+      this.quantity,
+      this.rating,
+      this.isRating
+      );
 
   DocumentReference get reference => _reference;
 
@@ -57,6 +67,10 @@ class ProductItem {
     this.createDate,
     this.expirationDate,
     this.color,
+    this.km,
+    this.quantity,
+    this.rating,
+    this.isRating
   });
 
   Map<String, dynamic> toJson() => _ProductToJson(this);
@@ -75,7 +89,11 @@ class ProductItem {
       json['image'] as String,
       json['createDate'] as DateTime,
       json['expirationDate'] as DateTime,
-      null
+      null,
+      json['km'] as String,
+      json['quantity'] as int,
+      json['rating'] as double,
+      json['isRating'] as bool,
     );
   }
 
@@ -95,5 +113,14 @@ Map<String, dynamic> _ProductToJson(ProductItem instance) => <String, dynamic> {
   'image': instance.image,
   'createDate': instance.createDate,
   'expirationDate': instance.expirationDate,
-  'color':  instance.color != null ? instance.color.value : null,
+  'color':  instance.color != null ? instance.color.toString() : null, //Output of hex color: 0xff4caf50
+  "km": instance.km ,
+  "quantity": instance.quantity ,
+  "rating": instance.rating ,
+  "isRating" : instance.isRating
 };
+
+Color getColorFromHex(String hexString)
+{
+
+}

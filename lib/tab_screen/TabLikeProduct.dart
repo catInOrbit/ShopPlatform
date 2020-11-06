@@ -7,16 +7,16 @@ class TabLikeProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        CardProductHori(productItem: listProduct[2]),
-        CardProductHori(productItem: listProduct[8]),
-        CardProductHori(productItem: listProduct[4]),
-        CardProductHori(productItem: listProduct[0]),
-        CardProductHori(productItem: listProduct[6]),
-        CardProductHori(productItem: listProduct[2]),
-        CardProductHori(productItem: listProduct[8]),
-        CardProductHori(productItem: listProduct[4]),
-        CardProductHori(productItem: listProduct[0]),
-        CardProductHori(productItem: listProduct[6]),
+        ShoppingCardProduct(productItem: listProduct[2]),
+        ShoppingCardProduct(productItem: listProduct[8]),
+        ShoppingCardProduct(productItem: listProduct[4]),
+        ShoppingCardProduct(productItem: listProduct[0]),
+        ShoppingCardProduct(productItem: listProduct[6]),
+        ShoppingCardProduct(productItem: listProduct[2]),
+        ShoppingCardProduct(productItem: listProduct[8]),
+        ShoppingCardProduct(productItem: listProduct[4]),
+        ShoppingCardProduct(productItem: listProduct[0]),
+        ShoppingCardProduct(productItem: listProduct[6]),
       ],
     );
   }

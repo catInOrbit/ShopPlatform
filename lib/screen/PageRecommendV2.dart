@@ -33,7 +33,7 @@ class PageRecommendV2 extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Top Bán chạy',
+                                'Bán chạy',
                                 style: TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
@@ -43,13 +43,13 @@ class PageRecommendV2 extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 10),
                                 child: Text(
-                                  'Tên sản phẩm',
+                                  'Được đánh giá cao',
                                   style: TextStyle(
                                       fontSize: 20, color: Colors.white),
                                 ),
                               ),
                               Text(
-                                'Top xu hướng mới nhất',
+                                'Xu hướng mới nhất',
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(

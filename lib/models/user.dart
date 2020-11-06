@@ -1,27 +1,27 @@
 class User {
-   String _gender, name, _address, _email, _username, _phoneNumber, _cartID, _documentReference, _avatarPicURL;
+  String _gender, name, _address, _email, _username, _phoneNumber, _cartID, _documentReference, _avatarPicURL;
 
-   String get gender => _gender;
+  String get gender => _gender;
 
   set gender(String value) {
     _gender = value;
   }
 
   User(this._gender, this.name, this._address, this._email, this._username,
-       this._phoneNumber, this._cartID, this._documentReference,
-       this._avatarPicURL);
+      this._phoneNumber, this._cartID,
+      this._avatarPicURL);
 
-   User.fromJson(Map<String, dynamic> json) {
-     _cartID = json['cartID'];
+  User.fromJson(Map<String, dynamic> json) {
+    _cartID = json['cartID'];
     _gender = json['gender'];
     name = json['name'];
-     _address = json['address'];
-     _email = json['email'];
-     _username = json['username'];
-     _phoneNumber = json['phoneNumber'];
-     _cartID = json['cartID'];
-     _documentReference  = json['documentReference'];
-     _avatarPicURL = json['avatarPicURL'];
+    _address = json['address'];
+    _email = json['email'];
+    _username = json['username'];
+    _phoneNumber = json['phoneNumber'];
+    _cartID = json['cartID'];
+    _documentReference  = json['documentReference'];
+    _avatarPicURL = json['avatarPicURL'];
   }
 
   Map<String, dynamic> toJson() {
