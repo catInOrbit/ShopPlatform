@@ -1,13 +1,14 @@
-import 'package:ExpShop/bloc/cart_bloc.dart';
-import 'package:ExpShop/bloc/cart_event.dart';
-import 'package:ExpShop/fake_data/Colors.dart';
-import 'package:ExpShop/models/product.dart';
-import 'package:ExpShop/screen/FindTheWayPage.dart';
-import 'package:ExpShop/shop/check_out_page.dart';
-import 'package:ExpShop/widget/ListProduct.dart';
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+
+import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/models/product.dart';
+import 'package:ExpShop/models/user.dart';
+import 'package:ExpShop/screen/FindTheWayPage.dart';
+import 'package:ExpShop/widget/ListProduct.dart';
 
 class ProductDetail extends StatelessWidget {
   final String urlProductDetail = "/ProductDetail";
@@ -22,8 +23,9 @@ class ProductDetail extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
-            expandedHeight: 200,
+            expandedHeight: 400,
             stretch: true,
+            pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
                 _productItem.image,
@@ -72,6 +74,26 @@ class ProductDetail extends StatelessWidget {
                                 style: TextStyle(color: Colors.grey)),
                           ),
                           Text('82 Nguyễn Thị Minh Khai, Phường 6, Quận 3'),
+                          Row(
+                            children: [
+                              RatingBar(
+                                itemSize: 20,
+                                initialRating: _productItem.rating,
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                              ),
+                              Text(
+                                '(${_productItem.rating})',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -105,105 +127,147 @@ class ProductDetail extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Text('\$\$\$\$',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                  color: GOLD)),
+                          Container(
+                            height: 30,
+                            width: 30,
+                            child: Image.asset(
+                              'assets/icons/dong.png',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          // Text('VNĐ',
+                          //     style: TextStyle(
+                          //         fontSize: 25,
+                          //         fontWeight: FontWeight.bold,
+                          //         color: GOLD)),
                           Text(
                             '${oCcy.format(_productItem.price)} đ',
-                            style: TextStyle(fontSize: 17),
                           )
                         ],
                       ),
                       Column(
                         children: [
-                          Row(
-                            children: [
-                              Text('3 KM',
-                                  style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold)),
-                            ],
+                          // Row(
+                          //   children: [
+                          //     Text('3 KM',
+                          //         style: TextStyle(
+                          //             fontSize: 25,
+                          //             fontWeight: FontWeight.bold)),
+                          //   ],
+                          // ),
+                          Container(
+                            height: 30,
+                            width: 30,
+                            child: Image.asset(
+                              'assets/icons/distance.png',
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          Text('Khoảng cách'),
+                          Text('${_productItem.km}'),
                         ],
                       ),
                       Column(
                         children: [
-                          Text(
-                            'HSD',
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.orange),
+                          ImageIcon(
+                            AssetImage(
+                              'assets/icons/hsd.png',
+                            ),
+                            size: 31,
+                            color: Colors.orange,
                           ),
+                          // Text(
+                          //   'HSD',
+                          //   style: TextStyle(
+                          //       fontSize: 25,
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.orange),
+                          // ),
                           Text('20/10/2020'),
                         ],
                       ),
-                      InkWell(
-                        onTap: (){
-                          CartEvent event = CartEvent();
-                          event.requestAddToCart = true;
-                          event.requestCheckout = false;
-                          event.selectedProduct = _productItem;
-                          cartBloc.querySink.add(event);
-
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => CheckOutPage(cartBloc: cartBloc,),
-                          ));
-                        },
-                        child: Column(
-                          children: [
-                            InkWell(
-
-                              child: Icon(
-                                FontAwesomeIcons.cartPlus,
-                                color: YELLOWGREEN,
-                              ),
-                            ),
-                            Text('Thêm vào giỏ'),
-                          ],
-                        ),
+                      Column(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.cartPlus,
+                            size: 30.5,
+                            color: YELLOWGREEN,
+                          ),
+                          Text('Thêm vào giỏ'),
+                        ],
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(width: 1, color: Colors.grey))),
-                  height: 60,
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          child: Image.asset('assets/images/vinhphuc.jpg'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(width: 1, color: Colors.grey))),
+                    height: 70,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text('Cửa hàng:'),
                         ),
-                      ),
-                      Text('Vĩnh Phúc',
+                        Row(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                child:
+                                    Image.asset('assets/images/vinhphuc.jpg'),
+                              ),
+                            ),
+                            Text('Vĩnh Phúc',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text('Đang mở',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide(width: 1))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Nhận xét:',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text('Đang mở',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                      )
-                    ],
+                        Comment(user: listUser[1]),
+                        Comment(user: listUser[2]),
+                        Comment(user: listUser[0]),
+                      ],
+                    ),
                   ),
                 ),
                 ListProductHomePage2Column(),
@@ -211,6 +275,67 @@ class ProductDetail extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class Comment extends StatelessWidget {
+  final User user;
+  const Comment({
+    Key key,
+    this.user,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Container(
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1))),
+        height: 55,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: 50,
+                height: 50,
+                child: Image.asset(user.urlImage),
+              ),
+            ),
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      user.name,
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                    ),
+                    RatingBar(
+                      itemSize: 20,
+                      initialRating: 4.5,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                    ),
+                  ],
+                ),
+                Text(user.comment),
+              ],
+            ))
+          ],
+        ),
       ),
     );
   }

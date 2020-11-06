@@ -1,3 +1,4 @@
+import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,71 +20,91 @@ class _RegisterPageState extends State<RegisterPage> {
               height: MediaQuery.of(context).size.width * 0.5,
               width: MediaQuery.of(context).size.width,
               child: Center(
-                child: Text(
-                  'ExpShop',
-                  style: TextStyle(fontSize: 45, color: Colors.white),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.only(top: 80),
               child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      'Đăng ký',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    TextFormField(
-                      style: TextStyle(fontSize: 20),
-                      decoration: const InputDecoration(
-                        labelText: 'Ho va ten',
-                      ),
-                    ),
-                    TextFormField(
-                      style: TextStyle(fontSize: 20),
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                      ),
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      style: TextStyle(fontSize: 20),
-                      decoration: const InputDecoration(
-                        labelText: 'Password',
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 20),
+                        decoration: InputDecoration(
+                          hintText: 'Nhập tên đầy đủ',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(360),
+                            borderSide: BorderSide(),
+                          ),
+                          filled: true,
+                          fillColor: WHITE,
+                        ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Quên mật khẩu',
-                            style: TextStyle(fontSize: 14),
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 20),
+                        decoration: InputDecoration(
+                          hintText: 'Nhập email hoặc tên tài khoản',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(360),
+                            borderSide: BorderSide(),
                           ),
-                        ],
+                          filled: true,
+                          fillColor: WHITE,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: TextFormField(
+                        obscureText: true,
+                        style: TextStyle(fontSize: 20),
+                        decoration: InputDecoration(
+                          hintText: 'Nhập mật khẩu',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(360),
+                            borderSide: BorderSide(),
+                          ),
+                          filled: true,
+                          fillColor: WHITE,
+                        ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 40),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.green,
+                          gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [Colors.greenAccent, YELLOW]),
                           borderRadius: BorderRadius.circular(360),
                         ),
                         height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: FlatButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/LoginPage');
+                          },
                           child: Text(
                             'Đăng ký',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            style: TextStyle(fontSize: 20, color: GREENBLACK),
                           ),
                         ),
                       ),
@@ -93,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             Container(
-              height: 90,
+              height: 55,
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Row(

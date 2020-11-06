@@ -95,10 +95,10 @@ class ListHoriScroll extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
-                  '10:10:10 >',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
+                // Text(
+                //   '10:10:10 >',
+                //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                // ),
               ],
             ),
           ),
@@ -271,7 +271,7 @@ class ProductHoriScroll extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                       child: Center(
                         child: Text(
-                          '2km',
+                          productItem.km,
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

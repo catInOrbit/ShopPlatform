@@ -1,25 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// class Notification extends StatefulWidget {
-//   @override
-//   _NotificationState createState() => _NotificationState();
-// }
-
-// class _NotificationState extends State<Notification> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: ListView(
-//         children: [card, card, card, card, card, card, card],
-//       ),
-//     );
-//   }
-// }
+import 'package:ExpShop/models/product.dart';
 
 class CardNotification extends StatelessWidget {
+  final String title;
+  final String describe;
+  final ProductItem productItem;
   const CardNotification({
     Key key,
+    this.title,
+    this.describe,
+    this.productItem,
   }) : super(key: key);
 
   @override
@@ -39,8 +31,7 @@ class CardNotification extends StatelessWidget {
               width: 100,
               height: 100,
               decoration: BoxDecoration(),
-              child: Image.asset('assets/images/notification.jpg',
-                  fit: BoxFit.fill),
+              child: Image.asset(productItem.image, fit: BoxFit.fill),
             ),
             Expanded(
               child: Container(
@@ -51,7 +42,7 @@ class CardNotification extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 5, left: 5),
                       child: Text(
-                        'Mung ngay black friday',
+                        title,
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -59,8 +50,7 @@ class CardNotification extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.only(left: 5),
                       height: 48,
-                      child: Text(
-                          'Giam truc truc bla bla blaGia blaGiam truc truc bla bla blaGia blaGiam truc truc bla bla blaGia blaGiam truc truc bla bla blaGia bla'),
+                      child: Text(describe),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 5, left: 5),

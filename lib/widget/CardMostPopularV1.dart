@@ -48,7 +48,7 @@ class CardMostPopular extends StatelessWidget {
                   child: Image.asset('assets/icons/trophy.png'),
                 ),
                 Text(
-                  'Top loại sản phẩm giá rẻ',
+                  'Sản phẩm giá rẻ',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -90,7 +90,7 @@ class CardMostPopular extends StatelessWidget {
                             padding: EdgeInsets.only(bottom: 20),
                             child: Align(
                               alignment: Alignment.bottomCenter,
-                              child: Text('Top giá sốc',
+                              child: Text('Sữa tươi',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold)),
@@ -321,7 +321,8 @@ class ItemMostPopular extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/PageRecommendV2');
+        Navigator.pushNamed(context, '/PageRecommendV2',
+            arguments: {'productItem': productItem});
       },
       child: Stack(
         children: [

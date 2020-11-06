@@ -1,5 +1,6 @@
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
+import 'package:ExpShop/models/product.dart';
 import 'package:ExpShop/widget/CardMostPopularV3.dart';
 import 'package:ExpShop/widget/CategoryFood.dart';
 import 'package:ExpShop/widget/ListScrollHori.dart';
@@ -11,6 +12,7 @@ import 'package:ExpShop/widget/CardMostPopularV2.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class TabHomeShopPage extends StatelessWidget {
   List cardList = [
@@ -27,13 +29,36 @@ class TabHomeShopPage extends StatelessWidget {
       color: GREENWHITE,
       child: ListView(
         children: [
-          CardProductHori(productItem: listProduct[2]),
-          CardProductHori(productItem: listProduct[3]),
-          CardProductHori(productItem: listProduct[5]),
-          CardProductHori(productItem: listProduct[7]),
-          CardProductHori(productItem: listProduct[9]),
+          DeleteProduct(productItem: listProduct[3]),
+          DeleteProduct(productItem: listProduct[2]),
+          DeleteProduct(productItem: listProduct[6]),
+          DeleteProduct(productItem: listProduct[7]),
+          DeleteProduct(productItem: listProduct[2]),
         ],
       ),
+    );
+  }
+}
+
+class DeleteProduct extends StatelessWidget {
+  final ProductItem productItem;
+  const DeleteProduct({
+    Key key,
+    this.productItem,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Slidable(
+      actionPane: SlidableDrawerActionPane(),
+      child: CardProductHoriShop(productItem: productItem),
+      secondaryActions: [
+        IconSlideAction(
+          caption: 'Delete',
+          color: Colors.red,
+          icon: Icons.delete,
+        )
+      ],
     );
   }
 }

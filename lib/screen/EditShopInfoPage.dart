@@ -13,13 +13,13 @@ class _EditShopInfoPageState extends State<EditShopInfoPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.green,
-          ),
-          onPressed: () {},
-        ),
+        // leading: IconButton(
+        //   icon: Icon(
+        //     Icons.arrow_back,
+        //     color: Colors.green,
+        //   ),
+        //   onPressed: () {},
+        // ),
       ),
       body: Container(
           padding: EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -88,31 +88,38 @@ class _EditShopInfoPageState extends State<EditShopInfoPage> {
                 height: 25,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  OutlineButton(
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: RaisedButton(
+                        color: Colors.red,
+                        padding: EdgeInsets.symmetric(horizontal: 50),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        onPressed: () {},
+                        child: Text("Huỷ",
+                            style: TextStyle(
+                                fontSize: 14,
+                                letterSpacing: 2.2,
+                                color: Colors.white))),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: RaisedButton(
+                      onPressed: () {},
+                      color: Colors.green,
                       padding: EdgeInsets.symmetric(horizontal: 50),
+                      elevation: 2,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      onPressed: () {},
-                      child: Text("Huỷ",
-                          style: TextStyle(
-                              fontSize: 14,
-                              letterSpacing: 2.2,
-                              color: Colors.black))),
-                  RaisedButton(
-                    onPressed: () {},
-                    color: Colors.green,
-                    padding: EdgeInsets.symmetric(horizontal: 50),
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      "Lưu",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
+                      child: Text(
+                        "Lưu",
+                        style: TextStyle(
+                            fontSize: 14,
+                            letterSpacing: 2.2,
+                            color: Colors.white),
+                      ),
                     ),
                   )
                 ],

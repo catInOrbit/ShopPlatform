@@ -1,14 +1,18 @@
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/screen/ListOrderPage.dart';
 import 'package:ExpShop/screen/PageRecommendV1.dart';
 import 'package:ExpShop/screen/PageRecommendV2.dart';
 import 'package:ExpShop/screen/ProductDetail.dart';
 import 'package:ExpShop/screen/ProfilePage.dart';
+import 'package:ExpShop/screen/RatingPage.dart';
 import 'package:ExpShop/screen/ShopPage.dart';
 import 'package:ExpShop/tab_screen/TabHomePage.dart';
 import 'package:ExpShop/tab_screen/TabLikeProduct.dart';
 import 'package:ExpShop/tab_screen/TabMenu.dart';
 import 'package:ExpShop/tab_screen/TabNotification.dart';
+import 'package:ExpShop/tab_screen/TabQRCodePage.dart';
 import 'package:ExpShop/widget/CategoryFood.dart';
+import 'package:ExpShop/widget/StarRating.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +28,7 @@ class _HomePageState extends State<HomePage> {
   final tabs = [
     TabHomePage(),
     TabLikeProducts(),
+    QRCodePage(),
     NotificationPage(),
     TabMenuPage(),
   ];
@@ -52,6 +57,8 @@ class _HomePageState extends State<HomePage> {
             } else if (_currentIndex == 1) {
               return Text('Giỏ của bạn');
             } else if (_currentIndex == 2) {
+              return Text('Thanh toán');
+            } else if (_currentIndex == 3) {
               return Text('Thông Báo');
             } else {
               return FlatButton(
@@ -76,6 +83,28 @@ class _HomePageState extends State<HomePage> {
               );
             }
           }(),
+          actions: [
+            () {
+              if (_currentIndex == 2) {
+                return Row(
+                  children: [
+                    Text(
+                      'Lịch sử',
+                      style: TextStyle(fontSize: 17),
+                    ),
+                    IconButton(
+                        icon: Icon(FontAwesomeIcons.listAlt),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, ListOrder().urlListOrder);
+                        })
+                  ],
+                );
+              } else {
+                return Text('');
+              }
+            }()
+          ],
           bottom: () {
             if (_currentIndex == 0) {
               return PreferredSize(
@@ -114,6 +143,10 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.shopping_cart, size: 28.0),
             title: Text("Cart"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.camera, size: 28.0),
+            title: Text("Quét"),
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.bell_solid, size: 28.0),

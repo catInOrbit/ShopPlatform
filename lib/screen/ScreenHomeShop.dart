@@ -104,75 +104,75 @@ class _HomePageState extends State<HomePageShop> {
     );
   }
 
-  Future buildShowModalBottomSheet(BuildContext context) {
-    return showModalBottomSheet(
-        shape: new RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
-        isScrollControlled: true,
-        context: context,
-        builder: (ctx) {
-          return Container(
-            decoration: BoxDecoration(),
-            height: MediaQuery.of(context).size.height * 0.90,
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                  child: Text(
-                    'Chọn khu vực của bạn',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  child: Container(
-                    color: GREENWHITE,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Tìm vị trí',
-                        prefixIcon: Icon(FontAwesomeIcons.mapMarkerAlt),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  child: Container(
-                    padding: EdgeInsets.only(top: 15, bottom: 25),
-                    decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(width: 1))),
-                    child: Row(
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.mapMarkedAlt,
-                          size: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text(
-                            'CHỌN TRÊN BẢN ĐỒ',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Icon(FontAwesomeIcons.mapMarkerAlt),
-                    title: Text('Vị trí hiện tại của bản'),
-                    subtitle: Text('quốc lộ ABC'),
-                  ),
-                )
-              ],
-            ),
-          );
-        });
-  }
+  // Future buildShowModalBottomSheet(BuildContext context) {
+  //   return showModalBottomSheet(
+  //       shape: new RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.only(
+  //               topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+  //       isScrollControlled: true,
+  //       context: context,
+  //       builder: (ctx) {
+  //         return Container(
+  //           decoration: BoxDecoration(),
+  //           height: MediaQuery.of(context).size.height * 0.90,
+  //           child: Column(
+  //             children: [
+  //               Padding(
+  //                 padding:
+  //                     const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+  //                 child: Text(
+  //                   'Chọn khu vực của bạn',
+  //                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+  //                 ),
+  //               ),
+  //               Padding(
+  //                 padding: const EdgeInsets.symmetric(horizontal: 18),
+  //                 child: Container(
+  //                   color: GREENWHITE,
+  //                   child: TextField(
+  //                     decoration: InputDecoration(
+  //                       hintText: 'Tìm vị trí',
+  //                       prefixIcon: Icon(FontAwesomeIcons.mapMarkerAlt),
+  //                     ),
+  //                   ),
+  //                 ),
+  //               ),
+  //               Padding(
+  //                 padding: const EdgeInsets.symmetric(horizontal: 18),
+  //                 child: Container(
+  //                   padding: EdgeInsets.only(top: 15, bottom: 25),
+  //                   decoration: BoxDecoration(
+  //                       border: Border(bottom: BorderSide(width: 1))),
+  //                   child: Row(
+  //                     children: [
+  //                       Icon(
+  //                         FontAwesomeIcons.mapMarkedAlt,
+  //                         size: 20,
+  //                       ),
+  //                       Padding(
+  //                         padding: const EdgeInsets.only(left: 20),
+  //                         child: Text(
+  //                           'CHỌN TRÊN BẢN ĐỒ',
+  //                           style: TextStyle(
+  //                               fontSize: 20, fontWeight: FontWeight.bold),
+  //                         ),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 ),
+  //               ),
+  //               Card(
+  //                 child: ListTile(
+  //                   leading: Icon(FontAwesomeIcons.mapMarkerAlt),
+  //                   title: Text('Vị trí hiện tại của bản'),
+  //                   subtitle: Text('quốc lộ ABC'),
+  //                 ),
+  //               )
+  //             ],
+  //           ),
+  //         );
+  //       });
+  // }
 }
 
 Widget appBar(BuildContext context, Color greenColor) {

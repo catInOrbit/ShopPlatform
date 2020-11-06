@@ -1,5 +1,6 @@
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/screen/CreateProductPage.dart';
+import 'package:ExpShop/screen/EditProductPage.dart';
 import 'package:ExpShop/screen/EditShopInfoPage.dart';
 import 'package:ExpShop/screen/FindTheWayPage.dart';
 import 'package:ExpShop/screen/LoginPage.dart';
@@ -12,20 +13,18 @@ import 'package:ExpShop/screen/ScreenHomeShop.dart';
 import 'package:ExpShop/screen/ShopPage.dart';
 import 'package:ExpShop/widget/ItemSlider.dart';
 import 'package:ExpShop/widget/SaleBanner.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'screen/ListOrderPage.dart';
+import 'screen/RatingPage.dart';
 import 'screen/ScreenHome.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+void main() {
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -46,6 +45,9 @@ class MyApp extends StatelessWidget {
         "/HomePageShop": (context) => HomePageShop(),
         "/CreateProductScreen": (context) => CreateProductScreen(),
         "/EditShopInfoPage": (context) => EditShopInfoPage(),
+        "/ListOrder": (context) => ListOrder(),
+        "/RatingPage": (context) => RatingPage(),
+        "/EditProductPage": (context) => EditProductPage(),
       },
       theme: ThemeData(
         primaryColor: GREEN_NEW,

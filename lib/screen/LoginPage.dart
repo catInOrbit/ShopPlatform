@@ -1,3 +1,4 @@
+import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,45 +25,40 @@ class _LoginPageState extends State<LoginPage> {
               height: MediaQuery.of(context).size.width * 0.5,
               width: MediaQuery.of(context).size.width,
               child: Center(
-                child: Text(
-                  'ExpShop',
-                  style: TextStyle(fontSize: 45, color: Colors.white),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.only(top: 80),
               child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      'Xin chào',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        'Đăng nhập với tài khoản của bạn',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: TextFormField(
                         style: TextStyle(fontSize: 20),
-                        decoration: const InputDecoration(
-                          labelText: 'Email',
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 20),
+                          hintText: 'Nhập email hoặc tên tài khoản',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(360),
+                            borderSide: BorderSide(),
+                          ),
+                          filled: true,
+                          fillColor: WHITE,
                         ),
                         onChanged: (text) {
                           setState(() {
@@ -81,8 +77,16 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         obscureText: true,
                         style: TextStyle(fontSize: 20),
-                        decoration: const InputDecoration(
-                          labelText: 'Mật khẩu',
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 20),
+                          hintText: 'Nhập mật khẩu',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(360),
+                            borderSide: BorderSide(),
+                          ),
+                          filled: true,
+                          fillColor: WHITE,
                         ),
                       ),
                     ),
@@ -93,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Text(
                             'Quên mật khẩu',
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 14, color: WHITE),
                           ),
                         ],
                       ),
@@ -102,7 +106,10 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.only(top: 40),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.green,
+                          gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [Colors.greenAccent, YELLOW]),
                           borderRadius: BorderRadius.circular(360),
                         ),
                         height: MediaQuery.of(context).size.height * 0.07,
@@ -119,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: Text(
                             'Đăng nhập',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            style: TextStyle(fontSize: 20, color: GREENBLACK),
                           ),
                         ),
                       ),

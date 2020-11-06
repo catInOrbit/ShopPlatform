@@ -2,18 +2,37 @@ import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/models/categoryProduct.dart';
 import 'package:ExpShop/models/product.dart';
 import 'package:ExpShop/models/store.dart';
+import 'package:ExpShop/models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 final oCcy = new NumberFormat("#,##0", "en_US");
 
+var listUser = [
+  User(
+      name: 'Ng. Văn A',
+      rating: 4.0,
+      comment: 'Sản phẩm ok',
+      urlImage: 'assets/images/user.png'),
+  User(
+      name: 'Ng. Văn B',
+      rating: 4.0,
+      comment: 'Ngon quá, sẽ mua lại lần nữa',
+      urlImage: 'assets/images/user2.png'),
+  User(
+      name: 'Ng. Văn C',
+      rating: 4.0,
+      comment: 'Wow!!!!',
+      urlImage: 'assets/images/user3.png'),
+];
+
 var listStore = [
   Store(
       shopColors: GREEN,
       storeID: 1,
       storeName: '7-eleven',
-      address: 'Quan 1 HCM',
+      address: '4 Trường Chinh, Phường 12, Tân Bình, Thành phố Hồ Chí Minh',
       describe: '',
       longitude: 0000,
       latitude: 0000,
@@ -23,12 +42,43 @@ var listStore = [
       shopColors: RED,
       storeID: 2,
       storeName: 'VinMart',
-      address: 'Quan 1 HCM',
+      address: '50 Tứ Hải, Phường 6, Tân Bình, Thành phố Hồ Chí Minh',
       describe: '',
       longitude: 0000,
       latitude: 0000,
       phoneNumber: "0123456789",
       urlImage: "assets/images/shop2.jpg"),
+  Store(
+      shopColors: GREEN,
+      storeID: 1,
+      storeName: 'Family Mart',
+      address:
+          '590 Cách Mạng Tháng Tám, Phường 11, Quận 3, Thành phố Hồ Chí Minh',
+      describe: '',
+      longitude: 0000,
+      latitude: 0000,
+      phoneNumber: "0123456789",
+      urlImage: "assets/images/family.jpg"),
+  Store(
+      shopColors: RED,
+      storeID: 2,
+      storeName: 'Vinh Phúc',
+      address: '319 Lý Thường Kiệt, Phường 15, Quận 11, Thành phố Hồ Chí Minh',
+      describe: '',
+      longitude: 0000,
+      latitude: 0000,
+      phoneNumber: "0123456789",
+      urlImage: "assets/images/vinhphuc.jpg"),
+  Store(
+      shopColors: RED,
+      storeID: 2,
+      storeName: 'Hà PHương',
+      address: '16A Lê Hồng Phong, Phường 12, Quận 10, Thành phố Hồ Chí Minh',
+      describe: '',
+      longitude: 0000,
+      latitude: 0000,
+      phoneNumber: "0123456789",
+      urlImage: "assets/images/haphuong.png"),
 ];
 
 var listCagory = [
@@ -67,6 +117,10 @@ var listCagory = [
 
 var listProduct = [
   ProductItem(
+      rating: 4.5,
+      isRating: true,
+      quantity: 15,
+      km: '0.2km',
       productID: 1,
       productName: 'Hộp Bò Hầm',
       categoryID: 7,
@@ -77,6 +131,10 @@ var listProduct = [
       promotionalPrice: 20000,
       image: 'assets/images/bohamhop.jpg'),
   ProductItem(
+      rating: 3.5,
+      isRating: true,
+      quantity: 20,
+      km: '0.8km',
       productID: 2,
       productName: 'Cá hộp',
       categoryID: 7,
@@ -87,6 +145,10 @@ var listProduct = [
       promotionalPrice: 7000,
       image: 'assets/images/cahop.jpg'),
   ProductItem(
+      rating: 3.5,
+      isRating: false,
+      quantity: 27,
+      km: '0.3km',
       productID: 3,
       productName: 'CoCa Cola',
       categoryID: 6,
@@ -97,6 +159,10 @@ var listProduct = [
       promotionalPrice: 7000,
       image: 'assets/images/cocacola.jpg'),
   ProductItem(
+      rating: 4.2,
+      isRating: true,
+      quantity: 0,
+      km: '0.7km',
       productID: 4,
       productName: 'Hạt Nêm Knorr',
       categoryID: 8,
@@ -107,6 +173,10 @@ var listProduct = [
       promotionalPrice: 30000,
       image: 'assets/images/hatniemKnorr.jpg'),
   ProductItem(
+      rating: 3.4,
+      isRating: false,
+      quantity: 0,
+      km: '0.4km',
       productID: 5,
       productName: 'Mật Ong Xuân Nguyên',
       categoryID: 3,
@@ -117,6 +187,10 @@ var listProduct = [
       promotionalPrice: 130000,
       image: 'assets/images/matong.jpg'),
   ProductItem(
+      rating: 4.2,
+      isRating: true,
+      quantity: 32,
+      km: '0.6km',
       productID: 6,
       productName: 'Ngũ cốc',
       categoryID: 5,
@@ -127,6 +201,10 @@ var listProduct = [
       promotionalPrice: 26000,
       image: 'assets/images/ngucoc.jpg'),
   ProductItem(
+      rating: 4.0,
+      isRating: false,
+      quantity: 45,
+      km: '0.5km',
       productID: 7,
       productName: 'Pate Gan Ngỗng',
       categoryID: 7,
@@ -137,6 +215,10 @@ var listProduct = [
       promotionalPrice: 30000,
       image: 'assets/images/pateganngong.jpg'),
   ProductItem(
+      rating: 3.5,
+      isRating: true,
+      quantity: 14,
+      km: '2.1km',
       productID: 7,
       productName: 'Nước giải khác Pepsi',
       categoryID: 6,
@@ -147,6 +229,10 @@ var listProduct = [
       promotionalPrice: 7000,
       image: 'assets/images/pepsi.jpg'),
   ProductItem(
+      rating: 5.0,
+      isRating: false,
+      quantity: 0,
+      km: '2.8km',
       productID: 7,
       productName: 'Pho Mai Bò Cười',
       categoryID: 2,
@@ -157,6 +243,10 @@ var listProduct = [
       promotionalPrice: 36000,
       image: 'assets/images/phomai.jpg'),
   ProductItem(
+      rating: 4.2,
+      isRating: true,
+      quantity: 0,
+      km: '2.2km',
       productID: 7,
       productName: 'Nước giải khát Sprite',
       categoryID: 6,
@@ -167,6 +257,10 @@ var listProduct = [
       promotionalPrice: 7000,
       image: 'assets/images/sprite.jpg'),
   ProductItem(
+      rating: 3.9,
+      isRating: false,
+      quantity: 10,
+      km: '2.7km',
       productID: 7,
       productName: 'Sữa Chưa Vinamilk',
       categoryID: 2,
@@ -177,6 +271,10 @@ var listProduct = [
       promotionalPrice: 17000,
       image: 'assets/images/suachuavinamilk.jpg'),
   ProductItem(
+      rating: 4.4,
+      isRating: true,
+      quantity: 8,
+      km: '2.5km',
       productID: 7,
       productName: 'Sữa Ông Thọ',
       categoryID: 2,
@@ -187,6 +285,10 @@ var listProduct = [
       promotionalPrice: 17000,
       image: 'assets/images/suaongtho.jpg'),
   ProductItem(
+      rating: 4.2,
+      isRating: false,
+      quantity: 0,
+      km: '2.0km',
       productID: 7,
       productName: 'Sữa Tươi 100%',
       categoryID: 2,
@@ -197,6 +299,10 @@ var listProduct = [
       promotionalPrice: 14000,
       image: 'assets/images/suatuoi.jpg'),
   ProductItem(
+      rating: 3.4,
+      isRating: true,
+      quantity: 27,
+      km: '2.6km',
       productID: 7,
       productName: 'Thịt hộp',
       categoryID: 7,
@@ -207,6 +313,10 @@ var listProduct = [
       promotionalPrice: 36000,
       image: 'assets/images/thithop.jpg'),
   ProductItem(
+      rating: 3.5,
+      isRating: true,
+      quantity: 0,
+      km: '2.7km',
       productID: 7,
       productName: 'Yến Mạch',
       categoryID: 5,
@@ -217,6 +327,10 @@ var listProduct = [
       promotionalPrice: 67000,
       image: 'assets/images/suaongtho.jpg'),
   ProductItem(
+      rating: 4.0,
+      isRating: false,
+      quantity: 33,
+      km: '3km',
       productID: 7,
       productName: 'Bánh đậu xanh',
       categoryID: 5,
@@ -228,6 +342,10 @@ var listProduct = [
       promotionalPrice: 67000,
       image: 'assets/images/banhdauxanh.jpg'),
   ProductItem(
+      rating: 3.7,
+      isRating: true,
+      quantity: 7,
+      km: '2.5km',
       productID: 7,
       productName: 'Trà xanh cozy',
       categoryID: 5,

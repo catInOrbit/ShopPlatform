@@ -28,7 +28,7 @@ class TabHomePage extends StatelessWidget {
         children: [
           sliderFood(cardList, _currentIndexSlider),
           ListHoriScroll(),
-          CardMostPopularV3(),
+          // CardMostPopularV3(),
           ListNearesProdct(),
           CardMostPopular(),
           CardMostPopularV2(),
