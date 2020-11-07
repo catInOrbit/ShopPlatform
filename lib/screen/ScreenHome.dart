@@ -14,17 +14,24 @@ import 'package:ExpShop/tab_screen/TabNotification.dart';
 import 'package:ExpShop/tab_screen/TabQRCodePage.dart';
 import 'package:ExpShop/widget/CategoryFood.dart';
 import 'package:ExpShop/widget/StarRating.dart';
+import 'package:ExpShop/widget/shop_bottomSheet.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
+
+  const HomePage({Key key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+
   int _currentIndex = 0;
   final tabs = [
     TabHomePage(),
@@ -37,6 +44,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
           automaticallyImplyLeading: false,
           title: () {
@@ -110,16 +118,26 @@ class _HomePageState extends State<HomePage> {
             if (_currentIndex == 0) {
               return PreferredSize(
                 preferredSize: Size.square(50),
-                child: Container(
-                  padding: EdgeInsets.only(bottom: 5),
-                  width: MediaQuery.of(context).size.width * 0.90,
-                  child: TextField(
-                    decoration: InputDecoration(
-                        fillColor: GREENWHITE,
-                        filled: true,
-                        prefixIcon: Icon(Icons.search),
-                        hintText: 'Bạn tìm gì hôm nay?',
-                        contentPadding: EdgeInsets.all(15)),
+                child: InkWell(
+                  onTap: ()  {
+                    _scaffoldKey.currentState.showBottomSheet((context) {
+                          return ShopBottomSheet();
+                        });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 5),
+                    width: MediaQuery.of(context).size.width * 0.90,
+                    child: TextField(
+                      onChanged: (value) {
+
+                      },
+                      decoration: InputDecoration(
+                          fillColor: GREENWHITE,
+                          filled: true,
+                          prefixIcon: Icon(Icons.search),
+                          hintText: 'Bạn tìm gì hôm nay?',
+                          contentPadding: EdgeInsets.all(15)),
+                    ),
                   ),
                 ),
               );

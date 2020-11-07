@@ -84,7 +84,7 @@ class _ListHoriScrollState extends State<ListHoriScroll> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: productsListBloc.productsOutputStream,
+      stream: productsListBloc.productsSnapshotOutputStream,
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if(snapshot.hasData)
         return Container(

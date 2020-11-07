@@ -58,6 +58,23 @@ class FirebaseAPI
     return eventsQuery;
   }
 
+  Future<QuerySnapshot> getAllStores() async
+  {
+      CollectionReference ref = firestoreInstance.collection('stores');
+      QuerySnapshot eventsQuery = await ref.get();
+      print("Query found: " + eventsQuery.toString());
+      return eventsQuery;
+  }
+
+  Future<QuerySnapshot> getProductsWithSearchQuery(String searchString) async
+  {
+    CollectionReference ref = firestoreInstance.collection('products');
+    QuerySnapshot eventsQuery = await ref.where('productName', isGreaterThanOrEqualTo:  searchString).where('productName', isLessThanOrEqualTo:  searchString+'\uf8ff').get();
+    print("Query found: " + eventsQuery.toString());
+    return eventsQuery;
+  }
+
+
   void saveProducts() async
   {
     var batch = firestoreInstance.batch();

@@ -6,15 +6,20 @@ import 'package:rxdart/rxdart.dart';
 class ProductRetreiveBloc
 {
    final _repository = DataRepository();
-   final _productsOutputStream = ReplaySubject<QuerySnapshot>();
+   final _productsSnapshotOutputStream = ReplaySubject<QuerySnapshot>();
    final _categoriesOutputStream = ReplaySubject<QuerySnapshot>();
+   final _shopsOutputStream = ReplaySubject<QuerySnapshot>();
+   final _inputStream = BehaviorSubject<String>();
 
-   Stream<QuerySnapshot> get productsOutputStream => _productsOutputStream.stream;
+   Stream<QuerySnapshot> get productsSnapshotOutputStream => _productsSnapshotOutputStream.stream;
    Stream<QuerySnapshot> get categoriesOutputStream => _categoriesOutputStream.stream;
+   Stream<QuerySnapshot> get shopsOutputStream => _shopsOutputStream.stream;
+   Stream<String> get searchInputStream => _inputStream.stream;
 
-   ProductRetreiveBloc()
+  ProductRetreiveBloc()
    {
       // getAllProduct();
+
    }
 
    void getAllProduct() async
@@ -24,7 +29,7 @@ class ProductRetreiveBloc
       //    print("Add item: " + ProductItem().ProductFromJson(element.data()).productName + "to sink");
       //    _productsOutputStream.sink.add(ProductItem().ProductFromJson(element.data()));
       // });
-      _productsOutputStream.sink.add(querySnapshot);
+      _productsSnapshotOutputStream.sink.add(querySnapshot);
    }
 
    void getAllCategories() async
@@ -36,12 +41,27 @@ class ProductRetreiveBloc
    void getProductsWithContraint(int categoryID) async
    {
       QuerySnapshot querySnapshot = await _repository.getProductsWithContraints(categoryID);
-      _productsOutputStream.sink.add(querySnapshot);
+      _productsSnapshotOutputStream.sink.add(querySnapshot);
+   }
+
+   void getAllShops() async
+   {
+      QuerySnapshot querySnapshot = await _repository.getAllStores();
+      _productsSnapshotOutputStream.sink.add(querySnapshot);
+   }
+
+   void getProductsWithQuery() async
+   {
+       String querry = await _inputStream.stream.last;
+       QuerySnapshot querySnapshot = await _repository.getSearchedProducts(querry);
+       _productsSnapshotOutputStream.sink.add(querySnapshot);
    }
 
    dispose() {
-      _productsOutputStream.close();
+      _productsSnapshotOutputStream.close();
       _categoriesOutputStream.close();
+      _shopsOutputStream.close();
+      _inputStream.close();
    }
 
 }

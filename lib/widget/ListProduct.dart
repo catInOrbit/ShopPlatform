@@ -23,7 +23,7 @@ class ListProductHomePage2Column extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  StreamBuilder<QuerySnapshot>(
-      stream: productsListBloc.productsOutputStream,
+      stream: productsListBloc.productsSnapshotOutputStream,
       builder: (context,  AsyncSnapshot<QuerySnapshot> snapshot) {
         if(snapshot.hasData)
           return Column(
