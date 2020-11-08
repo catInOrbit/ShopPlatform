@@ -1,3 +1,4 @@
+import 'package:ExpShop/bloc/products_retreive_bloc.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/screen/ListOrderPage.dart';
 import 'package:ExpShop/screen/PageRecommendV1.dart';
@@ -43,6 +44,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    String searchValue;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -118,23 +120,28 @@ class _HomePageState extends State<HomePage> {
             if (_currentIndex == 0) {
               return PreferredSize(
                 preferredSize: Size.square(50),
-                child: InkWell(
-                  onTap: ()  {
-                    _scaffoldKey.currentState.showBottomSheet((context) {
-                          return ShopBottomSheet();
-                        });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(bottom: 5),
-                    width: MediaQuery.of(context).size.width * 0.90,
+                child: Container(
+                  padding: EdgeInsets.only(bottom: 5),
+                  width: MediaQuery.of(context).size.width * 0.90,
+                  child: InkWell(
+                    onTap: (){
+                      buildShowModalBottomSheet(context);
+                    },
                     child: TextField(
                       onChanged: (value) {
-
+                        searchValue = value;
+                        // productsListBloc.inputStreamSearchInput.add(value);
                       },
                       decoration: InputDecoration(
                           fillColor: GREENWHITE,
                           filled: true,
-                          prefixIcon: Icon(Icons.search),
+                          prefixIcon: InkWell(
+                              onTap: (){
+                                showModalBottomSheet(context: context, builder: (context) {
+                                  return ShopBottomSheet(searchQuery: searchValue,);
+                                },);
+                              },
+                              child: Icon(Icons.search)),
                           hintText: 'Bạn tìm gì hôm nay?',
                           contentPadding: EdgeInsets.all(15)),
                     ),

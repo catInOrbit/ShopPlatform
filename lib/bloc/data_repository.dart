@@ -9,7 +9,7 @@ class DataRepository
   Future<QuerySnapshot> getAllCategories() => firebaseAPI.getCategories();
   Future<QuerySnapshot> getProductsWithContraints(int categoryID) => firebaseAPI.getProductsWithContraint(categoryID);
   Future<QuerySnapshot> getAllStores() => firebaseAPI.getAllStores();
-  Future<QuerySnapshot> getSearchedProducts(String searchString) => firebaseAPI.getProductsWithSearchQuery(searchString);
+  // Future<QuerySnapshot> getSearchedProducts(String searchString) => firebaseAPI.getProductsWithSearchQuery(searchString);
 
   List<ProductItem> queriedList = [];
 }

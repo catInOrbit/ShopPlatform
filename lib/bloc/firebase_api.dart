@@ -68,9 +68,12 @@ class FirebaseAPI
 
   Future<QuerySnapshot> getProductsWithSearchQuery(String searchString) async
   {
+    List<String> searchStrings = [searchString];
+    List<String> searchStringsEnd = [searchString+"\uf8ff"];
+
     CollectionReference ref = firestoreInstance.collection('products');
-    QuerySnapshot eventsQuery = await ref.where('productName', isGreaterThanOrEqualTo:  searchString).where('productName', isLessThanOrEqualTo:  searchString+'\uf8ff').get();
-    print("Query found: " + eventsQuery.toString());
+    QuerySnapshot eventsQuery = await ref.orderBy('productName', descending: true).startAt(searchStrings).endAt(searchStringsEnd).get();
+    print("Search query found: " + eventsQuery.toString());
     return eventsQuery;
   }
 

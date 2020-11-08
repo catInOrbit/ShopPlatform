@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ExpShop/bloc/data_repository.dart';
 import 'package:ExpShop/models/product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,14 +9,18 @@ class ProductRetreiveBloc
 {
    final _repository = DataRepository();
    final _productsSnapshotOutputStream = ReplaySubject<QuerySnapshot>();
+   final _productsOutputStream = ReplaySubject<List<ProductItem>>();
    final _categoriesOutputStream = ReplaySubject<QuerySnapshot>();
    final _shopsOutputStream = ReplaySubject<QuerySnapshot>();
-   final _inputStream = BehaviorSubject<String>();
+   final _searchInputStream = BehaviorSubject<String>();
 
-   Stream<QuerySnapshot> get productsSnapshotOutputStream => _productsSnapshotOutputStream.stream;
+  StreamSink<String> get inputStreamSearchInput => _searchInputStream.sink;
+   BehaviorSubject<String> get inputStreamSearchOutput => _searchInputStream.stream;
+
+  Stream<QuerySnapshot> get productsSnapshotOutputStream => _productsSnapshotOutputStream.stream;
+   Stream<List<ProductItem>> get productsOutputStream => _productsOutputStream.stream;
    Stream<QuerySnapshot> get categoriesOutputStream => _categoriesOutputStream.stream;
    Stream<QuerySnapshot> get shopsOutputStream => _shopsOutputStream.stream;
-   Stream<String> get searchInputStream => _inputStream.stream;
 
   ProductRetreiveBloc()
    {
@@ -52,16 +58,29 @@ class ProductRetreiveBloc
 
    void getProductsWithQuery() async
    {
-       String querry = await _inputStream.stream.last;
-       QuerySnapshot querySnapshot = await _repository.getSearchedProducts(querry);
-       _productsSnapshotOutputStream.sink.add(querySnapshot);
+      List<ProductItem> streamList = [];
+       String querry = await _searchInputStream.stream.last;
+       QuerySnapshot querySnapshot = await _repository.getAllProducts();
+
+       querySnapshot.docs.forEach((element) {
+         print("Checking string match in product");
+         ProductItem productItem =ProductItem().ProductFromJson(element.data());
+          if(productItem.productName.contains(querry))
+            streamList.add(productItem);
+         print("Product added to matched query list");
+
+       });
+
+       if(streamList.isNotEmpty)
+          _productsOutputStream.sink.add(streamList);
    }
 
    dispose() {
       _productsSnapshotOutputStream.close();
       _categoriesOutputStream.close();
       _shopsOutputStream.close();
-      _inputStream.close();
+      _searchInputStream.close();
+      _productsOutputStream.close();
    }
 
 }

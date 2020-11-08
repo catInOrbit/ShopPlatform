@@ -18,13 +18,9 @@
       <change beforePath="$PROJECT_DIR$/lib/bloc/data_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/data_repository.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/bloc/products_retreive_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/products_retreive_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/categoryProduct.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/categoryProduct.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/shop_product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/shop_product.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screen/ScreenHome.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/ScreenHome.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tab_screen/TabHomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_screen/TabHomePage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/CategoryFood.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/CategoryFood.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/ListProduct.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/ListProduct.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/ListScrollHori.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/ListScrollHori.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/shop_bottomSheet.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/shop_bottomSheet.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,12 +46,13 @@
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/images" />
     <property name="settings.editor.selected.configurable" value="copyright.profiles" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/images" />
       <recent name="$PROJECT_DIR$/assets/icons" />
       <recent name="$PROJECT_DIR$/android/app" />
       <recent name="$PROJECT_DIR$/lib" />
@@ -76,42 +73,46 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser" timestamp="1604738159430">
+    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser" timestamp="1604820790844">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1604738159430" />
+    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1604820790844" />
     <state x="693" y="302" width="524" height="504" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603693636720">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="693" y="302" width="524" height="504" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1603693636720" />
-    <state width="437" height="506" key="DebuggerActiveHint" timestamp="1603720171080">
+    <state width="488" height="506" key="DebuggerActiveHint" timestamp="1604850358234">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="437" height="506" key="DebuggerActiveHint/0.27.1920.1053@0.27.1920.1053" timestamp="1603720171080" />
-    <state width="1874" height="293" key="GridCell.Tab.0.bottom" timestamp="1604743301113">
+    <state width="488" height="506" key="DebuggerActiveHint/0.27.1920.1053@0.27.1920.1053" timestamp="1604850358234" />
+    <state width="1874" height="277" key="GridCell.Tab.0.bottom" timestamp="1604851279481">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="293" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1604743301113" />
-    <state width="1874" height="293" key="GridCell.Tab.0.center" timestamp="1604743301110">
+    <state width="1874" height="277" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1604851279481" />
+    <state width="1874" height="277" key="GridCell.Tab.0.center" timestamp="1604851279480">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="293" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1604743301110" />
-    <state width="1874" height="293" key="GridCell.Tab.0.left" timestamp="1604743301108">
+    <state width="1874" height="277" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1604851279480" />
+    <state width="1874" height="277" key="GridCell.Tab.0.left" timestamp="1604851279480">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="293" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1604743301108" />
-    <state width="1874" height="293" key="GridCell.Tab.0.right" timestamp="1604743301112">
+    <state width="1874" height="277" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1604851279480" />
+    <state width="1874" height="277" key="GridCell.Tab.0.right" timestamp="1604851279481">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="293" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1604743301112" />
+    <state width="1874" height="277" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1604851279481" />
     <state x="449" y="188" width="1022" height="732" key="SettingsEditor" timestamp="1604673724968">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="449" y="188" width="1022" height="732" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1604673724968" />
-    <state x="649" y="292" width="621" height="522" key="find.popup" timestamp="1604740212347">
+    <state x="649" y="292" width="621" height="522" key="find.popup" timestamp="1604849124715">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="649" y="292" width="621" height="522" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1604740212347" />
+    <state x="649" y="292" width="621" height="522" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1604849124715" />
+    <state x="624" y="253" width="672" height="677" key="run.anything.popup" timestamp="1604820133044">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="624" y="253" width="672" height="677" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1604820133044" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

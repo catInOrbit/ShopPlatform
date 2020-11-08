@@ -68,16 +68,6 @@ class ShopProductDisplay extends StatelessWidget {
               width: 80,
               child: Image.asset('${product.image}',fit: BoxFit.contain,)),
         ),
-        Positioned(
-          right: 30,
-          bottom: 25,
-          child: Align(
-            child: IconButton(
-              icon: Image.asset('assets/icons/red_clear.png'),
-              onPressed: onPressed,
-            ),
-          ),
-        )
       ]),
     );
   }
