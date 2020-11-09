@@ -42,6 +42,14 @@ class FirebaseAPI
       return eventsQuery;
    }
 
+  Future<QuerySnapshot> getProductsPriceAscending() async
+  {
+    CollectionReference ref = firestoreInstance.collection('products');
+    QuerySnapshot eventsQuery = await ref.orderBy("price", descending: false).get();
+    print("Query found: " + eventsQuery.toString());
+    return eventsQuery;
+  }
+
   Future<QuerySnapshot> getCategories() async
   {
     CollectionReference ref = firestoreInstance.collection('categories');
@@ -62,7 +70,7 @@ class FirebaseAPI
   {
       CollectionReference ref = firestoreInstance.collection('stores');
       QuerySnapshot eventsQuery = await ref.get();
-      print("Query found: " + eventsQuery.toString());
+      print("Query store found: " + eventsQuery.toString());
       return eventsQuery;
   }
 

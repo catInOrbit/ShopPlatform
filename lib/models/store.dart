@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+
+import '../main.dart';
 
 class Store {
   Color shopColor;
@@ -49,7 +50,8 @@ class Store {
   {
     print("Jsoning store from query");
     return Store.Internal(
-      HexColor(json['shopColor'] as String) ,
+      // Color(json['shopColor'] as String) ,
+      Colors.blue,
       json['storeID'] as int,
       json['storeName'] as String,
       json['address'] as String,
@@ -64,6 +66,7 @@ class Store {
   Map<String, dynamic> _StoretToJson(Store instance) => <String, dynamic> {
     'shopColor' : instance.shopColor.toString(),
     'storeID' : instance.storeID,
+    "storeName" : instance.storeName,
     'address' : instance.address,
     'longitude' : instance.longitude,
     'latitude' : instance.latitude,

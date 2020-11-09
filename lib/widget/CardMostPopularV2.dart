@@ -1,3 +1,5 @@
+import 'package:ExpShop/bloc/products_retreive_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ExpShop/fake_data/Colors.dart';
@@ -14,132 +16,169 @@ class CardMostPopularV2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(bottom: 10),
-      color: WHITE,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 15,
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: 20,
-                  height: 20,
-                  child: Image.asset('assets/icons/shop.png'),
-                ),
-                Text(
-                  ' Cửa hàng',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height * 0.01),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    BigCardMostPopularV2(store: listStore[0]),
-                    BigCardMostPopularV2(store: listStore[1]),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return StreamBuilder<QuerySnapshot>(
+        stream: productsListBloc.shopsOutputStream,
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData)
+            return Container(
+              padding: EdgeInsets.only(bottom: 10),
+              color: WHITE,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MiniCardMostPopularShopV2(
-                    store: listStore[2],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 15,
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 20,
+                          height: 20,
+                          child: Image.asset('assets/icons/shop.png'),
+                        ),
+                        Text(
+                          ' Cửa hàng',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  MiniCardMostPopularShopV2(
-                    store: listStore[3],
-                  ),
-                  MiniCardMostPopularShopV2(
-                    store: listStore[4],
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(
+                            bottom: MediaQuery
+                                .of(context)
+                                .size
+                                .height * 0.01),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            BigCardMostPopularV2(store: Store().StoreFromJson(
+                                snapshot.data.docs[0].data())),
+                            BigCardMostPopularV2(store: Store().StoreFromJson(
+                                snapshot.data.docs[1].data())),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          MiniCardMostPopularShopV2(
+                            store: Store().StoreFromJson(snapshot.data.docs[2]
+                                .data()),
+                          ),
+                          MiniCardMostPopularShopV2(
+                            store: Store().StoreFromJson(snapshot.data.docs[3]
+                                .data()),
+                          ),
+                          MiniCardMostPopularShopV2(
+                            store: Store().StoreFromJson(snapshot.data.docs[4]
+                                .data()),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ],
-      ),
+            );
+          return
+            Center(child: CircularProgressIndicator(),);
+        }
     );
   }
 }
 
-class ListNearesProdct extends StatelessWidget {
+class ListNearesProdct extends StatefulWidget {
   const ListNearesProdct({
     Key key,
   }) : super(key: key);
 
   @override
+  _ListNearesProdctState createState() => _ListNearesProdctState();
+}
+
+class _ListNearesProdctState extends State<ListNearesProdct> {
+
+  @override
+  void initState()
+  {
+    productsListBloc.getAllProduct();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(bottom: 10),
-      color: WHITE,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 15,
-            ),
-            child: Row(
-              children: [
-                Container(
-                  height: 20,
-                  width: 20,
-                  child: Image.asset('assets/icons/gps.png'),
-                ),
-                Text(
-                  'Gần bạn nhất',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Column(
-            children: <Widget>[
+    return StreamBuilder<QuerySnapshot>(
+      stream: productsListBloc.productsSnapshotOutputStream,
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if(snapshot.hasData)
+        return Container(
+          padding: EdgeInsets.only(bottom: 10),
+          color: WHITE,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Padding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height * 0.01),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 15,
+                ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    BigNearesProdct(productItem: listProduct[16]),
-                    BigNearesProdct(productItem: listProduct[15]),
+                    Container(
+                      height: 20,
+                      width: 20,
+                      child: Image.asset('assets/icons/gps.png'),
+                    ),
+                    Text(
+                      'Gần bạn nhất',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  MiniCardMostPopularV2(
-                      productItem: listProduct[3], kilometer: 'Cách 1 km'),
-                  MiniCardMostPopularV2(
-                      productItem: listProduct[4], kilometer: 'Cách 2 km'),
-                  MiniCardMostPopularV2(
-                      productItem: listProduct[5], kilometer: 'Cách 3 km'),
+              Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.01),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        BigNearesProdct(productItem: ProductItem().ProductFromJson(snapshot.data.docs[0].data())),
+                        BigNearesProdct(productItem: ProductItem().ProductFromJson(snapshot.data.docs[1].data())),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MiniCardMostPopularV2(
+                          productItem: ProductItem().ProductFromJson(snapshot.data.docs[2].data()), kilometer: 'Cách 1 km'),
+                      MiniCardMostPopularV2(
+                          productItem: ProductItem().ProductFromJson(snapshot.data.docs[3].data()), kilometer: 'Cách 2 km'),
+                      MiniCardMostPopularV2(
+                          productItem: ProductItem().ProductFromJson(snapshot.data.docs[4].data()), kilometer: 'Cách 3 km'),
+                    ],
+                  ),
                 ],
               ),
             ],
           ),
-        ],
-      ),
+        );
+        else
+          return Center( child: CircularProgressIndicator(),);
+      }
     );
   }
 }

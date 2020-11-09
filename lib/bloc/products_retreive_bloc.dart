@@ -9,6 +9,7 @@ class ProductRetreiveBloc
 {
    final _repository = DataRepository();
    final _productsSnapshotOutputStream = ReplaySubject<QuerySnapshot>();
+   final _productsLowestPriceSnapshotOutputStream = ReplaySubject<QuerySnapshot>();
    final _productsOutputStream = ReplaySubject<List<ProductItem>>();
    final _categoriesOutputStream = ReplaySubject<QuerySnapshot>();
    final _shopsOutputStream = ReplaySubject<QuerySnapshot>();
@@ -16,6 +17,7 @@ class ProductRetreiveBloc
 
   StreamSink<String> get inputStreamSearchInput => _searchInputStream.sink;
    BehaviorSubject<String> get inputStreamSearchOutput => _searchInputStream.stream;
+   Stream<QuerySnapshot> get productsLowestPriceSnapshotOutputStream => _productsLowestPriceSnapshotOutputStream.stream;
 
   Stream<QuerySnapshot> get productsSnapshotOutputStream => _productsSnapshotOutputStream.stream;
    Stream<List<ProductItem>> get productsOutputStream => _productsOutputStream.stream;
@@ -53,7 +55,7 @@ class ProductRetreiveBloc
    void getAllShops() async
    {
       QuerySnapshot querySnapshot = await _repository.getAllStores();
-      _productsSnapshotOutputStream.sink.add(querySnapshot);
+      _shopsOutputStream.sink.add(querySnapshot);
    }
 
    void getProductsWithQuery() async
@@ -62,17 +64,23 @@ class ProductRetreiveBloc
        String querry = await _searchInputStream.stream.last;
        QuerySnapshot querySnapshot = await _repository.getAllProducts();
 
-       querySnapshot.docs.forEach((element) {
+       querySnapshot.docs.forEach((element)
+       {
          print("Checking string match in product");
          ProductItem productItem =ProductItem().ProductFromJson(element.data());
           if(productItem.productName.contains(querry))
             streamList.add(productItem);
          print("Product added to matched query list");
-
        });
 
        if(streamList.isNotEmpty)
           _productsOutputStream.sink.add(streamList);
+   }
+
+   void getLowestPriceProducts() async
+   {
+      QuerySnapshot querySnapshot = await _repository.getLowPriceProducts();
+      _productsLowestPriceSnapshotOutputStream.sink.add(querySnapshot);
    }
 
    dispose() {
@@ -81,6 +89,7 @@ class ProductRetreiveBloc
       _shopsOutputStream.close();
       _searchInputStream.close();
       _productsOutputStream.close();
+      _productsLowestPriceSnapshotOutputStream.close();
    }
 
 }

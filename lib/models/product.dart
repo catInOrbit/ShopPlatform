@@ -89,7 +89,7 @@ class ProductItem {
       json['image'] as String,
       json['createDate'] as DateTime,
       json['expirationDate'] as DateTime,
-      null,
+      Colors.green,
       json['km'] as String,
       json['quantity'] as int,
       json['rating'] as double,

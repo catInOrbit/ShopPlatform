@@ -30,6 +30,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    productsListBloc.getAllShops();
+    super.initState();
+  }
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
 
@@ -66,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             } else if (_currentIndex == 1) {
-              return Text('Giỏ của bạn');
+              return Text('Giỏ của bạn',style: TextStyle(color: Colors.white),);
             } else if (_currentIndex == 2) {
               return Text('Thanh toán');
             } else if (_currentIndex == 3) {

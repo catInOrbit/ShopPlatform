@@ -95,22 +95,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        iconTheme: IconThemeData(color: darkGrey),
-        actions: <Widget>[
-          // IconButton(
-          //   icon: Image.asset('assets/icons/denied_wallet.png'),
-          //     onPressed: () {},
-          // )
-        ],
-        title: Text(
-          'Checkout',
-          style: TextStyle(
-              color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
-        ),
-      ),
       body: StreamBuilder(
         initialData: cartBloc.cartState,
         stream: cartBloc.outputState,
