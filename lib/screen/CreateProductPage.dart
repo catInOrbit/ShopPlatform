@@ -1,9 +1,12 @@
+import 'package:ExpShop/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart' as path;
 
 class CreateProductScreen extends StatefulWidget {
   @override
@@ -11,18 +14,36 @@ class CreateProductScreen extends StatefulWidget {
 }
 
 class _CreateProductScreenState extends State<CreateProductScreen> {
+  ProductItem product = ProductItem();
+
   DateTime _dateTime = DateTime.now();
-  Future<File> file;
+
   String status = '';
-  String base64Image;
-  File tmpFile;
+  String _uploadedFileURL;
+  File _image;
   String error = 'Error';
 
-  chooseImage() {
-    setState(() {
-      file = ImagePicker.pickImage(source: ImageSource.gallery);
+  Future chooseFile() async {
+    await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
+      setState(() {
+        _image = image;
+      });
     });
-    setStatus('');
+  }
+
+  Future uploadFile() async {
+    StorageReference storageReference = FirebaseStorage.instance
+        .ref()
+        .child('product/${path.basename(_image.path)}');
+    StorageUploadTask uploadTask = storageReference.putFile(_image);
+    await uploadTask.onComplete;
+    print('File Uploaded');
+    storageReference.getDownloadURL().then((fileURL) {
+      setState(() {
+        _uploadedFileURL = fileURL;
+        product.image = _uploadedFileURL;
+      });
+    });
   }
 
   setStatus(String message) {
@@ -31,27 +52,53 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
     });
   }
 
-  uploadImg() {
-    if (null == tmpFile) {
-      setStatus(error);
-      return;
-    }
-
-    String fileName = tmpFile.path.split('/').last;
-
-    upload(fileName);
+  buildTextField(String labelText, String placeholder, dynamic object) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20.0),
+      child: TextField(
+        onChanged: (text) {
+          setState(() {
+            object = text;
+          });
+        },
+        decoration: InputDecoration(
+            labelText: labelText,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            hintText: placeholder,
+            hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w100,
+              color: Colors.black,
+            )),
+      ),
+    );
   }
 
-  upload(String fileName) {
-    http.post('http://finenut.in/demo/uploadData.php', body: {
-      "image": base64Image,
-      "name": fileName,
-    }).then((result) {
-      setStatus(result.statusCode == 200 ? result.body : error);
-    }).catchError((error) {
-      setStatus(error);
-    });
-  }
+  // dropDownCateogry(BuildContext context) {
+  //   return DropdownButton<String>(
+  //     value: "",
+  //     icon: Icon(Icons.arrow_downward),
+  //     iconSize: 24,
+  //     elevation: 16,
+  //     style: TextStyle(color: Colors.deepPurple),
+  //     underline: Container(
+  //       height: 2,
+  //       color: Colors.deepPurpleAccent,
+  //     ),
+  //     onChanged: (String newValue) {
+  //       setState(() {
+  //         dropdownValue = newValue;
+  //       });
+  //     },
+  //     items: <String>['One', 'Two', 'Free', 'Four']
+  //         .map<DropdownMenuItem<String>>((String value) {
+  //       return DropdownMenuItem<String>(
+  //         value: value,
+  //         child: Text(value),
+  //       );
+  //     }).toList(),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -76,8 +123,9 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 15),
-            buildTextField('Tên Sản Phẩm', 'Nhập tên sản phẩm'),
-            buildTextField('Danh Mục', 'Nhập danh mục'),
+            buildTextField(
+                'Tên Sản Phẩm', 'Nhập tên sản phẩm', product.productName),
+            buildTextField('Danh Mục', 'Nhập danh mục', product.categoryID),
             Text('Hạn sử dụng'),
             Container(
               child: Row(
@@ -94,6 +142,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                             .then((value) {
                           setState(() {
                             _dateTime = value;
+                            product.expirationDate = value;
                           });
                         });
                       }),
@@ -114,73 +163,51 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                FutureBuilder<File>(
-                  future: file,
-                  builder:
-                      (BuildContext context, AsyncSnapshot<File> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done &&
-                        null != snapshot.data) {
-                      tmpFile = snapshot.data;
-                      base64Image =
-                          base64Encode(snapshot.data.readAsBytesSync());
-                      return Container(
-                        margin: EdgeInsets.all(15),
-                        child: Material(
-                          elevation: 3.0,
-                          child: Image.file(
-                            snapshot.data,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      );
-                    } else if (null != snapshot.error) {
-                      return const Text(
-                        'Error!',
-                        textAlign: TextAlign.center,
-                      );
-                    } else {
-                      return Container(
-                        margin: EdgeInsets.all(15),
-                        child: Material(
-                          elevation: 3.0,
-                          child: Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              Container(
+                Container(
+                  margin: EdgeInsets.all(15),
+                  child: Material(
+                    elevation: 3.0,
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        _image != null
+                            ? Container(
+                                child: Image.asset(_image.path),
+                                height: 150,
+                              )
+                            : Container(
                                 child: Image.asset(
                                     'assets/images/placeholder-image.png'),
+                                height: 150,
                               ),
-                              InkWell(
-                                onTap: () {
-                                  chooseImage();
-                                },
-                                child: Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 10.0, right: 10.0),
-                                  child: Icon(
-                                    Icons.edit,
-                                    size: 30.0,
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                              ),
-                            ],
+                        InkWell(
+                          onTap: () {
+                            chooseFile();
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 10.0, right: 10.0),
+                            child: Icon(
+                              Icons.edit,
+                              size: 30.0,
+                              color: Colors.black54,
+                            ),
                           ),
                         ),
-                      );
-                    }
-                  },
-                ),
+                      ],
+                    ),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20),
-            buildTextField('Giá', 'Nhập giá'),
+            buildTextField('Giá', 'Nhập giá gốc', product.price),
+            buildTextField('Giá', 'Nhập khuyến mãi', product.promotionalPrice),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 RaisedButton(
                   onPressed: () {
-                    uploadImg();
+                    uploadFile();
                     Navigator.pop(context);
                   },
                   color: Colors.green,
@@ -198,23 +225,6 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget buildTextField(String labelText, String placeholder) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20.0),
-      child: TextField(
-        decoration: InputDecoration(
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w100,
-              color: Colors.black,
-            )),
       ),
     );
   }
