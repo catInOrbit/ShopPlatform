@@ -11,6 +11,8 @@ class User {
       this._phoneNumber, this._cartID,
       this._avatarPicURL);
 
+  Map<String, dynamic> toJson() => _UserToJson(this);
+
   User.fromJson(Map<String, dynamic> json) {
     _cartID = json['cartID'];
     _gender = json['gender'];
@@ -24,19 +26,18 @@ class User {
     _avatarPicURL = json['avatarPicURL'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['gender'] = this._gender;
-    data['name'] = this.name;
-    data['address'] = this._address;
-    data['email'] = this._email;
-    data['username'] = this._username;
-    data['phoneNumber'] = this._phoneNumber;
-    data['cartID'] = this._cartID;
-    data['documentReference'] = this._documentReference;
-    data['avatarPicURL'] = this._avatarPicURL;
-    return data;
-  }
+
+  Map<String, dynamic> _UserToJson(User instance) => <String, dynamic> {
+    'gender' : instance.gender,
+    'name' : instance.name,
+    "address" : instance.address,
+    'email' : instance.email,
+    'username' : instance.username,
+    'phoneNumber' : instance.phoneNumber,
+    'cartID' : instance.cartID,
+    'documentReference' : instance.documentReference,
+    'avatarURL' : instance.avatarPicURL,
+  };
 
   get address => _address;
 
