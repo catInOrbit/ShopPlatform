@@ -1,5 +1,5 @@
 class User {
-  String _gender, name, _address, _email, _username, _phoneNumber, _cartID, _documentReference, _avatarPicURL;
+  String _gender, name, _address, _email, _username, _phoneNumber, _shopID, _documentReference, _avatarPicURL;
 
   String get gender => _gender;
 
@@ -8,20 +8,20 @@ class User {
   }
 
   User(this._gender, this.name, this._address, this._email, this._username,
-      this._phoneNumber, this._cartID,
-      this._avatarPicURL);
+      this._phoneNumber, this._shopID,
+      this._avatarPicURL, this._documentReference);
 
   Map<String, dynamic> toJson() => _UserToJson(this);
 
   User.fromJson(Map<String, dynamic> json) {
-    _cartID = json['cartID'];
+    _shopID = json['shopID'];
     _gender = json['gender'];
     name = json['name'];
     _address = json['address'];
     _email = json['email'];
     _username = json['username'];
     _phoneNumber = json['phoneNumber'];
-    _cartID = json['cartID'];
+    _shopID = json['cartID'];
     _documentReference  = json['documentReference'];
     _avatarPicURL = json['avatarPicURL'];
   }
@@ -34,10 +34,16 @@ class User {
     'email' : instance.email,
     'username' : instance.username,
     'phoneNumber' : instance.phoneNumber,
-    'cartID' : instance.cartID,
+    'shopID' : instance.shopID,
     'documentReference' : instance.documentReference,
     'avatarURL' : instance.avatarPicURL,
   };
+
+  get shopID => _shopID;
+
+  set shopID(value) {
+    _shopID = value;
+  }
 
   get address => _address;
 
@@ -53,10 +59,10 @@ class User {
     _documentReference = value;
   }
 
-  get cartID => _cartID;
+  get cartID => _shopID;
 
   set cartID(value) {
-    _cartID = value;
+    _shopID = value;
   }
 
   get phoneNumber => _phoneNumber;

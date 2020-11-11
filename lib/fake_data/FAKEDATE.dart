@@ -18,7 +18,10 @@ var listUser = [
       "username01",
       "01234566",
       "1",
-      'assets/images/user.png'),
+      'assets/images/user.png',
+    null
+
+  ),
 
   User(
       "Male",
@@ -28,7 +31,9 @@ var listUser = [
       "username01",
       "01234566",
       "1",
-      'assets/images/user.png'),
+      'assets/images/user.png',
+      null
+  ),
 
   User(
       "Male",
@@ -38,7 +43,9 @@ var listUser = [
       "username01",
       "01234566",
       "1",
-      'assets/images/user2.png'),
+      'assets/images/user2.png',
+      null
+  ),
 
   User(
       "Male",
@@ -48,7 +55,9 @@ var listUser = [
       "username01",
       "01234566",
       "1",
-      'assets/images/user3.png'),
+      'assets/images/user3.png',
+      null
+  ),
 ];
 
 var listStore = [
