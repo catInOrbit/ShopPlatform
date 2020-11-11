@@ -1,6 +1,8 @@
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -8,6 +10,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _auth = FirebaseAuth.instance;
+  String email, password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: TextFormField(
                         style: TextStyle(fontSize: 20),
                         decoration: InputDecoration(
-                          hintText: 'Nhập email hoặc tên tài khoản',
+                          hintText: 'Nhập Email',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(360),
                             borderSide: BorderSide(),
@@ -68,6 +72,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           filled: true,
                           fillColor: WHITE,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                            email = text;
+                          });
+                        },
                       ),
                     ),
                     Padding(
@@ -84,6 +93,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           filled: true,
                           fillColor: WHITE,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                            password = text;
+                          });
+                        },
                       ),
                     ),
                     Padding(
@@ -99,8 +113,24 @@ class _RegisterPageState extends State<RegisterPage> {
                         height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: FlatButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/LoginPage');
+                          onPressed: () async {
+                            try {
+                              final newuser =
+                                  await _auth.createUserWithEmailAndPassword(
+                                      email: email, password: password);
+                              if (newuser != null) {
+                                Fluttertoast.showToast(
+                                    msg: "Register Successfull",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.blueAccent,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                return Navigator.pushNamed(
+                                    context, '/LoginPage');
+                              }
+                            } catch (e) {}
                           },
                           child: Text(
                             'Đăng ký',

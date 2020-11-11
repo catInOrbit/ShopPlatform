@@ -2,6 +2,8 @@ import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -9,8 +11,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String username;
-  String password;
+  final _auth = FirebaseAuth.instance;
+  String email, password;
   TextEditingController usernameController;
   TextEditingController passwordController;
   final FirebaseAPI firebaseAPI = FirebaseAPI();
@@ -19,8 +21,8 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.green,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-           firebaseAPI.saveStores();
+        onPressed: () {
+          firebaseAPI.saveStores();
         },
       ),
       body: SingleChildScrollView(
@@ -54,11 +56,12 @@ class _LoginPageState extends State<LoginPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         style: TextStyle(fontSize: 20),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: 30, vertical: 20),
-                          hintText: 'Nhập email hoặc tên tài khoản',
+                          hintText: 'Nhập Email',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(360),
                             borderSide: BorderSide(),
@@ -68,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         onChanged: (text) {
                           setState(() {
-                            username = text;
+                            email = text;
                           });
                         },
                       ),
@@ -121,14 +124,30 @@ class _LoginPageState extends State<LoginPage> {
                         height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: FlatButton(
-                          onPressed: () {
-                            if (username == 'user' && password == '123') {
-                              return Navigator.pushNamed(context, '/HomePage');
-                            }
-                            if (username == 'shop' && password == '123') {
-                              return Navigator.pushNamed(
-                                  context, '/HomePageShop');
-                            }
+                          onPressed: () async {
+                            // if (email == 'user' && password == '123') {
+                            //   return Navigator.pushNamed(context, '/HomePage');
+                            // }
+                            // if (email == 'shop' && password == '123') {
+                            //   return Navigator.pushNamed(
+                            //       context, '/HomePageShop');
+                            // }
+                            try {
+                              final newUser =
+                                  await _auth.signInWithEmailAndPassword(
+                                      email: email, password: password);
+                              if (newUser != null) {
+                                Fluttertoast.showToast(
+                                    msg: "Login Successfull",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.blueAccent,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                    return Navigator.pushNamed(context, '/HomePage');
+                              }
+                            } catch (e) {}
                           },
                           child: Text(
                             'Đăng nhập',
