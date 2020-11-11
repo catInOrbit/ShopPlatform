@@ -7,9 +7,11 @@ class User {
     _gender = value;
   }
 
+
   User(this._gender, this.name, this._address, this._email, this._username,
       this._phoneNumber, this._cartID,
       this._avatarPicURL);
+
 
   User.fromJson(Map<String, dynamic> json) {
     _cartID = json['cartID'];
@@ -23,6 +25,7 @@ class User {
     _documentReference  = json['documentReference'];
     _avatarPicURL = json['avatarPicURL'];
   }
+ 
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

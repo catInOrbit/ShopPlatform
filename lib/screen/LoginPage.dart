@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameController;
   TextEditingController passwordController;
   final FirebaseAPI firebaseAPI = FirebaseAPI();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,9 +147,15 @@ class _LoginPageState extends State<LoginPage> {
                                     backgroundColor: Colors.blueAccent,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
-                                    return Navigator.pushNamed(context, '/HomePage');
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString('email', email);
+                                return Navigator.pushNamed(
+                                    context, '/HomePage');
                               }
-                            } catch (e) {}
+                            } catch (e) {
+                            
+                            }
                           },
                           child: Text(
                             'Đăng nhập',
