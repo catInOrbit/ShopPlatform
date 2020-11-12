@@ -23,28 +23,22 @@ class User {
     _email = json['email'];
     _username = json['username'];
     _phoneNumber = json['phoneNumber'];
-    _documentReference  = json['documentReference'];
+
     _avatarPicURL = json['avatarPicURL'];
-  }
  
 
-
-  Map<String, dynamic> _UserToJson(User instance) => <String, dynamic> {
-    'gender' : instance.gender,
-    'name' : instance.name,
-    "address" : instance.address,
-    'email' : instance.email,
-    'username' : instance.username,
-    'phoneNumber' : instance.phoneNumber,
-    'shopID' : instance.shopID,
-    'documentReference' : instance.documentReference,
-    'avatarURL' : instance.avatarPicURL,
-  };
-
-  get shopID => _shopID;
-
-  set shopID(value) {
-    _shopID = value;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['gender'] = this._gender;
+    data['name'] = this.name;
+    data['address'] = this._address;
+    data['email'] = this._email;
+    data['username'] = this._username;
+    data['phoneNumber'] = this._phoneNumber;
+    data['shopID'] = this._shopID;
+    data['documentReference'] = this._documentReference;
+    data['avatarPicURL'] = this._avatarPicURL;
+    return data;
   }
 
   get address => _address;
