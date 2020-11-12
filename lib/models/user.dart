@@ -10,7 +10,7 @@ class User {
 
   User(this._gender, this.name, this._address, this._email, this._username,
       this._phoneNumber, this._shopID,
-      this._avatarPicURL, this._documentReference);
+      this._avatarPicURL);
 
   Map<String, dynamic> toJson() => _UserToJson(this);
 

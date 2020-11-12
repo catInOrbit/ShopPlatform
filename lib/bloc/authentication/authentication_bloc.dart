@@ -1,15 +1,14 @@
 import 'dart:async';
 
 import 'package:ExpShop/bloc/authentication/authentication_event.dart';
+import 'package:ExpShop/bloc/data_repository.dart';
 import 'package:ExpShop/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../data_repository.dart';
-
 class AuthenticationBloc
 {
-      final _repository = DataRepository();
+  final _repository = DataRepository();
       final  _inputEventStream = BehaviorSubject<AuthenticationEvent>();
       final _userOutputStream = BehaviorSubject<User>();
 

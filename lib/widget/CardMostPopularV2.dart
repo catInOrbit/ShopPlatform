@@ -407,7 +407,7 @@ class BigNearesProdct extends StatelessWidget {
           Container(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
+              child: Image.network(
                 productItem.image,
                 fit: BoxFit.fill,
               ),

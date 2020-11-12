@@ -264,7 +264,7 @@ class ProductHoriScroll extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(
+                      child: Image.network(
                         productItem.image,
                         fit: BoxFit.cover,
                       ),
