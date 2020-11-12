@@ -12,14 +12,11 @@
     <list default="true" id="b8743a7e-5058-42c5-bcd5-b5a5da86ee8c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,22 +86,22 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="743" y="311" width="424" height="486" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1605066241336" />
-    <state width="1874" height="277" key="GridCell.Tab.0.bottom" timestamp="1605066242591">
+    <state width="937" height="289" key="GridCell.Tab.0.bottom" timestamp="1605192116219">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605066242591" />
-    <state width="1874" height="277" key="GridCell.Tab.0.center" timestamp="1605066242591">
+    <state width="937" height="289" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605192116219" />
+    <state width="937" height="289" key="GridCell.Tab.0.center" timestamp="1605192116216">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605066242591" />
-    <state width="1874" height="277" key="GridCell.Tab.0.left" timestamp="1605066242590">
+    <state width="937" height="289" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605192116216" />
+    <state width="937" height="289" key="GridCell.Tab.0.left" timestamp="1605192116215">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605066242590" />
-    <state width="1874" height="277" key="GridCell.Tab.0.right" timestamp="1605066242591">
+    <state width="937" height="289" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605192116215" />
+    <state width="937" height="289" key="GridCell.Tab.0.right" timestamp="1605192116218">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605066242591" />
+    <state width="937" height="289" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605192116218" />
     <state x="449" y="188" width="1022" height="732" key="SettingsEditor" timestamp="1604673724968">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -132,7 +129,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="Dart">
           <url>file://$PROJECT_DIR$/lib/models/product.dart</url>
-          <line>102</line>
+          <line>95</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

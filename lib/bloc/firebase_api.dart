@@ -105,7 +105,7 @@ class FirebaseAPI {
         .get();
   }
 
-  void saveProductsItems(ProductItem element) async {
+  void saveProduct(ProductItem element) async {
     var batch = firestoreInstance.batch();
     var docRef = firestoreInstance.collection("products").doc();
     batch.set(docRef, {

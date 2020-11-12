@@ -272,7 +272,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                 RaisedButton(
                   onPressed: () {
                     product.storeID = 2;
-                    FirebaseAPI().saveProductsItems(product);
+                    FirebaseAPI().saveProduct(product);
                     Navigator.pop(context);
                   },
                   color: Colors.green,
