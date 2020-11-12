@@ -1,5 +1,5 @@
-import 'package:ExpShop/bloc/cart_bloc.dart';
-import 'package:ExpShop/bloc/cart_event.dart';
+import 'package:ExpShop/bloc/cart/cart_bloc.dart';
+import 'package:ExpShop/bloc/cart/cart_event.dart';
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/shop/check_out_page.dart';
 import 'package:flutter/material.dart';

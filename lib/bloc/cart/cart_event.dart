@@ -11,7 +11,6 @@ class CartEvent
    // CartEvent(this._requestAddToCart, this._requestCheckout,
    //    this._selectedProductId, this._selectedProduct);
 
-
    ProductItem get selectedProduct => _selectedProduct;
 
   set selectedProduct(ProductItem value) {

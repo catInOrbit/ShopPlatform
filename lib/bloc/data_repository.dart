@@ -1,6 +1,7 @@
 import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/models/product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DataRepository {
   final firebaseAPI = FirebaseAPI();
@@ -11,7 +12,7 @@ class DataRepository {
   Future<QuerySnapshot> getAllStores() => firebaseAPI.getAllStores();
   Future<QuerySnapshot> getLowPriceProducts() =>
       firebaseAPI.getProductsPriceAscending();
-
+  Future<DocumentSnapshot> getUserWithEmail(String tokenString) => firebaseAPI.getUserWithToken(tokenString);
   // Future<QuerySnapshot> getSearchedProducts(String searchString) => firebaseAPI.getProductsWithSearchQuery(searchString);
 
   List<ProductItem> queriedList = [];

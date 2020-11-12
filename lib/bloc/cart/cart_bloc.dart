@@ -1,8 +1,8 @@
 
 import 'dart:async';
 
-import 'package:ExpShop/bloc/cart_event.dart';
-import 'package:ExpShop/bloc/cart_state.dart';
+import 'package:ExpShop/bloc/cart/cart_event.dart';
+import 'package:ExpShop/bloc/cart/cart_state.dart';
 import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';

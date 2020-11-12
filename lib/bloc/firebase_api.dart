@@ -1,4 +1,4 @@
-import 'package:ExpShop/bloc/cart_state.dart';
+import 'package:ExpShop/bloc/cart/cart_state.dart';
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -31,8 +31,6 @@ class FirebaseAPI
      await batch.commit();
    }
 
-
-
   Future<QuerySnapshot> getProducts() async
    {
      CollectionReference ref = firestoreInstance.collection('products');
@@ -40,6 +38,15 @@ class FirebaseAPI
      print("Query found: " + eventsQuery.toString());
       return eventsQuery;
    }
+
+
+
+  Future<DocumentSnapshot> getUserWithToken(String token) async
+  {
+    DocumentSnapshot documentSnapshot = await firestoreInstance.collection("users").document(token).get();
+      return documentSnapshot;
+  }
+
 
   Future<QuerySnapshot> getProductsPriceAscending() async
   {
@@ -85,6 +92,7 @@ class FirebaseAPI
   }
 
 
+
   void saveProducts() async
   {
     var batch = firestoreInstance.batch();
@@ -122,6 +130,18 @@ class FirebaseAPI
         var productREf = storeRef.collection("products").doc();
           batch.set(productREf, element.toJson());
       });
+    });
+
+    await batch.commit();
+  }
+
+  void saveUsers() async
+  {
+    var batch = firestoreInstance.batch();
+    listUser.forEach((element) {
+      var storeRef = firestoreInstance.collection("users").doc();
+      element.documentReference = storeRef.id;
+      batch.set(storeRef, element.toJson());
     });
 
     await batch.commit();

@@ -10,13 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8743a7e-5058-42c5-bcd5-b5a5da86ee8c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/cart_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/cart/cart_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/cart_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/cart/cart_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/cart_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/cart/cart_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/data_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/data_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/fake_data/FAKEDATE.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fake_data/FAKEDATE.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screen/LoginPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/LoginPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/ProductDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/ProductDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shop/check_out_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shop/check_out_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +53,10 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/bloc/authentication" />
+      <recent name="$PROJECT_DIR$/lib/bloc/cart" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/images" />
       <recent name="$PROJECT_DIR$/assets/icons" />
@@ -69,10 +79,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser" timestamp="1605068771833">
+    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser" timestamp="1605171425522">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1605068771833" />
+    <state x="768" y="272" width="374" height="564" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1605171425522" />
     <state x="693" y="302" width="524" height="504" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603693636720">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -85,22 +95,22 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="743" y="311" width="424" height="486" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1605066241336" />
-    <state width="1874" height="289" key="GridCell.Tab.0.bottom" timestamp="1605162390030">
+    <state width="937" height="289" key="GridCell.Tab.0.bottom" timestamp="1605175474985">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="289" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605162390030" />
-    <state width="1874" height="289" key="GridCell.Tab.0.center" timestamp="1605162390030">
+    <state width="937" height="289" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605175474985" />
+    <state width="937" height="289" key="GridCell.Tab.0.center" timestamp="1605175474984">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="289" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605162390030" />
-    <state width="1874" height="289" key="GridCell.Tab.0.left" timestamp="1605162390030">
+    <state width="937" height="289" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605175474984" />
+    <state width="937" height="289" key="GridCell.Tab.0.left" timestamp="1605175474984">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="289" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605162390030" />
-    <state width="1874" height="289" key="GridCell.Tab.0.right" timestamp="1605162390030">
+    <state width="937" height="289" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605175474984" />
+    <state width="937" height="289" key="GridCell.Tab.0.right" timestamp="1605175474984">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="289" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605162390030" />
+    <state width="937" height="289" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605175474984" />
     <state x="449" y="188" width="1022" height="732" key="SettingsEditor" timestamp="1604673724968">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -109,10 +119,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="624" y="167" width="661" height="775" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1605067666544" />
-    <state x="649" y="292" width="621" height="522" key="find.popup" timestamp="1604905474071">
+    <state x="649" y="292" width="621" height="522" key="find.popup" timestamp="1605163519631">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="649" y="292" width="621" height="522" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1604905474071" />
+    <state x="649" y="292" width="621" height="522" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1605163519631" />
     <state x="624" y="253" width="672" height="677" key="run.anything.popup" timestamp="1604820133044">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

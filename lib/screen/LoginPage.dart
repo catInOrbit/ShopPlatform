@@ -1,5 +1,8 @@
+import 'package:ExpShop/bloc/authentication/authentication_bloc.dart';
 import 'package:ExpShop/bloc/firebase_api.dart';
+import 'package:ExpShop/bloc/global.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/models/user.dart' as UserShopPlatform;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.green,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          firebaseAPI.saveProducts();
+          firebaseAPI.saveUsers();
         },
       ),
       body: SingleChildScrollView(
@@ -139,6 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                                   await _auth.signInWithEmailAndPassword(
                                       email: email, password: password);
                               if (newUser != null) {
+                                _auth.currentUser.getIdToken();
                                 Fluttertoast.showToast(
                                     msg: "Login Successfull",
                                     toastLength: Toast.LENGTH_SHORT,
@@ -147,11 +151,14 @@ class _LoginPageState extends State<LoginPage> {
                                     backgroundColor: Colors.blueAccent,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
+
                                 SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
+                                await SharedPreferences.getInstance();
                                 prefs.setString('email', email);
+
                                 return Navigator.pushNamed(
                                     context, '/HomePage');
+
                               }
                             } catch (e) {
                             

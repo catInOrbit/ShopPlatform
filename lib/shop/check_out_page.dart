@@ -1,8 +1,8 @@
 
 import 'package:ExpShop/app_properties.dart';
-import 'package:ExpShop/bloc/cart_bloc.dart';
-import 'package:ExpShop/bloc/cart_event.dart';
-import 'package:ExpShop/bloc/cart_state.dart';
+import 'package:ExpShop/bloc/cart/cart_bloc.dart';
+import 'package:ExpShop/bloc/cart/cart_event.dart';
+import 'package:ExpShop/bloc/cart/cart_state.dart';
 import 'package:ExpShop/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
