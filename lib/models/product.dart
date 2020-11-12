@@ -22,7 +22,6 @@ class ProductItem {
   bool isRating;
   int _quantityInCart = 0;
 
-
   int get quantityInCart => _quantityInCart;
 
   set quantityInCart(int value) {
@@ -45,8 +44,7 @@ class ProductItem {
       this.km,
       this.quantity,
       this.rating,
-      this.isRating
-      );
+      this.isRating);
 
   DocumentReference get reference => _reference;
 
@@ -54,28 +52,26 @@ class ProductItem {
     _reference = value;
   }
 
-  ProductItem({
-    this.productID,
-    this.productName,
-    this.price,
-    this.promotionalPrice,
-    this.like,
-    this.storeID,
-    this.categoryID,
-    this.describe,
-    this.image,
-    this.createDate,
-    this.expirationDate,
-    this.color,
-    this.km,
-    this.quantity,
-    this.rating,
-    this.isRating
-  });
+  ProductItem(
+      {this.productID,
+      this.productName,
+      this.price,
+      this.promotionalPrice,
+      this.like,
+      this.storeID,
+      this.categoryID,
+      this.describe,
+      this.image,
+      this.createDate,
+      this.expirationDate,
+      this.color,
+      this.km,
+      this.quantity,
+      this.rating,
+      this.isRating});
 
   Map<String, dynamic> toJson() => _ProductToJson(this);
-  ProductItem ProductFromJson(Map<String, dynamic> json)
-  {
+  ProductItem ProductFromJson(Map<String, dynamic> json) {
     print("Jsoning product from query");
     return ProductItem.Internal(
       json['productID'] as int,
@@ -88,7 +84,7 @@ class ProductItem {
       json['describe'] as String,
       json['image'] as String,
       json['createDate'] as DateTime,
-      json['expirationDate'] as DateTime,
+      (json['expirationDate'] as Timestamp).toDate(),
       Colors.green,
       json['km'] as String,
       json['quantity'] as int,
@@ -96,31 +92,27 @@ class ProductItem {
       json['isRating'] as bool,
     );
   }
-
 }
 
+Map<String, dynamic> _ProductToJson(ProductItem instance) => <String, dynamic>{
+      'productID': instance.productID,
+      'productName': instance.productName,
+      'price': instance.price,
+      'promotionalPrice': instance.promotionalPrice,
+      'like': instance.like,
+      'storeID': instance.storeID,
+      'categoryID': instance.categoryID,
+      'describe': instance.describe,
+      'image': instance.image,
+      'createDate': instance.createDate,
+      'expirationDate': instance.expirationDate,
+      'color': instance.color != null
+          ? instance.color.toString()
+          : null, //Output of hex color: 0xff4caf50
+      "km": instance.km,
+      "quantity": instance.quantity,
+      "rating": instance.rating,
+      "isRating": instance.isRating
+    };
 
-
-Map<String, dynamic> _ProductToJson(ProductItem instance) => <String, dynamic> {
-  'productID': instance.productID,
-  'productName': instance.productName,
-  'price': instance.price,
-  'promotionalPrice': instance.promotionalPrice,
-  'like': instance.like,
-  'storeID': instance.storeID,
-  'categoryID': instance.categoryID,
-  'describe': instance.describe,
-  'image': instance.image,
-  'createDate': instance.createDate,
-  'expirationDate': instance.expirationDate,
-  'color':  instance.color != null ? instance.color.toString() : null, //Output of hex color: 0xff4caf50
-  "km": instance.km ,
-  "quantity": instance.quantity ,
-  "rating": instance.rating ,
-  "isRating" : instance.isRating
-};
-
-Color getColorFromHex(String hexString)
-{
-
-}
+Color getColorFromHex(String hexString) {}

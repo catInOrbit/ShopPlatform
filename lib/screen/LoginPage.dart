@@ -1,5 +1,6 @@
 import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +20,8 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.green,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-           firebaseAPI.saveStores();
+        onPressed: () {
+          firebaseAPI.saveStores();
         },
       ),
       body: SingleChildScrollView(

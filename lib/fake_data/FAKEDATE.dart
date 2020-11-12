@@ -1,54 +1,41 @@
+import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/models/categoryProduct.dart';
 import 'package:ExpShop/models/product.dart';
 import 'package:ExpShop/models/store.dart';
 import 'package:ExpShop/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+List<CategoryProduct> listCategory = new List();
+Stream<QuerySnapshot> snapshot;
 final oCcy = new NumberFormat("#,##0", "en_US");
 
+getAllCategory() async {
+  snapshot = await FirebaseAPI().getAllCategories();
+
+  snapshot.forEach((element) {
+    element.docs.asMap().forEach((key, value) {
+      listCategory.add(CategoryProduct(
+        categoryName: element.docs[key]["categoryName"],
+        categoryID: element.docs[key]["categoryID"],
+      ));
+      print(listCategory.length);
+    });
+  });
+}
+
 var listUser = [
-  User(
-    "Male",
-      'Ng. Văn A',
-      "Address1",
-      "test@gmaiil.com",
-      "username01",
-      "01234566",
-      "1",
-      'assets/images/user.png'),
-
-  User(
-      "Male",
-      'Ng. Văn A',
-      "Address1",
-      "test@gmaiil.com",
-      "username01",
-      "01234566",
-      "1",
-      'assets/images/user.png'),
-
-  User(
-      "Male",
-      'Ng. Văn B',
-      "Address1",
-      "test@gmaiil.com",
-      "username01",
-      "01234566",
-      "1",
-      'assets/images/user2.png'),
-
-  User(
-      "Male",
-      'Ng. Văn C',
-      "Address1",
-      "test@gmaiil.com",
-      "username01",
-      "01234566",
-      "1",
-      'assets/images/user3.png'),
+  User("Male", 'Ng. Văn A', "Address1", "test@gmaiil.com", "username01",
+      "01234566", "1", 'assets/images/user.png'),
+  User("Male", 'Ng. Văn A', "Address1", "test@gmaiil.com", "username01",
+      "01234566", "1", 'assets/images/user.png'),
+  User("Male", 'Ng. Văn B', "Address1", "test@gmaiil.com", "username01",
+      "01234566", "1", 'assets/images/user2.png'),
+  User("Male", 'Ng. Văn C', "Address1", "test@gmaiil.com", "username01",
+      "01234566", "1", 'assets/images/user3.png'),
 ];
 
 var listStore = [
@@ -105,39 +92,39 @@ var listStore = [
       urlImage: "assets/images/haphuong.png"),
 ];
 
-var listCagory = [
-  CategoryProduct(
-      categoryID: 1,
-      categoryName: "Bánh kẹo",
-      urlImage: "assets/icons/candy.png"),
-  CategoryProduct(
-    categoryID: 2,
-    categoryName: "Sữa",
-    urlImage: "assets/icons/milk.png",
-  ),
-  CategoryProduct(
-      categoryID: 4,
-      categoryName: "Đồ ăn nhanh",
-      urlImage: "assets/icons/noodles.png"),
-  CategoryProduct(
-      categoryID: 5,
-      categoryName: "Ngủ cốc",
-      urlImage: "assets/icons/walnut.png"),
-  CategoryProduct(
-      categoryID: 6,
-      categoryName: "Đồ uống",
-      urlImage: "assets/icons/soft-drink.png"),
-  CategoryProduct(
-      categoryID: 7,
-      categoryName: "Đóng hộp",
-      urlImage: "assets/icons/canned-food.png"),
-  CategoryProduct(
-      categoryID: 8,
-      categoryName: "Gia vị",
-      urlImage: "assets/icons/spices.png"),
-  CategoryProduct(
-      categoryID: 3, categoryName: "Khác", urlImage: "assets/icons/menu.png"),
-];
+// var listCagory = [
+//   CategoryProduct(
+//       categoryID: 1,
+//       categoryName: "Bánh kẹo",
+//       urlImage: "assets/icons/candy.png"),
+//   CategoryProduct(
+//     categoryID: 2,
+//     categoryName: "Sữa",
+//     urlImage: "assets/icons/milk.png",
+//   ),
+//   CategoryProduct(
+//       categoryID: 4,
+//       categoryName: "Đồ ăn nhanh",
+//       urlImage: "assets/icons/noodles.png"),
+//   CategoryProduct(
+//       categoryID: 5,
+//       categoryName: "Ngủ cốc",
+//       urlImage: "assets/icons/walnut.png"),
+//   CategoryProduct(
+//       categoryID: 6,
+//       categoryName: "Đồ uống",
+//       urlImage: "assets/icons/soft-drink.png"),
+//   CategoryProduct(
+//       categoryID: 7,
+//       categoryName: "Đóng hộp",
+//       urlImage: "assets/icons/canned-food.png"),
+//   CategoryProduct(
+//       categoryID: 8,
+//       categoryName: "Gia vị",
+//       urlImage: "assets/icons/spices.png"),
+//   CategoryProduct(
+//       categoryID: 3, categoryName: "Khác", urlImage: "assets/icons/menu.png"),
+// ];
 
 var listProduct = [
   ProductItem(
@@ -153,7 +140,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 20000,
-      image: 'assets/images/bohamhop.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fbohamhop.jpg?alt=media&token=41570b95-7329-46da-80dd-e1a5e6cbe2a6'),
   ProductItem(
       rating: 3.5,
       isRating: true,
@@ -167,7 +156,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 7000,
-      image: 'assets/images/cahop.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fcahop.jpg?alt=media&token=11e4ca72-e0bf-4ea7-b69b-c584da471cc3'),
   ProductItem(
       rating: 3.5,
       isRating: false,
@@ -181,7 +172,9 @@ var listProduct = [
       like: 100,
       describe: ' ',
       promotionalPrice: 7000,
-      image: 'assets/images/cocacola.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fcocacola.jpg?alt=media&token=521b2f40-f7f3-445f-b855-7b74af1215a8'),
   ProductItem(
       rating: 4.2,
       isRating: true,
@@ -195,7 +188,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 30000,
-      image: 'assets/images/hatniemKnorr.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2FhatniemKnorr.jpg?alt=media&token=dd750ab5-a9ea-4a87-a658-7104c9acc7ce'),
   ProductItem(
       rating: 3.4,
       isRating: false,
@@ -209,7 +204,9 @@ var listProduct = [
       like: 100,
       describe: 'c',
       promotionalPrice: 130000,
-      image: 'assets/images/matong.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fmatong.jpg?alt=media&token=36958744-7bb3-4bf1-b5de-1a2f9c24f206'),
   ProductItem(
       rating: 4.2,
       isRating: true,
@@ -223,7 +220,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 26000,
-      image: 'assets/images/ngucoc.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fngucoc.jpg?alt=media&token=8115bf98-371c-46a2-9fcf-133c38726ed8'),
   ProductItem(
       rating: 4.0,
       isRating: false,
@@ -237,7 +236,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 30000,
-      image: 'assets/images/pateganngong.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fpateganngong.jpg?alt=media&token=f021fa0b-b38a-4ced-85f4-9762e4f93a3a'),
   ProductItem(
       rating: 3.5,
       isRating: true,
@@ -251,7 +252,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 7000,
-      image: 'assets/images/pepsi.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fpepsi.jpg?alt=media&token=308fa047-7be8-4a6e-8391-c3ebfe5ebfdd'),
   ProductItem(
       rating: 5.0,
       isRating: false,
@@ -265,7 +268,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 36000,
-      image: 'assets/images/phomai.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fphomai.jpg?alt=media&token=985a512e-5a8c-484e-8d59-ac74f68316fd'),
   ProductItem(
       rating: 4.2,
       isRating: true,
@@ -279,7 +284,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 7000,
-      image: 'assets/images/sprite.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fsprite.jpg?alt=media&token=4a9be616-8423-421e-ba65-5f22657c986b'),
   ProductItem(
       rating: 3.9,
       isRating: false,
@@ -293,7 +300,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 17000,
-      image: 'assets/images/suachuavinamilk.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fsuachuavinamilk.jpg?alt=media&token=24042a92-1fc4-4729-b878-50125bc88266'),
   ProductItem(
       rating: 4.4,
       isRating: true,
@@ -307,7 +316,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 17000,
-      image: 'assets/images/suaongtho.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fsuaongtho.jpg?alt=media&token=f26a635c-1c93-493b-8c20-564692f5dbfb'),
   ProductItem(
       rating: 4.2,
       isRating: false,
@@ -321,7 +332,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 14000,
-      image: 'assets/images/suatuoi.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fsuatuoi.jpg?alt=media&token=6a52f0f1-a3bb-4f47-9811-ecda0c3f1369'),
   ProductItem(
       rating: 3.4,
       isRating: true,
@@ -335,7 +348,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 36000,
-      image: 'assets/images/thithop.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fthithop.jpg?alt=media&token=b199f498-ed89-4eb1-a665-393aca8eb88f'),
   ProductItem(
       rating: 3.5,
       isRating: true,
@@ -349,7 +364,9 @@ var listProduct = [
       like: 100,
       describe: '',
       promotionalPrice: 67000,
-      image: 'assets/images/suaongtho.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fyenmach.jpg?alt=media&token=c684c595-ce90-47de-831f-86389d879a94'),
   ProductItem(
       rating: 4.0,
       isRating: false,
@@ -364,7 +381,9 @@ var listProduct = [
       describe: '',
       color: Colors.black,
       promotionalPrice: 67000,
-      image: 'assets/images/banhdauxanh.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Fbanhdauxanh.jpg?alt=media&token=9dbd5620-d8f1-4b4d-bad4-02bb348b3aad'),
   ProductItem(
       rating: 3.7,
       isRating: true,
@@ -379,5 +398,7 @@ var listProduct = [
       describe: '',
       color: Colors.green,
       promotionalPrice: 67000,
-      image: 'assets/images/traxanh.jpg'),
+      expirationDate: DateTime.now(),
+      image:
+          'https://firebasestorage.googleapis.com/v0/b/prm-shopping.appspot.com/o/product%2Ftraxanh.jpg?alt=media&token=e407c30f-edc5-4358-8255-fec844459a8f'),
 ];

@@ -1,4 +1,10 @@
+import 'package:ExpShop/bloc/data_repository.dart';
+import 'package:ExpShop/bloc/firebase_api.dart';
+import 'package:ExpShop/bloc/products_retreive_bloc.dart';
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
+import 'package:ExpShop/models/categoryProduct.dart';
 import 'package:ExpShop/models/product.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
@@ -15,23 +21,24 @@ class CreateProductScreen extends StatefulWidget {
 
 class _CreateProductScreenState extends State<CreateProductScreen> {
   ProductItem product = ProductItem();
-
+  // Stream<QuerySnapshot> snapshot;
   DateTime _dateTime = DateTime.now();
-
+  // List<CategoryProduct> listCategory = new List();
   String status = '';
   String _uploadedFileURL;
   File _image;
   String error = 'Error';
-
+  CategoryProduct categoryProduct = listCategory[0];
   Future chooseFile() async {
     await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
-      setState(() {
-        _image = image;
-      });
+      _image = image;
     });
   }
 
   Future uploadFile() async {
+    await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
+      _image = image;
+    });
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
         .child('product/${path.basename(_image.path)}');
@@ -52,13 +59,20 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
     });
   }
 
-  buildTextField(String labelText, String placeholder, dynamic object) {
+  buildTextField(String labelText, String placeholder, String name) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20.0),
       child: TextField(
         onChanged: (text) {
           setState(() {
-            object = text;
+            if (name == "productName") {
+              product.productName = text;
+              print(product.productName);
+            } else if (name == "price") {
+              product.price = double.parse(text);
+            } else if (name == "promotionalPrice") {
+              product.promotionalPrice = int.parse(text);
+            }
           });
         },
         decoration: InputDecoration(
@@ -100,6 +114,50 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
   //   );
   // }
 
+  dropDownMenuCategory(BuildContext context) {
+    return DropdownButton<CategoryProduct>(
+      value: categoryProduct,
+      iconSize: 24,
+      elevation: 16,
+      style: TextStyle(color: Colors.green),
+      underline: Container(
+        height: 2,
+        color: Colors.green,
+      ),
+      onChanged: (CategoryProduct newValue) {
+        setState(() {
+          categoryProduct = newValue;
+          product.categoryID = categoryProduct.categoryID;
+          print(product.categoryID);
+        });
+      },
+      items: listCategory
+          .map<DropdownMenuItem<CategoryProduct>>((CategoryProduct value) {
+        return DropdownMenuItem<CategoryProduct>(
+          value: value,
+          child: Text(value.categoryName),
+        );
+      }).toList(),
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // snapshot = FirebaseAPI().getAllCategories();
+
+    // snapshot.forEach((element) {
+    //   element.docs.asMap().forEach((key, value) {
+    //     listCategory.add(CategoryProduct(
+    //       categoryName: element.docs[key]["categoryName"],
+    //       categoryID: element.docs[key]["categoryID"],
+    //     ));
+    //     print(listCategory.length);
+    //   });
+    // });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,9 +181,8 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 15),
-            buildTextField(
-                'Tên Sản Phẩm', 'Nhập tên sản phẩm', product.productName),
-            buildTextField('Danh Mục', 'Nhập danh mục', product.categoryID),
+            buildTextField('Tên Sản Phẩm', 'Nhập tên sản phẩm', "productName"),
+            dropDownMenuCategory(context),
             Text('Hạn sử dụng'),
             Container(
               child: Row(
@@ -142,6 +199,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                             .then((value) {
                           setState(() {
                             _dateTime = value;
+
                             product.expirationDate = value;
                           });
                         });
@@ -172,17 +230,23 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                       children: [
                         _image != null
                             ? Container(
-                                child: Image.asset(_image.path),
-                                height: 150,
+                                child:
+                                    Image.asset(_image.path, fit: BoxFit.fill),
+                                height: 300,
+                                width: 300,
                               )
                             : Container(
                                 child: Image.asset(
-                                    'assets/images/placeholder-image.png'),
-                                height: 150,
+                                  'assets/images/placeholder-image.png',
+                                  fit: BoxFit.fill,
+                                ),
+                                height: 300,
+                                width: 300,
                               ),
                         InkWell(
                           onTap: () {
-                            chooseFile();
+                            // chooseFile();
+                            uploadFile();
                           },
                           child: Padding(
                             padding: EdgeInsets.only(top: 10.0, right: 10.0),
@@ -200,14 +264,15 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               ],
             ),
             SizedBox(height: 20),
-            buildTextField('Giá', 'Nhập giá gốc', product.price),
-            buildTextField('Giá', 'Nhập khuyến mãi', product.promotionalPrice),
+            buildTextField('Giá', 'Nhập giá gốc', "price"),
+            buildTextField('Giá', 'Nhập khuyến mãi', "promotionalPrice"),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 RaisedButton(
                   onPressed: () {
-                    uploadFile();
+                    product.storeID = 2;
+                    FirebaseAPI().saveProductsItems(product);
                     Navigator.pop(context);
                   },
                   color: Colors.green,
