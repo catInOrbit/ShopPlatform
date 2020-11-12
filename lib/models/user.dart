@@ -21,7 +21,6 @@ class User {
     _email = json['email'];
     _username = json['username'];
     _phoneNumber = json['phoneNumber'];
-    _shopID = json['cartID'];
     _documentReference  = json['documentReference'];
     _avatarPicURL = json['avatarPicURL'];
   }

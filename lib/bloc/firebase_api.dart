@@ -33,7 +33,6 @@ class FirebaseAPI
 
 
 
-
   Future<QuerySnapshot> getProducts() async
    {
      CollectionReference ref = firestoreInstance.collection('products');

@@ -101,6 +101,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: FlatButton(
                           onPressed: () {
+
+
                             Navigator.pushNamed(context, '/LoginPage');
                           },
                           child: Text(
