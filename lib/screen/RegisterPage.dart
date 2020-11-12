@@ -1,4 +1,6 @@
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +13,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _auth = FirebaseAuth.instance;
-  String email, password;
+  String name, email, password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +50,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       child: TextFormField(
                         style: TextStyle(fontSize: 20),
+                          onChanged: (text) {
+                          setState(() {
+                            name = text;
+                          });
+                        },
                         decoration: InputDecoration(
                           hintText: 'Nhập tên đầy đủ',
                           border: OutlineInputBorder(
@@ -115,10 +122,22 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: FlatButton(
                           onPressed: () async {
                             try {
-                              final newuser =
-                                  await _auth.createUserWithEmailAndPassword(
-                                      email: email, password: password);
+                              final newuser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
                               if (newuser != null) {
+                                final firestoreInstance = FirebaseFirestore.instance;
+                                var batch = firestoreInstance.batch();
+                                var docRef = firestoreInstance.collection("users").doc();
+                                      batch.set(docRef, {
+                                      "gender": "",
+                                      "name": name,
+                                      "address": "",
+                                      "email": email,
+                                      "phoneNumber": "",
+                                      "documentReference": _auth.currentUser.uid,
+                                      "avatarPicURL": "",
+                                      "shopID":""
+                                    });
+                                  await batch.commit();
                                 Fluttertoast.showToast(
                                     msg: "Register Successfull",
                                     toastLength: Toast.LENGTH_SHORT,

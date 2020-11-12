@@ -1,5 +1,5 @@
 class User {
-  String _gender, name, _address, _email, _username, _phoneNumber, _cartID, _documentReference, _avatarPicURL;
+  String _gender, name, _address, _email, _username, _phoneNumber, _shopID, _documentReference, _avatarPicURL;
 
   String get gender => _gender;
 
@@ -9,19 +9,18 @@ class User {
 
 
   User(this._gender, this.name, this._address, this._email, this._username,
-      this._phoneNumber, this._cartID,
+      this._phoneNumber, this._shopID,
       this._avatarPicURL);
 
 
   User.fromJson(Map<String, dynamic> json) {
-    _cartID = json['cartID'];
     _gender = json['gender'];
     name = json['name'];
     _address = json['address'];
     _email = json['email'];
     _username = json['username'];
     _phoneNumber = json['phoneNumber'];
-    _cartID = json['cartID'];
+    _shopID = json['shopID'];
     _documentReference  = json['documentReference'];
     _avatarPicURL = json['avatarPicURL'];
   }
@@ -35,7 +34,7 @@ class User {
     data['email'] = this._email;
     data['username'] = this._username;
     data['phoneNumber'] = this._phoneNumber;
-    data['cartID'] = this._cartID;
+    data['shopID'] = this._shopID;
     data['documentReference'] = this._documentReference;
     data['avatarPicURL'] = this._avatarPicURL;
     return data;
@@ -55,10 +54,10 @@ class User {
     _documentReference = value;
   }
 
-  get cartID => _cartID;
+  get shopID => _shopID;
 
-  set cartID(value) {
-    _cartID = value;
+  set shopID(value) {
+    _shopID = value;
   }
 
   get phoneNumber => _phoneNumber;
