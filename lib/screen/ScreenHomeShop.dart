@@ -20,12 +20,13 @@ class _HomePageState extends State<HomePageShop> {
 
   @override
   Widget build(BuildContext context) {
+    print("ShopHomePage");
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
           title: FlatButton(
-            onPressed: () {
-              Navigator.pushNamed(
+            onPressed: () async {
+              await Navigator.pushNamed(
                   context, EditShopInfoPage().urlEditShopInfoPage);
             },
             child: Row(
@@ -52,8 +53,10 @@ class _HomePageState extends State<HomePageShop> {
                       FontAwesomeIcons.plus,
                       color: WHITE,
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/CreateProductScreen');
+                    onPressed: () async {
+                      await Navigator.pushNamed(
+                          context, '/CreateProductScreen');
+                      setState(() {});
                     });
               } else {
                 return Text('');

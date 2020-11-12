@@ -22,10 +22,10 @@ class ListProductHomePage2Column extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  StreamBuilder<QuerySnapshot>(
+    return StreamBuilder<QuerySnapshot>(
       stream: productsListBloc.productsSnapshotOutputStream,
-      builder: (context,  AsyncSnapshot<QuerySnapshot> snapshot) {
-        if(snapshot.hasData)
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasData)
           return Column(
             children: [
               Container(
@@ -35,21 +35,24 @@ class ListProductHomePage2Column extends StatelessWidget {
                   child: Center(
                     child: Text(
                       'Có thể bạn sẽ thích',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   )),
-
               Wrap(
                   spacing: 5,
                   runSpacing: 5,
-                  children: snapshot.data.docs.map((e) => CardProductHomePage(productItem: ProductItem().ProductFromJson(e.data()),)).toList()
-              )
+                  children: snapshot.data.docs
+                      .map((e) => CardProductHomePage(
+                            productItem:
+                                ProductItem().ProductFromJson(e.data()),
+                          ))
+                      .toList())
             ],
           );
         else
           return Center(child: CircularProgressIndicator());
       },
-
     );
   }
 }
@@ -361,9 +364,11 @@ class CardProductHori extends StatelessWidget {
 
 class CardProductHoriShop extends StatelessWidget {
   final ProductItem productItem;
+  final String docID;
   const CardProductHoriShop({
     Key key,
     this.productItem,
+    this.docID,
   }) : super(key: key);
 
   @override
@@ -373,7 +378,7 @@ class CardProductHoriShop extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, EditProductPage().urlEditProductPage,
-              arguments: {'productItem': productItem});
+              arguments: {'productItem': productItem, "docID": docID});
         },
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 10),
@@ -388,7 +393,7 @@ class CardProductHoriShop extends StatelessWidget {
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(),
-                child: Image.asset(productItem.image, fit: BoxFit.fill),
+                child: Image.network(productItem.image, fit: BoxFit.fill),
               ),
               Expanded(
                 child: Container(

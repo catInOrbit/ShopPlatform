@@ -3,6 +3,7 @@ import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/bloc/global.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/models/user.dart' as UserShopPlatform;
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.green,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          firebaseAPI.saveUsers();
+          firebaseAPI.saveStores();
         },
       ),
       body: SingleChildScrollView(
@@ -153,16 +154,13 @@ class _LoginPageState extends State<LoginPage> {
                                     fontSize: 16.0);
 
                                 SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
+                                    await SharedPreferences.getInstance();
                                 prefs.setString('email', email);
 
                                 return Navigator.pushNamed(
                                     context, '/HomePage');
-
                               }
-                            } catch (e) {
-                            
-                            }
+                            } catch (e) {}
                           },
                           child: Text(
                             'Đăng nhập',

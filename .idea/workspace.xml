@@ -128,7 +128,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="Dart">
           <url>file://$PROJECT_DIR$/lib/models/product.dart</url>
-          <line>102</line>
+          <line>95</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

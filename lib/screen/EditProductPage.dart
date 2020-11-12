@@ -1,11 +1,15 @@
+import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
+import 'package:ExpShop/models/categoryProduct.dart';
 import 'package:ExpShop/models/product.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
 
 class EditProductPage extends StatefulWidget {
   final String urlEditProductPage = "/EditProductPage";
@@ -14,53 +18,116 @@ class EditProductPage extends StatefulWidget {
 }
 
 class _EditProductPageState extends State<EditProductPage> {
-  ProductItem _productItem;
+  ProductItem _productItem = new ProductItem();
+  String docID;
   DateTime _dateTime = DateTime.now();
-  Future<File> file;
   String status = '';
-  String base64Image;
-  File tmpFile;
   String error = 'Error';
+  String _uploadedFileURL;
+  File _image;
+  CategoryProduct categoryProduct;
 
-  chooseImage() {
-    setState(() {
-      file = ImagePicker.pickImage(source: ImageSource.gallery);
+  TextEditingController _productNameEditingController =
+      new TextEditingController();
+  TextEditingController _productPriceEditingController =
+      new TextEditingController();
+  TextEditingController _productPromotionalPriceEditingController =
+      new TextEditingController();
+
+  Future uploadFile() async {
+    await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
+      _image = image;
     });
-    setStatus('');
+    StorageReference storageReference = FirebaseStorage.instance
+        .ref()
+        .child('product/${path.basename(_image.path)}');
+    StorageUploadTask uploadTask = storageReference.putFile(_image);
+    await uploadTask.onComplete;
+    print('File Uploaded');
+    storageReference.getDownloadURL().then((fileURL) {
+      setState(() {
+        _uploadedFileURL = fileURL;
+        _productItem.image = _uploadedFileURL;
+      });
+    });
   }
 
-  setStatus(String message) {
-    setState(() {
-      status = message;
-    });
+  dropDownMenuCategory(BuildContext context) {
+    return DropdownButton<CategoryProduct>(
+      value: categoryProduct,
+      iconSize: 24,
+      elevation: 16,
+      style: TextStyle(color: Colors.green),
+      underline: Container(
+        height: 2,
+        color: Colors.green,
+      ),
+      onChanged: (CategoryProduct newValue) {
+        setState(() {
+          categoryProduct = newValue;
+          _productItem.categoryID = categoryProduct.categoryID;
+          print(_productItem.categoryID);
+        });
+      },
+      items: listCategory
+          .map<DropdownMenuItem<CategoryProduct>>((CategoryProduct value) {
+        return DropdownMenuItem<CategoryProduct>(
+          value: value,
+          child: Text(value.categoryName),
+        );
+      }).toList(),
+    );
   }
 
-  uploadImg() {
-    if (null == tmpFile) {
-      setStatus(error);
-      return;
-    }
-
-    String fileName = tmpFile.path.split('/').last;
-
-    upload(fileName);
+  buildTextField(
+      String labelText, String placeholder, String name, String value) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20.0),
+      child: TextFormField(
+        initialValue: value,
+        onChanged: (text) {
+          setState(() {
+            if (name == "productName") {
+              _productItem.productName = text;
+              print(_productItem.productName);
+            } else if (name == "price") {
+              _productItem.price = double.parse(text);
+            } else if (name == "promotionalPrice") {
+              _productItem.promotionalPrice = int.parse(text);
+            }
+          });
+        },
+        decoration: InputDecoration(
+            labelText: labelText,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            hintText: placeholder,
+            hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w100,
+              color: Colors.black,
+            )),
+      ),
+    );
   }
 
-  upload(String fileName) {
-    http.post('http://finenut.in/demo/uploadData.php', body: {
-      "image": base64Image,
-      "name": fileName,
-    }).then((result) {
-      setStatus(result.statusCode == 200 ? result.body : error);
-    }).catchError((error) {
-      setStatus(error);
-    });
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
     this._productItem = arguments["productItem"];
+    this.docID = arguments["docID"];
+    _productNameEditingController.text = _productItem.productName;
+
+    listCategory.forEach((element) {
+      if (element.categoryID == _productItem.categoryID) {
+        categoryProduct = element;
+      }
+    });
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -82,9 +149,9 @@ class _EditProductPageState extends State<EditProductPage> {
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 15),
-            buildTextField(
-                'Tên Sản Phẩm', 'Nhập tên sản phẩm', _productItem.productName),
-            buildTextField('Danh Mục', 'Nhập danh mục', "Thực phẩm"),
+            buildTextField('Tên Sản Phẩm', 'Nhập tên sản phẩm', "productName",
+                _productItem.productName),
+            dropDownMenuCategory(context),
             Text('Hạn sử dụng'),
             Container(
               child: Row(
@@ -95,19 +162,20 @@ class _EditProductPageState extends State<EditProductPage> {
                       onPressed: () {
                         showDatePicker(
                                 context: context,
-                                initialDate: DateTime.now(),
+                                initialDate: _productItem.expirationDate,
                                 firstDate: DateTime(2020),
                                 lastDate: DateTime(2050))
                             .then((value) {
                           setState(() {
-                            _dateTime = value;
+                            _productItem.expirationDate = value;
                           });
                         });
                       }),
                   Padding(
                     padding: const EdgeInsets.only(left: 30.0),
                     child: Text(
-                      DateFormat('dd-MM-yyyy').format(_dateTime),
+                      DateFormat('dd-MM-yyyy')
+                          .format(_productItem.expirationDate),
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -121,67 +189,55 @@ class _EditProductPageState extends State<EditProductPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                FutureBuilder<File>(
-                  future: file,
-                  builder:
-                      (BuildContext context, AsyncSnapshot<File> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done &&
-                        null != snapshot.data) {
-                      tmpFile = snapshot.data;
-                      base64Image =
-                          base64Encode(snapshot.data.readAsBytesSync());
-                      return Container(
-                        margin: EdgeInsets.all(15),
-                        child: Material(
-                          elevation: 3.0,
-                          child: Image.file(
-                            snapshot.data,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      );
-                    } else if (null != snapshot.error) {
-                      return const Text(
-                        'Error!',
-                        textAlign: TextAlign.center,
-                      );
-                    } else {
-                      return Container(
-                        margin: EdgeInsets.all(15),
-                        child: Material(
-                          elevation: 3.0,
-                          child: Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              Container(
-                                child: Image.asset(_productItem.image),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  chooseImage();
-                                },
-                                child: Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 10.0, right: 10.0),
-                                  child: Icon(
-                                    Icons.edit,
-                                    size: 30.0,
-                                    color: Colors.black54,
-                                  ),
+                Container(
+                  margin: EdgeInsets.all(15),
+                  child: Material(
+                    elevation: 3.0,
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        _image != null
+                            ? Container(
+                                child: Image.asset(
+                                  _image.path,
+                                  fit: BoxFit.fill,
                                 ),
+                                height: 300,
+                                width: 300,
+                              )
+                            : Container(
+                                child: Image.network(
+                                  '${_productItem.image}',
+                                  fit: BoxFit.fill,
+                                ),
+                                height: 300,
+                                width: 300,
                               ),
-                            ],
+                        InkWell(
+                          onTap: () {
+                            // chooseFile();
+                            uploadFile();
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 10.0, right: 10.0),
+                            child: Icon(
+                              Icons.edit,
+                              size: 30.0,
+                              color: Colors.black54,
+                            ),
                           ),
                         ),
-                      );
-                    }
-                  },
-                ),
+                      ],
+                    ),
+                  ),
+                )
               ],
             ),
             SizedBox(height: 20),
-            buildTextField('Giá', 'Nhập giá',
-                "${oCcy.format(_productItem.promotionalPrice)}"),
+            buildTextField(
+                'Giá', 'Nhập giá gốc', "price", _productItem.price.toString()),
+            buildTextField('Giá', 'Nhập khuyến mãi', "promotionalPrice",
+                _productItem.promotionalPrice.toString()),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -202,6 +258,7 @@ class _EditProductPageState extends State<EditProductPage> {
                 ),
                 RaisedButton(
                   onPressed: () {
+                    FirebaseAPI().updateProductsItem(_productItem, docID);
                     Navigator.pop(context);
                   },
                   color: Colors.green,
@@ -219,27 +276,6 @@ class _EditProductPageState extends State<EditProductPage> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget buildTextField(String labelText, String placeholder, String price) {
-    final TextEditingController _textController = new TextEditingController();
-    _textController.text = price;
-    print(_textController.text);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20.0),
-      child: TextField(
-        controller: _textController,
-        decoration: InputDecoration(
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w100,
-              color: Colors.black,
-            )),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/screen/CreateProductPage.dart';
 import 'package:ExpShop/screen/EditProductPage.dart';
 import 'package:ExpShop/screen/EditShopInfoPage.dart';
@@ -23,15 +24,14 @@ import 'screen/RatingPage.dart';
 import 'screen/ScreenHome.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  getAllCategory();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,7 +62,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 class HexColor extends Color {
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));

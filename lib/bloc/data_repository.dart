@@ -12,7 +12,11 @@ class DataRepository {
   Future<QuerySnapshot> getAllStores() => firebaseAPI.getAllStores();
   Future<QuerySnapshot> getLowPriceProducts() =>
       firebaseAPI.getProductsPriceAscending();
-  Future<DocumentSnapshot> getUserWithEmail(String tokenString) => firebaseAPI.getUserWithToken(tokenString);
+  Future<DocumentSnapshot> getUserWithEmail(String tokenString) =>
+      firebaseAPI.getUserWithToken(tokenString);
+  Future<QuerySnapshot> getAllProductByStore(int storeID) =>
+      firebaseAPI.getAllProductByStore(storeID);
+
   // Future<QuerySnapshot> getSearchedProducts(String searchString) => firebaseAPI.getProductsWithSearchQuery(searchString);
 
   List<ProductItem> queriedList = [];
