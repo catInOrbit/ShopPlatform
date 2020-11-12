@@ -7,11 +7,13 @@ class User {
     _gender = value;
   }
 
+
   User(this._gender, this.name, this._address, this._email, this._username,
       this._phoneNumber, this._shopID,
       this._avatarPicURL, this._documentReference);
 
   Map<String, dynamic> toJson() => _UserToJson(this);
+
 
   User.fromJson(Map<String, dynamic> json) {
     _shopID = json['shopID'];
@@ -24,6 +26,7 @@ class User {
     _documentReference  = json['documentReference'];
     _avatarPicURL = json['avatarPicURL'];
   }
+ 
 
 
   Map<String, dynamic> _UserToJson(User instance) => <String, dynamic> {

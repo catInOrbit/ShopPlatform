@@ -1,6 +1,8 @@
 import 'package:ExpShop/fake_data/Colors.dart';
+import 'package:ExpShop/screen/LoginPage.dart';
 import 'package:ExpShop/widget/WidgetMenu.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class TabMenuPage extends StatelessWidget {
   @override
@@ -64,8 +66,11 @@ class TabMenuPage extends StatelessWidget {
               nameItemMenu: 'Đánh giá ứng dụng',
             ),
             GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                runApp(new MaterialApp(
+                  home: new LoginPage(),
+                ));
               },
               child: ItemMenu(
                 topLeft: 0,
