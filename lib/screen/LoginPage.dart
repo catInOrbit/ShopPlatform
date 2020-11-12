@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.green,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          firebaseAPI.saveStores();
+          firebaseAPI.saveProducts();
         },
       ),
       body: SingleChildScrollView(
