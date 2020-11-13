@@ -299,7 +299,7 @@ class ProductDetail extends StatelessWidget {
 }
 
 class Comment extends StatelessWidget {
-  final User user;
+  final ShopUser user;
   const Comment({
     Key key,
     this.user,

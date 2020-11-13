@@ -10,19 +10,20 @@ class AuthenticationBloc
 {
   final _repository = DataRepository();
       final  _inputEventStream = BehaviorSubject<AuthenticationEvent>();
-      final _userOutputStream = BehaviorSubject<User>();
+      final _userOutputStream = BehaviorSubject<ShopUser>();
 
       StreamSink<AuthenticationEvent> get inputStreamEvent => _inputEventStream.sink;
-      Stream<User> get outputUserStream => _userOutputStream.stream;
+      Stream<ShopUser> get outputUserStream => _userOutputStream.stream;
 
       AuthenticationBloc()
       {
             void onLoginEvent(AuthenticationEvent authenticationEvent) async
             {
-              User user;
+              ShopUser user;
                   if(authenticationEvent.requestUserRetrieval == true)
                     {
                           DocumentSnapshot documentSnapshot = await _repository.firebaseAPI.getUserWithToken(authenticationEvent.authenticationToken);
+                          user = ShopUser.Internal().UserFromJson(documentSnapshot.data());
                     }
 
               _userOutputStream.sink.add(user);

@@ -1,4 +1,4 @@
-class User {
+class ShopUser {
   String _gender, name, _address, _email, _username, _phoneNumber, _shopID, _documentReference, _avatarPicURL;
 
   get address => _address;
@@ -49,21 +49,28 @@ class User {
   }
 
 
-  User(this._gender, this.name, this._address, this._email, this._username,
+  ShopUser(this._gender, this.name, this._address, this._email, this._username,
       this._phoneNumber, this._shopID,
       this._avatarPicURL);
 
+  ShopUser.Internal();
 
-  User.fromJson(Map<String, dynamic> json) {
-    _shopID = json['shopID'];
-    _gender = json['gender'];
-    name = json['name'];
-    _address = json['address'];
-    _email = json['email'];
-    _username = json['username'];
-    _phoneNumber = json['phoneNumber'];
 
-    _avatarPicURL = json['avatarPicURL'];
+  ShopUser UserFromJson(Map<String, dynamic> json) {
+
+   var user = ShopUser(
+        json['gender'] as String,
+        json['name'] as String,
+        json['address'] as String,
+        json['email'] as String,
+        json['username'] as String,
+        json['phoneNumber'] as String,
+        json['shopID'] as String,
+        json['avatarPicURL'] as String
+    );
+
+   return user;
+
 
   }
 
@@ -71,7 +78,7 @@ class User {
 
 }
 
-Map<String, dynamic> _UserToJson(User instance) => <String, dynamic> {
+Map<String, dynamic> _UserToJson(ShopUser instance) => <String, dynamic> {
   'gender' : instance.gender,
   'name' : instance.name,
   "address" : instance.address,

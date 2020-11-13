@@ -1,9 +1,11 @@
+import 'package:ExpShop/bloc/authentication/authentication_bloc.dart';
+import 'package:ExpShop/bloc/authentication/authentication_event.dart';
 import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/bloc/global.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
-import 'package:ExpShop/models/user.dart' as UserShopPlatform;
-import 'package:ExpShop/fake_data/FAKEDATE.dart';
-import 'package:firebase/firestore.dart';
+import 'package:ExpShop/models/user.dart';
+import 'package:ExpShop/screen/AuthenticationPage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -131,19 +133,11 @@ class _LoginPageState extends State<LoginPage> {
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: FlatButton(
                           onPressed: () async {
-                            // if (email == 'user' && password == '123') {
-                            //   return Navigator.pushNamed(context, '/HomePage');
-                            // }
-                            // if (email == 'shop' && password == '123') {
-                            //   return Navigator.pushNamed(
-                            //       context, '/HomePageShop');
-                            // }
                             try {
                               final newUser =
                                   await _auth.signInWithEmailAndPassword(
                                       email: email, password: password);
                               if (newUser != null) {
-                                _auth.currentUser.getIdToken();
                                 Fluttertoast.showToast(
                                     msg: "Login Successfull",
                                     toastLength: Toast.LENGTH_SHORT,
@@ -157,10 +151,17 @@ class _LoginPageState extends State<LoginPage> {
                                     await SharedPreferences.getInstance();
                                 prefs.setString('email', email);
 
+                                AuthenticationEvent event = AuthenticationEvent();
+                                event.requestUserRetrieval = true;
+                                event.authenticationToken = _auth.currentUser.getIdToken().toString();
+                                authenticationBloc.inputStreamEvent.add(event);
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => AuthenticationPage(),));
+
                                 // bool isShopOwner = await checkIfUserIsShopOwner(await _auth.currentUser.getIdToken());
+                                //
                                 // if(isShopOwner)
-                                return Navigator.pushNamed(
-                                    context, '/HomePage');
+                                // return Navigator.pushNamed(
+                                //     context, '/HomePage');
                                 //
                                 // else
                                 //   return Navigator.pushNamed(
@@ -208,13 +209,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // Future<bool> checkIfUserIsShopOwner(String token) async
-  // {
-  //     DocumentSnapshot documentSnapshot = (await firebaseAPI.getUserWithToken(token)) as DocumentSnapshot ;
-  //     UserShopPlatform.User user = UserShopPlatform.User.fromJson(documentSnapshot.data());
-  //     currentUser = user;
-  //     if(user.shopID != null)
-  //       return true;
-  //     return false;
-  // }
+  Future<bool> checkIfUserIsShopOwner(String token) async
+  {
+      DocumentSnapshot documentSnapshot = (await firebaseAPI.getUserWithToken(token)) as DocumentSnapshot ;
+      ShopUser user = ShopUser.fromJson(documentSnapshot.data());
+      currentUser = user;
+      if(user.shopID != null)
+        return true;
+      return false;
+  }
 }

@@ -7,9 +7,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseAPI {
   final firestoreInstance = FirebaseFirestore.instance;
   CartState _cartState;
-  User _user;
-  User get user => _user;
-  set user(User value)
+  ShopUser _user;
+  ShopUser get user => _user;
+  set user(ShopUser value)
   {
     _user= value;
   }
