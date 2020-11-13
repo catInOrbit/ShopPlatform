@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePageShop> {
 
   @override
   Widget build(BuildContext context) {
-    print("ShopHomePage");
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -64,7 +63,7 @@ class _HomePageState extends State<HomePageShop> {
             }(),
           ],
           bottom: () {
-            if (_currentIndex == 0) {
+            if (_currentIndex == -2) {
               return PreferredSize(
                 preferredSize: Size.square(50),
                 child: Container(

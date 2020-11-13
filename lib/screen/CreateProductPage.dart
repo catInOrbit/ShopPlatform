@@ -72,6 +72,8 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               product.price = double.parse(text);
             } else if (name == "promotionalPrice") {
               product.promotionalPrice = int.parse(text);
+            } else if (name == "quantity") {
+              product.quantity = int.parse(text);
             }
           });
         },
@@ -264,6 +266,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               ],
             ),
             SizedBox(height: 20),
+            buildTextField('Số lượng', 'Nhập số lượng', "quantity"),
             buildTextField('Giá', 'Nhập giá gốc', "price"),
             buildTextField('Giá', 'Nhập khuyến mãi', "promotionalPrice"),
             Row(

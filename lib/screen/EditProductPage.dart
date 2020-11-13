@@ -94,6 +94,8 @@ class _EditProductPageState extends State<EditProductPage> {
               _productItem.price = double.parse(text);
             } else if (name == "promotionalPrice") {
               _productItem.promotionalPrice = int.parse(text);
+            } else if (name == "quantity") {
+              _productItem.quantity = int.parse(text);
             }
           });
         },
@@ -234,6 +236,8 @@ class _EditProductPageState extends State<EditProductPage> {
               ],
             ),
             SizedBox(height: 20),
+            buildTextField('Số lượng', 'Nhập số lượng', "quantity",
+                _productItem.quantity.toString()),
             buildTextField(
                 'Giá', 'Nhập giá gốc', "price", _productItem.price.toString()),
             buildTextField('Giá', 'Nhập khuyến mãi', "promotionalPrice",
@@ -258,6 +262,7 @@ class _EditProductPageState extends State<EditProductPage> {
                 ),
                 RaisedButton(
                   onPressed: () {
+                    _productItem.km = "2km";
                     FirebaseAPI().updateProductsItem(_productItem, docID);
                     Navigator.pop(context);
                   },
