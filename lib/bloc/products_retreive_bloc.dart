@@ -8,6 +8,9 @@ import 'package:rxdart/rxdart.dart';
 class ProductRetreiveBloc {
   final _repository = DataRepository();
   final _productsSnapshotOutputStream = ReplaySubject<QuerySnapshot>();
+  final _productsSnapshotInCategoryOutputStream = ReplaySubject<QuerySnapshot>();
+
+
   final _productsByStoreSnapshotOutputStream = ReplaySubject<QuerySnapshot>();
   final _productsByOrders = ReplaySubject<QuerySnapshot>();
   final _productsLowestPriceSnapshotOutputStream =
@@ -17,6 +20,8 @@ class ProductRetreiveBloc {
   final _shopsOutputStream = ReplaySubject<QuerySnapshot>();
   final _searchInputStream = BehaviorSubject<String>();
 
+  Stream<QuerySnapshot> get productsSnapshotInCategoryOutputStream =>
+      _productsSnapshotInCategoryOutputStream.stream;
   StreamSink<String> get inputStreamSearchInput => _searchInputStream.sink;
   BehaviorSubject<String> get inputStreamSearchOutput =>
       _searchInputStream.stream;
@@ -46,6 +51,15 @@ class ProductRetreiveBloc {
     _productsSnapshotOutputStream.sink.add(querySnapshot);
   }
 
+  void getAllProductInCategory() async {
+    QuerySnapshot querySnapshot = await _repository.getAllProducts();
+    // querySnapshot.docs.forEach((element) {
+    //    print("Add item: " + ProductItem().ProductFromJson(element.data()).productName + "to sink");
+    //    _productsOutputStream.sink.add(ProductItem().ProductFromJson(element.data()));
+    // });
+    _productsSnapshotOutputStream.sink.add(querySnapshot);
+  }
+
   void getAllProductByStore(String storeID) async {
     QuerySnapshot querySnapshot =
         await _repository.getAllProductByStore(storeID);
@@ -65,7 +79,7 @@ class ProductRetreiveBloc {
   void getProductsWithContraint(int categoryID) async {
     QuerySnapshot querySnapshot =
         await _repository.getProductsWithContraints(categoryID);
-    _productsSnapshotOutputStream.sink.add(querySnapshot);
+    _productsSnapshotInCategoryOutputStream.sink.add(querySnapshot);
   }
 
   void getAllShops() async {
@@ -102,6 +116,7 @@ class ProductRetreiveBloc {
     _productsLowestPriceSnapshotOutputStream.close();
     _productsByStoreSnapshotOutputStream.close();
     _productsByOrders.close();
+    _productsSnapshotInCategoryOutputStream.close();
   }
 }
 

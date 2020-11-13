@@ -36,7 +36,7 @@ class _ListProductInCategoryState extends State<ListProductInCategory> {
         backgroundColor: Colors.white,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: productsListBloc.productsSnapshotOutputStream,
+        stream: productsListBloc.productsSnapshotInCategoryOutputStream,
         builder: (context,  AsyncSnapshot<QuerySnapshot> snapshot) {
           if(snapshot.hasData)
             return SingleChildScrollView(

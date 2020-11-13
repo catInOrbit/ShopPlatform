@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:ExpShop/bloc/data_repository.dart';
 import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/bloc/global.dart';
@@ -282,6 +284,11 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                   onPressed: () {
                     product.km = "2km";
                     product.storeID = currentUser.shopID;
+                    product.productID = Random().nextInt(100);
+                    product.createDate = DateTime.now();
+                    product.like = 3;
+                    product.rating = 4;
+                    product.isRating = true;
                     FirebaseAPI().saveProduct(product);
                     Navigator.pushNamed(context, "/HomePageShop");
                   },
