@@ -22,7 +22,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
-
   const HomePage({Key key}) : super(key: key);
 
   @override
@@ -30,20 +29,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
     productsListBloc.getAllShops();
     super.initState();
   }
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   int _currentIndex = 0;
   final tabs = [
     TabHomePage(),
     CheckOutPage(),
-    QRCodePage(),
+    ListOrder(),
     NotificationPage(),
     TabMenuPage(),
   ];
@@ -72,9 +70,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             } else if (_currentIndex == 1) {
-              return Text('Giỏ của bạn',style: TextStyle(color: Colors.white),);
+              return Text(
+                'Giỏ của bạn',
+                style: TextStyle(color: Colors.white),
+              );
             } else if (_currentIndex == 2) {
-              return Text('Thanh toán');
+              return Text('Lịch sử');
             } else if (_currentIndex == 3) {
               return Text('Thông Báo');
             } else {
@@ -100,28 +101,6 @@ class _HomePageState extends State<HomePage> {
               );
             }
           }(),
-          actions: [
-            () {
-              if (_currentIndex == 2) {
-                return Row(
-                  children: [
-                    Text(
-                      'Lịch sử',
-                      style: TextStyle(fontSize: 17),
-                    ),
-                    IconButton(
-                        icon: Icon(FontAwesomeIcons.listAlt),
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, ListOrder().urlListOrder);
-                        })
-                  ],
-                );
-              } else {
-                return Text('');
-              }
-            }()
-          ],
           bottom: () {
             if (_currentIndex == 0) {
               return PreferredSize(
@@ -130,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(bottom: 5),
                   width: MediaQuery.of(context).size.width * 0.90,
                   child: InkWell(
-                    onTap: (){
+                    onTap: () {
                       buildShowModalBottomSheet(context);
                     },
                     child: TextField(
@@ -142,10 +121,15 @@ class _HomePageState extends State<HomePage> {
                           fillColor: GREENWHITE,
                           filled: true,
                           prefixIcon: InkWell(
-                              onTap: (){
-                                showModalBottomSheet(context: context, builder: (context) {
-                                  return ShopBottomSheet(searchQuery: searchValue,);
-                                },);
+                              onTap: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return ShopBottomSheet(
+                                      searchQuery: searchValue,
+                                    );
+                                  },
+                                );
                               },
                               child: Icon(Icons.search)),
                           hintText: 'Bạn tìm gì hôm nay?',
@@ -177,8 +161,8 @@ class _HomePageState extends State<HomePage> {
             title: Text("Cart"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera, size: 28.0),
-            title: Text("Quét"),
+            icon: Icon(FontAwesomeIcons.listAlt, size: 28.0),
+            title: Text("Đơn hàng"),
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.bell_solid, size: 28.0),

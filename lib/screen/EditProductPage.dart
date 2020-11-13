@@ -264,7 +264,7 @@ class _EditProductPageState extends State<EditProductPage> {
                   onPressed: () {
                     _productItem.km = "2km";
                     FirebaseAPI().updateProductsItem(_productItem, docID);
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/HomePageShop");
                   },
                   color: Colors.green,
                   padding: EdgeInsets.symmetric(horizontal: 50),

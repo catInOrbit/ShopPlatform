@@ -198,7 +198,6 @@ class CardProduct extends StatelessWidget {
               event.selectedProduct = productItem;
               cartBloc.querySink.add(event);
 
-
               final snackBar = SnackBar(
                 content: Text('Thêm thành công'),
                 behavior: SnackBarBehavior.floating,
@@ -420,20 +419,14 @@ class CardProductHoriShop extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                            Text(
-                              'Đồ ăn',
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            )
                           ],
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(left: 5),
-                        child: Text(
-                            '${productItem.km} - 50 Tứ Hải, Phường 6, Tân Bình'),
-                      ),
+                      // Container(
+                      //   padding: EdgeInsets.only(left: 5),
+                      //   child: Text(
+                      //       '${productItem.km} - 50 Tứ Hải, Phường 6, Tân Bình'),
+                      // ),
                       Container(
                         padding: EdgeInsets.only(left: 5),
                         child: Text(
@@ -616,7 +609,7 @@ class CardOrderProduct extends StatelessWidget {
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(),
-                child: Image.asset(productItem.image, fit: BoxFit.fill),
+                child: Image.network(productItem.image, fit: BoxFit.fill),
               ),
               Expanded(
                 child: Container(

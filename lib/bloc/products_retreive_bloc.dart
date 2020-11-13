@@ -9,6 +9,7 @@ class ProductRetreiveBloc {
   final _repository = DataRepository();
   final _productsSnapshotOutputStream = ReplaySubject<QuerySnapshot>();
   final _productsByStoreSnapshotOutputStream = ReplaySubject<QuerySnapshot>();
+  final _productsByOrders = ReplaySubject<QuerySnapshot>();
   final _productsLowestPriceSnapshotOutputStream =
       ReplaySubject<QuerySnapshot>();
   final _productsOutputStream = ReplaySubject<List<ProductItem>>();
@@ -21,6 +22,7 @@ class ProductRetreiveBloc {
       _searchInputStream.stream;
   Stream<QuerySnapshot> get productsLowestPriceSnapshotOutputStream =>
       _productsLowestPriceSnapshotOutputStream.stream;
+  Stream<QuerySnapshot> get productsByOrders => _productsByOrders.stream;
 
   Stream<QuerySnapshot> get productsSnapshotOutputStream =>
       _productsSnapshotOutputStream.stream;
@@ -48,6 +50,11 @@ class ProductRetreiveBloc {
     QuerySnapshot querySnapshot =
         await _repository.getAllProductByStore(storeID);
     _productsByStoreSnapshotOutputStream.sink.add(querySnapshot);
+  }
+
+  void getAllProductByOrders(String userID) async {
+    QuerySnapshot querySnapshot = await _repository.getProductOrders(userID);
+    _productsByOrders.sink.add(querySnapshot);
   }
 
   void getAllCategories() async {
@@ -94,10 +101,8 @@ class ProductRetreiveBloc {
     _productsOutputStream.close();
     _productsLowestPriceSnapshotOutputStream.close();
     _productsByStoreSnapshotOutputStream.close();
+    _productsByOrders.close();
   }
-
-
-
 }
 
 final productsListBloc = ProductRetreiveBloc();

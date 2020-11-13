@@ -62,7 +62,6 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
     });
   }
 
-
   // dropDownCateogry(BuildContext context) {
   //   return DropdownButton<String>(
   //     value: "",
@@ -144,11 +143,14 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               if (name == "productName") {
                 product.productName = text;
                 print(product.productName);
-              } if (name == "price") {
+              }
+              if (name == "price") {
                 product.price = double.parse(text);
-              } if (name == "promotionalPrice") {
+              }
+              if (name == "promotionalPrice") {
                 product.promotionalPrice = int.parse(text);
-              }  if (name == "quantity") {
+              }
+              if (name == "quantity") {
                 product.quantity = int.parse(text);
               }
             });
@@ -278,7 +280,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               children: [
                 RaisedButton(
                   onPressed: () {
-
+                    product.km = "2km";
                     product.storeID = currentUser.shopID;
                     FirebaseAPI().saveProduct(product);
                     Navigator.pushNamed(context, "/HomePageShop");
