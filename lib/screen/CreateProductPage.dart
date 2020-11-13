@@ -281,7 +281,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
 
                     product.storeID = currentUser.shopID;
                     FirebaseAPI().saveProduct(product);
-                    Navigator.pushNamed(context, "/TabHomeShopPage");
+                    Navigator.pushNamed(context, "/HomePageShop");
                   },
                   color: Colors.green,
                   padding: EdgeInsets.symmetric(horizontal: 50),
