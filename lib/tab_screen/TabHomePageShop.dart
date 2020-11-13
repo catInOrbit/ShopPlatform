@@ -86,6 +86,7 @@ class DeleteProduct extends StatelessWidget {
         IconSlideAction(
           onTap: () {
             FirebaseAPI().deleteProductItems(docID);
+            Navigator.pushNamed(context, "/HomePageShop");
           },
           caption: 'Delete',
           color: Colors.red,

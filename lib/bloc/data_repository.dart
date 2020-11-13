@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DataRepository {
   final firebaseAPI = FirebaseAPI();
+
   Future<QuerySnapshot> getAllProducts() => firebaseAPI.getProducts();
   Future<QuerySnapshot> getAllCategories() => firebaseAPI.getCategories();
   Future<QuerySnapshot> getProductsWithContraints(int categoryID) =>
@@ -15,6 +16,8 @@ class DataRepository {
       firebaseAPI.getUserWithToken(tokenString);
   Future<QuerySnapshot> getAllProductByStore(String storeID) =>
       firebaseAPI.getAllProductByStore(storeID);
+  Future<QuerySnapshot> getProductOrders(String userID) =>
+      firebaseAPI.getProductOrders(userID);
 
   // Future<QuerySnapshot> getSearchedProducts(String searchString) => firebaseAPI.getProductsWithSearchQuery(searchString);
 
