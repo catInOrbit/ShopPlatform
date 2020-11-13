@@ -12,6 +12,7 @@ import 'package:ExpShop/screen/ProfilePage.dart';
 import 'package:ExpShop/screen/RegisterPage.dart';
 import 'package:ExpShop/screen/ScreenHomeShop.dart';
 import 'package:ExpShop/screen/ShopPage.dart';
+import 'package:ExpShop/shop/check_out_page.dart';
 import 'package:ExpShop/widget/ItemSlider.dart';
 import 'package:ExpShop/widget/SaleBanner.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         "/ListOrder": (context) => ListOrder(),
         "/RatingPage": (context) => RatingPage(),
         "/EditProductPage": (context) => EditProductPage(),
+        "/CheckOutPage" : (context) => CheckOutPage()
       },
       theme: ThemeData(
         primaryColor: GREEN_NEW,

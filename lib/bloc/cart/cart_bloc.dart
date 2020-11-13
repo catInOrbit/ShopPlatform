@@ -42,6 +42,11 @@ class CartBloc
              _cartState.products.clear();
            }
 
+           else if(_cartEvent.removeSelected)
+           {
+             _cartState.products.remove(_cartEvent.selectedProduct);
+           }
+
            _outputStreamController.sink.add(_cartState);
            print("Output sink added");
         }

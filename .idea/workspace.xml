@@ -10,7 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8743a7e-5058-42c5-bcd5-b5a5da86ee8c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/cart/cart_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/cart/cart_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/cart/cart_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/cart/cart_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shop/components/shop_item_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shop/components/shop_item_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +47,7 @@
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AndroidStudioProjects/SE1322_PE02_SE130115/MyApplication2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flutter_ecommerce_template" />
     <property name="settings.editor.selected.configurable" value="copyright.profiles" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -79,26 +90,26 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="572" height="506" key="DebuggerActiveHint/0.27.1920.1053@0.27.1920.1053" timestamp="1605245520475" />
-    <state x="743" y="311" width="424" height="486" key="FileChooserDialogImpl" timestamp="1605066241336">
+    <state x="743" y="311" width="424" height="486" key="FileChooserDialogImpl" timestamp="1605275385588">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="743" y="311" width="424" height="486" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1605066241336" />
-    <state width="937" height="304" key="GridCell.Tab.0.bottom" timestamp="1605273208192">
+    <state x="743" y="311" width="424" height="486" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1605275385588" />
+    <state width="937" height="304" key="GridCell.Tab.0.bottom" timestamp="1605277469540">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605273208192" />
-    <state width="937" height="304" key="GridCell.Tab.0.center" timestamp="1605273208191">
+    <state width="937" height="304" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605277469540" />
+    <state width="937" height="304" key="GridCell.Tab.0.center" timestamp="1605277469539">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605273208191" />
-    <state width="937" height="304" key="GridCell.Tab.0.left" timestamp="1605273208191">
+    <state width="937" height="304" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605277469539" />
+    <state width="937" height="304" key="GridCell.Tab.0.left" timestamp="1605277469538">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605273208191" />
-    <state width="937" height="304" key="GridCell.Tab.0.right" timestamp="1605273208192">
+    <state width="937" height="304" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605277469538" />
+    <state width="937" height="304" key="GridCell.Tab.0.right" timestamp="1605277469539">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605273208192" />
+    <state width="937" height="304" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605277469539" />
     <state x="449" y="188" width="1022" height="732" key="SettingsEditor" timestamp="1604673724968">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -121,13 +132,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/shop/components/shop_item_list.dart</url>
-          <line>48</line>
+          <line>50</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/models/product.dart</url>
-          <line>101</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/bloc/cart/cart_bloc.dart</url>

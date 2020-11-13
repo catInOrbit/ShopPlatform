@@ -3,11 +3,16 @@ import 'package:ExpShop/models/product.dart';
 
 class CartEvent
 {
-   bool _requestAddToCart, _requestCheckout;
+   bool _requestAddToCart, _requestCheckout, _removeSelected;
    String _selectedProductId;
    ProductItem _selectedProduct;
 
 
+   get removeSelected => _removeSelected;
+
+   set removeSelected(value) {
+     _removeSelected = value;
+   }
    // CartEvent(this._requestAddToCart, this._requestCheckout,
    //    this._selectedProductId, this._selectedProduct);
 
