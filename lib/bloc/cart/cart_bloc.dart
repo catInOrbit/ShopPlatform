@@ -36,7 +36,7 @@ class CartBloc
            {
              firebaseAPI.cartState = _cartState;
              firebaseAPI.user = globals.currentUser;
-              firebaseAPI.saveUserOrders();
+              firebaseAPI.saveUserOrders(globals.currentUser.documentReference);
              _cartState.products.clear();
            }
 

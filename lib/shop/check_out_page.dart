@@ -20,40 +20,6 @@ class CheckOutPage extends StatefulWidget {
 
 class _CheckOutPageState extends State<CheckOutPage> {
   SwiperController swiperController = SwiperController();
-
-  List<ProductItem> products = [
-    ProductItem(
-        productID: 6,
-        productName: 'Ngũ cốc',
-        categoryID: 5,
-        storeID: 2,
-        price: 50000,
-        like: 100,
-        describe: '',
-        promotionalPrice: 26000,
-        image: 'assets/images/ngucoc.jpg'),
-    ProductItem(
-        productID: 7,
-        productName: 'Pate Gan Ngỗng',
-        categoryID: 7,
-        storeID: 2,
-        price: 45000,
-        like: 100,
-        describe: '',
-        promotionalPrice: 30000,
-        image: 'assets/images/pateganngong.jpg'),
-    ProductItem(
-        productID: 7,
-        productName: 'Nước giải khác Pepsi',
-        categoryID: 6,
-        storeID: 2,
-        price: 12000,
-        like: 100,
-        describe: '',
-        promotionalPrice: 7000,
-        image: 'assets/images/pepsi.jpg'),
-  ];
-
   void checkout()
   {
     CartEvent cartEvent = CartEvent();

@@ -13,7 +13,7 @@ class DataRepository {
       firebaseAPI.getProductsPriceAscending();
   Future<QuerySnapshot> getUserWithToken(String tokenString) =>
       firebaseAPI.getUserWithToken(tokenString);
-  Future<QuerySnapshot> getAllProductByStore(int storeID) =>
+  Future<QuerySnapshot> getAllProductByStore(String storeID) =>
       firebaseAPI.getAllProductByStore(storeID);
 
   // Future<QuerySnapshot> getSearchedProducts(String searchString) => firebaseAPI.getProductsWithSearchQuery(searchString);

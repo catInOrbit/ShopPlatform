@@ -1,5 +1,6 @@
 import 'package:ExpShop/bloc/data_repository.dart';
 import 'package:ExpShop/bloc/firebase_api.dart';
+import 'package:ExpShop/bloc/global.dart';
 import 'package:ExpShop/bloc/products_retreive_bloc.dart';
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/models/categoryProduct.dart';
@@ -274,9 +275,10 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               children: [
                 RaisedButton(
                   onPressed: () {
-                    product.storeID = 2;
+
+                    product.storeID = currentUser.shopID;
                     FirebaseAPI().saveProduct(product);
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/TabHomeShopPage");
                   },
                   color: Colors.green,
                   padding: EdgeInsets.symmetric(horizontal: 50),

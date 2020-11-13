@@ -44,7 +44,7 @@ class ProductRetreiveBloc {
     _productsSnapshotOutputStream.sink.add(querySnapshot);
   }
 
-  void getAllProductByStore(int storeID) async {
+  void getAllProductByStore(String storeID) async {
     QuerySnapshot querySnapshot =
         await _repository.getAllProductByStore(storeID);
     _productsByStoreSnapshotOutputStream.sink.add(querySnapshot);
@@ -95,6 +95,9 @@ class ProductRetreiveBloc {
     _productsLowestPriceSnapshotOutputStream.close();
     _productsByStoreSnapshotOutputStream.close();
   }
+
+
+
 }
 
 final productsListBloc = ProductRetreiveBloc();

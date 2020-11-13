@@ -1,4 +1,5 @@
 import 'package:ExpShop/bloc/firebase_api.dart';
+import 'package:ExpShop/bloc/global.dart';
 import 'package:ExpShop/bloc/products_retreive_bloc.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 
@@ -38,7 +39,7 @@ class _TabHomeShopPageState extends State<TabHomeShopPage> {
     //         .add(ProductItem().ProductFromJson(element.docs[key].data()));
     //   });
     // });
-    productsListBloc.getAllProductByStore(2);
+    productsListBloc.getAllProductByStore(currentUser.shopID);
   }
 
   @override

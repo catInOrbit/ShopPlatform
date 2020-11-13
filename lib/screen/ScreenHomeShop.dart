@@ -53,9 +53,12 @@ class _HomePageState extends State<HomePageShop> {
                       color: WHITE,
                     ),
                     onPressed: () async {
+                      
                       await Navigator.pushNamed(
                           context, '/CreateProductScreen');
-                      setState(() {});
+                      setState(() {
+
+                      });
                     });
               } else {
                 return Text('');

@@ -21,12 +21,12 @@ class FirebaseAPI {
 
   FirebaseAPI();
 
-  void saveUserOrders() async {
+  void saveUserOrders(String userToken) async {
     var batch = firestoreInstance.batch();
     _cartState.products.forEach((element) {
       var docRef = firestoreInstance
           .collection("users")
-          .document("Jj5G7eeMpQwBhC3AE6D3")
+          .document(userToken)
           .collection("orders")
           .doc();
       batch.set(docRef,
@@ -115,7 +115,7 @@ class FirebaseAPI {
           .snapshots();
     }
 
-    Future<QuerySnapshot> getAllProductByStore(int storeID) async {
+    Future<QuerySnapshot> getAllProductByStore(String storeID) async {
       return await firestoreInstance
           .collection('products')
           .where("storeID", isEqualTo: storeID)

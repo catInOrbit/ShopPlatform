@@ -1,9 +1,12 @@
+import 'package:ExpShop/bloc/cart/cart_bloc.dart';
+import 'package:ExpShop/bloc/cart/cart_event.dart';
 import 'package:ExpShop/bloc/products_retreive_bloc.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
 import 'package:ExpShop/models/product.dart';
 import 'package:ExpShop/screen/EditProductPage.dart';
 import 'package:ExpShop/screen/RatingPage.dart';
+import 'package:ExpShop/shop/check_out_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -189,6 +192,13 @@ class CardProduct extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
+              CartEvent event = CartEvent();
+              event.requestAddToCart = true;
+              event.requestCheckout = false;
+              event.selectedProduct = productItem;
+              cartBloc.querySink.add(event);
+
+
               final snackBar = SnackBar(
                 content: Text('Thêm thành công'),
                 behavior: SnackBarBehavior.floating,

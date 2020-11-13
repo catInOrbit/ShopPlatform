@@ -8,7 +8,7 @@ class ProductItem {
   double price;
   int promotionalPrice;
   int like;
-  int storeID;
+  String storeID;
   int categoryID;
   String describe;
   String image;
@@ -81,7 +81,7 @@ class ProductItem {
       json['price'] as double,
       json['promotionalPrice'] as int,
       json['like'] as int,
-      json['storeID'] as int,
+      json['storeID'] as String,
       json['categoryID'] as int,
       json['describe'] as String,
       json['image'] as String,

@@ -140,8 +140,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                   "phoneNumber": "",
                                   "documentReference": _auth.currentUser.uid,
                                   "avatarPicURL": "",
-                                  "shopID": ""
+                                  "shopID": null
                                 });
+
+                                var docRefOrder = firestoreInstance.collection("users").doc(_auth.currentUser.uid).collection("orders").doc();
+                                batch.set(docRefOrder, {});
                                 await batch.commit();
                                 Fluttertoast.showToast(
                                     msg: "Register Successfull",
