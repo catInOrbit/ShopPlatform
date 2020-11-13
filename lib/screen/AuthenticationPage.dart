@@ -1,6 +1,7 @@
 import 'package:ExpShop/bloc/authentication/authentication_bloc.dart';
 import 'package:ExpShop/models/user.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class AuthenticationPage extends StatefulWidget {
   @override
@@ -22,20 +23,24 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                   if(snapshot.data.shopID != null)
                     {
                        print("PUSING SHOP");
-                       setState(() {
-                       });
-                       Navigator.pushNamed(
-                           context, '/HomePageShop');
+
+                       SchedulerBinding.instance.addPostFrameCallback((_) {
+                         Navigator.pushNamed(
+                             context, '/HomePageShop');
+                            }
+                         );
 
                     }
 
                   else
                     {
                       print("PUSING HOME");
-                      Navigator.pushNamed(
-                          context, '/HomePage');
-                      setState(() {
-                      });
+                      SchedulerBinding.instance.addPostFrameCallback((_) {
+                        Navigator.pushNamed(
+                            context, '/HomePage');
+                      }
+                      );
+
 
                     }
 

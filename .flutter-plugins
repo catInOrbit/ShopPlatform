@@ -1,0 +1,20 @@
+# This is a generated file; do not edit or check into version control.
+cloud_firestore=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.14.2/
+cloud_firestore_web=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.2.0+5/
+firebase_auth=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.18.2/
+firebase_auth_web=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-0.3.1+2/
+firebase_core=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.2/
+firebase_core_web=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.2.1/
+firebase_storage=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-4.0.1/
+flutter_plugin_android_lifecycle=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.11/
+fluttertoast=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-7.1.1/
+google_maps_flutter=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-0.4.0/
+hexcolor=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/hexcolor-1.0.6/
+image_picker=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.7+12/
+path_provider_linux=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+2/
+path_provider_windows=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-0.0.4+3/
+shared_preferences=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.12+4/
+shared_preferences_linux=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-0.0.2+4/
+shared_preferences_macos=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+11/
+shared_preferences_web=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+7/
+shared_preferences_windows=/home/thomasm/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-0.0.1+3/
