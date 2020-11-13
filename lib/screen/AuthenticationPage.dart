@@ -32,6 +32,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                              context, '/HomePageShop');
                             }
                          );
+                       return Container();
+
 
                     }
 
@@ -40,12 +42,16 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                       print("PUSING HOME");
                       currentUser = snapshot.data;
                       print(currentUser.documentReference.toString());
-                      SchedulerBinding.instance.addPostFrameCallback((_) {
+                      SchedulerBinding.instance.addPostFrameCallback((_)
+                      {
                         Navigator.pushNamed(
                             context, '/HomePage');
                       }
                       );
                     }
+
+                  return Container();
+
 
                 }
 

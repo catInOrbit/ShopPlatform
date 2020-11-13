@@ -1,5 +1,6 @@
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/widget/WidgetMenu.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TabMenuSHopPage extends StatelessWidget {
@@ -66,7 +67,8 @@ class TabMenuSHopPage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                 _signOut();
+                Navigator.pushNamed(context, "/LoginPage");
               },
               child: ItemMenu(
                 topLeft: 0,
@@ -80,5 +82,12 @@ class TabMenuSHopPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _signOut() async
+  {
+    var _firebaseAuth = FirebaseAuth.instance;
+
+    await _firebaseAuth.signOut();
   }
 }
