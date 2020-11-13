@@ -21,6 +21,8 @@ class CreateProductScreen extends StatefulWidget {
 }
 
 class _CreateProductScreenState extends State<CreateProductScreen> {
+  final TextEditingController controller = TextEditingController();
+
   ProductItem product = ProductItem();
   // Stream<QuerySnapshot> snapshot;
   DateTime _dateTime = DateTime.now();
@@ -60,36 +62,6 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
     });
   }
 
-  buildTextField(String labelText, String placeholder, String name) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20.0),
-      child: TextField(
-        onChanged: (text) {
-          setState(() {
-            if (name == "productName") {
-              product.productName = text;
-              print(product.productName);
-            } else if (name == "price") {
-              product.price = double.parse(text);
-            } else if (name == "promotionalPrice") {
-              product.promotionalPrice = int.parse(text);
-            } else if (name == "quantity") {
-              product.quantity = int.parse(text);
-            }
-          });
-        },
-        decoration: InputDecoration(
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w100,
-              color: Colors.black,
-            )),
-      ),
-    );
-  }
 
   // dropDownCateogry(BuildContext context) {
   //   return DropdownButton<String>(
@@ -163,6 +135,37 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    buildTextField(String labelText, String placeholder, String name) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 20.0),
+        child: TextField(
+          onChanged: (text) {
+            setState(() {
+              if (name == "productName") {
+                product.productName = text;
+                print(product.productName);
+              } if (name == "price") {
+                product.price = double.parse(text);
+              } if (name == "promotionalPrice") {
+                product.promotionalPrice = int.parse(text);
+              }  if (name == "quantity") {
+                product.quantity = int.parse(text);
+              }
+            });
+          },
+          decoration: InputDecoration(
+              labelText: labelText,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              hintText: placeholder,
+              hintStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w100,
+                color: Colors.black,
+              )),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

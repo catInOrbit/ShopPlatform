@@ -15,7 +15,10 @@
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screen/AuthenticationPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/AuthenticationPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tab_screen/TabMenuShop.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_screen/TabMenuShop.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/CreateProductPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/CreateProductPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/LoginPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/LoginPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tab_screen/ListProductInCategory.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tab_screen/ListProductInCategory.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/CardNotification.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/CardNotification.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,22 +91,22 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="743" y="311" width="424" height="486" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1605066241336" />
-    <state width="937" height="304" key="GridCell.Tab.0.bottom" timestamp="1605254665686">
+    <state width="937" height="304" key="GridCell.Tab.0.bottom" timestamp="1605257495077">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605254665686" />
-    <state width="937" height="304" key="GridCell.Tab.0.center" timestamp="1605254665682">
+    <state width="937" height="304" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605257495077" />
+    <state width="937" height="304" key="GridCell.Tab.0.center" timestamp="1605257495075">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605254665682" />
-    <state width="937" height="304" key="GridCell.Tab.0.left" timestamp="1605254665681">
+    <state width="937" height="304" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605257495075" />
+    <state width="937" height="304" key="GridCell.Tab.0.left" timestamp="1605257495075">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605254665681" />
-    <state width="937" height="304" key="GridCell.Tab.0.right" timestamp="1605254665684">
+    <state width="937" height="304" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605257495075" />
+    <state width="937" height="304" key="GridCell.Tab.0.right" timestamp="1605257495076">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605254665684" />
+    <state width="937" height="304" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605257495076" />
     <state x="449" y="188" width="1022" height="732" key="SettingsEditor" timestamp="1604673724968">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -138,11 +141,6 @@
           <url>file://$PROJECT_DIR$/lib/bloc/cart/cart_bloc.dart</url>
           <line>38</line>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/screen/AuthenticationPage.dart</url>
-          <line>26</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

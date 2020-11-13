@@ -120,7 +120,7 @@ class CardProduct extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.width * 0.5,
-                  child: Image.asset(
+                  child: Image.network(
                     productItem.image,
                     fit: BoxFit.fill,
                   ),

@@ -28,11 +28,11 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          firebaseAPI.saveProducts();
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     firebaseAPI.saveProducts();
+      //   },
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
