@@ -43,6 +43,7 @@ class _TabHomeShopPageState extends State<TabHomeShopPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("ShopHomePage");
     return StreamBuilder<QuerySnapshot>(
       stream: productsListBloc.productsByStoreSnapshotOutputStream,
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
