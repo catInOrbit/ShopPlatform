@@ -84,7 +84,7 @@ class ProductItem {
       json['describe'] as String,
       json['image'] as String,
       json['createDate'] as DateTime,
-      (json['expirationDate'] as Timestamp).toDate(),
+      json['expirationDate'] as DateTime,
       Colors.green,
       json['km'] as String,
       json['quantity'] as int,
