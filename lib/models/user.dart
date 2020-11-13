@@ -51,7 +51,7 @@ class ShopUser {
 
   ShopUser(this._gender, this.name, this._address, this._email, this._username,
       this._phoneNumber, this._shopID,
-      this._avatarPicURL);
+      this._avatarPicURL, this._documentReference);
 
   ShopUser.Internal();
 
@@ -66,7 +66,8 @@ class ShopUser {
         json['username'] as String,
         json['phoneNumber'] as String,
         json['shopID'] as String,
-        json['avatarPicURL'] as String
+        json['avatarPicURL'] as String,
+        json['documentReference'] as String
     );
 
 

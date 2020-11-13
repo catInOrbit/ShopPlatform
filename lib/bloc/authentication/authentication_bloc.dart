@@ -13,7 +13,15 @@ class AuthenticationBloc
       final  _inputEventStream = BehaviorSubject<AuthenticationEvent>();
       final _userOutputStream = BehaviorSubject<ShopUser>();
 
-      StreamSink<AuthenticationEvent> get inputStreamEvent => _inputEventStream.sink;
+       ShopUser _currentUserSession;
+
+  ShopUser get currentUserSession => _currentUserSession;
+
+  set currentUserSession(ShopUser value) {
+    _currentUserSession = value;
+  }
+
+  StreamSink<AuthenticationEvent> get inputStreamEvent => _inputEventStream.sink;
       Stream<ShopUser> get outputUserStream => _userOutputStream.stream;
 
       AuthenticationBloc()
@@ -30,7 +38,6 @@ class AuthenticationBloc
                           // if(documentSnapshot.exists)
                           //   {
                          user = ShopUser.Internal().UserFromJson(queryDocumentSnapshot.data());
-                          currentUser = user;
                           print("Output sink added authentication");
 
                           _userOutputStream.sink.add(user);

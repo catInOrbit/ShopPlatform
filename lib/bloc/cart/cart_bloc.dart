@@ -1,12 +1,13 @@
 
 import 'dart:async';
 
+import 'package:ExpShop/bloc/authentication/authentication_bloc.dart';
 import 'package:ExpShop/bloc/cart/cart_event.dart';
 import 'package:ExpShop/bloc/cart/cart_state.dart';
 import 'package:ExpShop/bloc/firebase_api.dart';
+import 'package:ExpShop/bloc/global.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:ExpShop/user_global.dart' as globals;
 
 class CartBloc
 {
@@ -35,8 +36,9 @@ class CartBloc
            else if(_cartEvent.requestCheckout)
            {
              firebaseAPI.cartState = _cartState;
-             firebaseAPI.user = globals.currentUser;
-              firebaseAPI.saveUserOrders(globals.currentUser.documentReference);
+             firebaseAPI.user = currentUser;
+             print("ABOUT TO SAVE TO: " + currentUser.documentReference.toString());
+              firebaseAPI.saveUserOrders(currentUser.documentReference.toString());
              _cartState.products.clear();
            }
 

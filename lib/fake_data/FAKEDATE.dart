@@ -29,13 +29,13 @@ getAllCategory() async {
 
 var listUser = [
   ShopUser("Male", 'Ng. Văn A', "Address1", "test@gmaiil.com", "username01",
-      "01234566", "1", 'assets/images/user.png'),
+      "01234566", "1", 'assets/images/user.png', null),
   ShopUser("Male", 'Ng. Văn A', "Address1", "test@gmaiil.com", "username01",
-      "01234566", "1", 'assets/images/user.png'),
+      "01234566", "1", 'assets/images/user.png', null),
   ShopUser("Male", 'Ng. Văn B', "Address1", "test@gmaiil.com", "username01",
-      "01234566", "1", 'assets/images/user2.png'),
+      "01234566", "1", 'assets/images/user2.png', null),
   ShopUser("Male", 'Ng. Văn C', "Address1", "test@gmaiil.com", "username01",
-      "01234566", "1", 'assets/images/user3.png'),
+      "01234566", "1", 'assets/images/user3.png', null),
 ];
 
 var listStore = [

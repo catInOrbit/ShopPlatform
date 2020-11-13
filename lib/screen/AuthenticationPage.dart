@@ -1,4 +1,5 @@
 import 'package:ExpShop/bloc/authentication/authentication_bloc.dart';
+import 'package:ExpShop/bloc/global.dart';
 import 'package:ExpShop/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -23,6 +24,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                   if(snapshot.data.shopID != null)
                     {
                        print("PUSING SHOP");
+                       currentUser = snapshot.data;
+                       print(currentUser.documentReference.toString());
 
                        SchedulerBinding.instance.addPostFrameCallback((_) {
                          Navigator.pushNamed(
@@ -35,6 +38,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                   else
                     {
                       print("PUSING HOME");
+                      currentUser = snapshot.data;
+                      print(currentUser.documentReference.toString());
                       SchedulerBinding.instance.addPostFrameCallback((_) {
                         Navigator.pushNamed(
                             context, '/HomePage');
