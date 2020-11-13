@@ -32,6 +32,9 @@ class FirebaseAPI {
       batch.set(docRef,
           {"productID": element.productID, "product": element.toJson()});
     });
+
+    await batch.commit();
+
   }
 
     Future<QuerySnapshot> getProducts() async {

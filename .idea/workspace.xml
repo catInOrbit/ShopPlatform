@@ -10,11 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8743a7e-5058-42c5-bcd5-b5a5da86ee8c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/authentication/authentication_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/authentication/authentication_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/shop_product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/shop_product.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/product.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/LoginPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/LoginPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/ProductDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/ProductDetail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/CardMostPopularV1.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/CardMostPopularV1.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/CardMostPopularV2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/CardMostPopularV2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widget/ListProduct.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/ListProduct.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +138,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="Dart">
           <url>file://$PROJECT_DIR$/lib/models/product.dart</url>
-          <line>95</line>
+          <line>101</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

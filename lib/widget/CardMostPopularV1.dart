@@ -88,7 +88,7 @@ class _CardMostPopularState extends State<CardMostPopular> {
                             Container(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
-                                child: Image.asset(
+                                child: Image.network(
                                    ProductItem().ProductFromJson(snapshot.data.docs[0].data()).image,
                                   fit: BoxFit.cover,
                                   scale: 1,
@@ -350,7 +350,7 @@ class ItemMostPopular extends StatelessWidget {
           Container(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
+                child: Image.network(
                   productItem.image,
                   fit: BoxFit.fill,
                 )),

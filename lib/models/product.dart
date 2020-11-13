@@ -73,7 +73,9 @@ class ProductItem {
   Map<String, dynamic> toJson() => _ProductToJson(this);
   ProductItem ProductFromJson(Map<String, dynamic> json) {
     print("Jsoning product from query");
-    return ProductItem.Internal(
+
+    var product =
+     ProductItem.Internal(
       json['productID'] as int,
       json['productName'] as String,
       json['price'] as double,
@@ -83,14 +85,18 @@ class ProductItem {
       json['categoryID'] as int,
       json['describe'] as String,
       json['image'] as String,
-      json['createDate'] as DateTime,
-      json['expirationDate'] as DateTime,
+      new DateTime.now(),
+      new DateTime.now(),
+      // ((json['expirationDate'] as Timestamp)).toDate(),
+      // ((json['expirationDate'] as Timestamp)).toDate(),
       Colors.green,
       json['km'] as String,
       json['quantity'] as int,
       json['rating'] as double,
       json['isRating'] as bool,
     );
+
+    return product;
   }
 }
 

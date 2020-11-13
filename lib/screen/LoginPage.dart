@@ -1,9 +1,9 @@
-import 'package:ExpShop/bloc/authentication/authentication_bloc.dart';
 import 'package:ExpShop/bloc/firebase_api.dart';
 import 'package:ExpShop/bloc/global.dart';
 import 'package:ExpShop/fake_data/Colors.dart';
 import 'package:ExpShop/models/user.dart' as UserShopPlatform;
 import 'package:ExpShop/fake_data/FAKEDATE.dart';
+import 'package:firebase/firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -157,8 +157,14 @@ class _LoginPageState extends State<LoginPage> {
                                     await SharedPreferences.getInstance();
                                 prefs.setString('email', email);
 
+                                // bool isShopOwner = await checkIfUserIsShopOwner(await _auth.currentUser.getIdToken());
+                                // if(isShopOwner)
                                 return Navigator.pushNamed(
                                     context, '/HomePage');
+                                //
+                                // else
+                                //   return Navigator.pushNamed(
+                                //       context, '/ShopPage');
                               }
                             } catch (e) {}
                           },
@@ -201,4 +207,14 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  // Future<bool> checkIfUserIsShopOwner(String token) async
+  // {
+  //     DocumentSnapshot documentSnapshot = (await firebaseAPI.getUserWithToken(token)) as DocumentSnapshot ;
+  //     UserShopPlatform.User user = UserShopPlatform.User.fromJson(documentSnapshot.data());
+  //     currentUser = user;
+  //     if(user.shopID != null)
+  //       return true;
+  //     return false;
+  // }
 }

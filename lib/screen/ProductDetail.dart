@@ -30,7 +30,7 @@ class ProductDetail extends StatelessWidget {
             stretch: true,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
+              background: Image.network(
                 _productItem.image,
                 fit: BoxFit.fill,
               ),

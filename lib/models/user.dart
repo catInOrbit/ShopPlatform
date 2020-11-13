@@ -15,9 +15,9 @@ class User {
     _documentReference = value;
   }
 
-  get cartID => _shopID;
+  get shopID => _shopID;
 
-  set cartID(value) {
+  set shopID(value) {
     _shopID = value;
   }
 
@@ -67,18 +67,19 @@ class User {
 
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['gender'] = this._gender;
-    data['name'] = this.name;
-    data['address'] = this._address;
-    data['email'] = this._email;
-    data['username'] = this._username;
-    data['phoneNumber'] = this._phoneNumber;
-    data['shopID'] = this._shopID;
-    data['documentReference'] = this._documentReference;
-    data['avatarPicURL'] = this._avatarPicURL;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _UserToJson(this);
+
 }
+
+Map<String, dynamic> _UserToJson(User instance) => <String, dynamic> {
+  'gender' : instance.gender,
+  'name' : instance.name,
+  "address" : instance.address,
+  'email' : instance.email,
+  'username' : instance.username,
+  'phoneNumber' : instance.phoneNumber,
+  'shopID' : instance._shopID,
+  'documentReference' : instance.documentReference,
+  'avatarPicURL' : instance.avatarPicURL,
+};
 

@@ -23,7 +23,6 @@ class AuthenticationBloc
                   if(authenticationEvent.requestUserRetrieval == true)
                     {
                           DocumentSnapshot documentSnapshot = await _repository.firebaseAPI.getUserWithToken(authenticationEvent.authenticationToken);
-                          // user = User.fromJson(documentSnapshot.data());
                     }
 
               _userOutputStream.sink.add(user);
