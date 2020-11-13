@@ -13,15 +13,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/bloc/authentication/authentication_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/authentication/authentication_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/bloc/data_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/data_repository.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/firebase_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bloc/global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/global.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fake_data/FAKEDATE.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fake_data/FAKEDATE.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/AuthenticationPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/AuthenticationPage.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screen/LoginPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/LoginPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screen/ProductDetail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/ProductDetail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user_global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user_global.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen/RegisterPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen/RegisterPage.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,30 +86,30 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="693" y="302" width="524" height="504" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1603693636720" />
-    <state width="488" height="506" key="DebuggerActiveHint" timestamp="1604850358234">
+    <state width="572" height="506" key="DebuggerActiveHint" timestamp="1605245520475">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="488" height="506" key="DebuggerActiveHint/0.27.1920.1053@0.27.1920.1053" timestamp="1604850358234" />
+    <state width="572" height="506" key="DebuggerActiveHint/0.27.1920.1053@0.27.1920.1053" timestamp="1605245520475" />
     <state x="743" y="311" width="424" height="486" key="FileChooserDialogImpl" timestamp="1605066241336">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="743" y="311" width="424" height="486" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1605066241336" />
-    <state width="937" height="304" key="GridCell.Tab.0.bottom" timestamp="1605240878483">
+    <state width="937" height="304" key="GridCell.Tab.0.bottom" timestamp="1605247557913">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605240878483" />
-    <state width="937" height="304" key="GridCell.Tab.0.center" timestamp="1605240878483">
+    <state width="937" height="304" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1605247557913" />
+    <state width="937" height="304" key="GridCell.Tab.0.center" timestamp="1605247557913">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605240878483" />
-    <state width="937" height="304" key="GridCell.Tab.0.left" timestamp="1605240878482">
+    <state width="937" height="304" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1605247557913" />
+    <state width="937" height="304" key="GridCell.Tab.0.left" timestamp="1605247557913">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605240878482" />
-    <state width="937" height="304" key="GridCell.Tab.0.right" timestamp="1605240878483">
+    <state width="937" height="304" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1605247557913" />
+    <state width="937" height="304" key="GridCell.Tab.0.right" timestamp="1605247557913">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="937" height="304" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605240878483" />
+    <state width="937" height="304" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1605247557913" />
     <state x="449" y="188" width="1022" height="732" key="SettingsEditor" timestamp="1604673724968">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -139,6 +139,16 @@
           <url>file://$PROJECT_DIR$/lib/models/product.dart</url>
           <line>101</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screen/LoginPage.dart</url>
+          <line>155</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/bloc/authentication/authentication_bloc.dart</url>
+          <line>35</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

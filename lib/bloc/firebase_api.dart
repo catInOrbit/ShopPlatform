@@ -44,10 +44,16 @@ class FirebaseAPI {
       return eventsQuery;
     }
 
-    Future<DocumentSnapshot> getUserWithToken(String token) async {
-      DocumentSnapshot documentSnapshot =
-          await firestoreInstance.collection("users").document(token).get();
-      return documentSnapshot;
+    Future<QuerySnapshot> getUserWithToken(String token) async {
+
+      CollectionReference ref = firestoreInstance.collection('users');
+      QuerySnapshot eventsQuery = await ref.where("documentReference", isEqualTo: token.trim()).get();
+      print("User query found: " + eventsQuery.toString());
+      return eventsQuery;
+      //
+      // DocumentSnapshot documentSnapshot =
+      //     await firestoreInstance.collection("users").document(token).get();
+      // return documentSnapshot;
     }
 
     void deleteProductItems(String docID) async {

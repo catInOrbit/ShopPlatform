@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
 
                                 AuthenticationEvent event = AuthenticationEvent();
                                 event.requestUserRetrieval = true;
-                                event.authenticationToken = _auth.currentUser.getIdToken().toString();
+                                event.authenticationToken = newUser.user.uid;
                                 authenticationBloc.inputStreamEvent.add(event);
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => AuthenticationPage(),));
 
@@ -209,13 +209,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future<bool> checkIfUserIsShopOwner(String token) async
-  {
-      DocumentSnapshot documentSnapshot = (await firebaseAPI.getUserWithToken(token)) as DocumentSnapshot ;
-      ShopUser user = ShopUser.fromJson(documentSnapshot.data());
-      currentUser = user;
-      if(user.shopID != null)
-        return true;
-      return false;
-  }
+  // Future<bool> checkIfUserIsShopOwner(String token) async
+  // {
+  //     DocumentSnapshot documentSnapshot = (await firebaseAPI.getUserWithToken(token)) as DocumentSnapshot ;
+  //     ShopUser user = ShopUser.fromJson(documentSnapshot.data());
+  //     currentUser = user;
+  //     if(user.shopID != null)
+  //       return true;
+  //     return false;
+  // }
 }

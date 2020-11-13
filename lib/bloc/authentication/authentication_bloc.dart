@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:ExpShop/bloc/authentication/authentication_event.dart';
 import 'package:ExpShop/bloc/data_repository.dart';
+import 'package:ExpShop/bloc/global.dart';
 import 'package:ExpShop/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
@@ -22,11 +23,23 @@ class AuthenticationBloc
               ShopUser user;
                   if(authenticationEvent.requestUserRetrieval == true)
                     {
-                          DocumentSnapshot documentSnapshot = await _repository.firebaseAPI.getUserWithToken(authenticationEvent.authenticationToken);
-                          user = ShopUser.Internal().UserFromJson(documentSnapshot.data());
+                          print("AUTH TOKEN: " + authenticationEvent.authenticationToken);
+                          QuerySnapshot documentSnapshot = await _repository.firebaseAPI.getUserWithToken(authenticationEvent.authenticationToken);
+                          QueryDocumentSnapshot queryDocumentSnapshot = documentSnapshot.docs[0];
+
+                          // if(documentSnapshot.exists)
+                          //   {
+                         user = ShopUser.Internal().UserFromJson(queryDocumentSnapshot.data());
+                          currentUser = user;
+                          print("Output sink added authentication");
+
+                          _userOutputStream.sink.add(user);
+
+                            // }
+
+
                     }
 
-              _userOutputStream.sink.add(user);
             }
 
             _inputEventStream.stream.listen(onLoginEvent);

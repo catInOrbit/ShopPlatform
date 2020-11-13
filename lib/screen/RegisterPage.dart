@@ -131,7 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     FirebaseFirestore.instance;
                                 var batch = firestoreInstance.batch();
                                 var docRef =
-                                    firestoreInstance.collection("users").doc();
+                                    firestoreInstance.collection("users").doc(_auth.currentUser.uid);
                                 batch.set(docRef, {
                                   "gender": "",
                                   "name": name,

@@ -13,23 +13,38 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   {
     return Scaffold(
         backgroundColor: Colors.green,
-      body: StreamBuilder<ShopUser>(
-        stream: authenticationBloc.outputUserStream,
-        builder: (context, snapshot) {
-            if(snapshot.hasData)
-              {
-                if(snapshot.data.shopID != null)
-                    Navigator.pushNamed(
-                        context, '/ShopPage');
-                else
-                  Navigator.pushNamed(
-                      context, '/HomePage');
-              }
+      body: Container(
+        child: StreamBuilder<ShopUser>(
+          stream: authenticationBloc.outputUserStream,
+          builder: (context, snapshot) {
+              if(snapshot.hasData)
+                {
+                  if(snapshot.data.shopID != null)
+                    {
+                       print("PUSING SHOP");
+                       setState(() {
+                       });
+                       Navigator.pushNamed(
+                           context, '/HomePageShop');
 
-            else
-              return Center(child: CircularProgressIndicator(),);
+                    }
 
-        },
+                  else
+                    {
+                      print("PUSING HOME");
+                      Navigator.pushNamed(
+                          context, '/HomePage');
+                      setState(() {
+                      });
+
+                    }
+
+                }
+
+              else
+                return Center(child: CircularProgressIndicator(),);
+          },
+        ),
       ),
     );
   }

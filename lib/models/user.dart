@@ -58,7 +58,7 @@ class ShopUser {
 
   ShopUser UserFromJson(Map<String, dynamic> json) {
 
-   var user = ShopUser(
+   return ShopUser(
         json['gender'] as String,
         json['name'] as String,
         json['address'] as String,
@@ -68,8 +68,6 @@ class ShopUser {
         json['shopID'] as String,
         json['avatarPicURL'] as String
     );
-
-   return user;
 
 
   }
