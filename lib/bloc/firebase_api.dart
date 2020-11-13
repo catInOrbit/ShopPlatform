@@ -30,7 +30,26 @@ class FirebaseAPI {
           .collection("orders")
           .doc();
       batch.set(docRef,
-          {"productID": element.productID, "product": element.toJson()});
+          {
+            'productID': element.productID,
+            'productName': element.productName,
+            'price': element.price,
+            'promotionalPrice': element.promotionalPrice,
+            'like': element.like,
+            'storeID': element.storeID,
+            'categoryID': element.categoryID,
+            'describe': element.describe,
+            'image': element.image,
+            'createDate': element.createDate,
+            'expirationDate': element.expirationDate,
+            'color': element.color != null
+                ? element.color.toString()
+                : null, //Output of hex color: 0xff4caf50
+            "km": element.km,
+            "quantity": element.quantity,
+            "rating": element.rating,
+            "isRating": element.isRating
+          });
     });
 
     await batch.commit();
